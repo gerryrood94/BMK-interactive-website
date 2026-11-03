@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Две программы НИОКР и лаборатория — ООО «БМК групп»</title>
+<meta name="description" content="ООО «БМК групп», ИНТЦ «Сириус»: контрольная сыворотка ККС-5 для ИФА и ИХЛА, пероральные ДНК-вакцины для кур, лаборатория группы компаний — методики, биобанк, комплектация наборов.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F3F3EF;--plate:#FFFFFF;--band:#E4E5DC;--panel:#14171C;--ink:#14171C;--ink-2:#454B55;--ink-3:#5C636E;--rule:#D3D4CE;--rule-2:#B0B2AA;--ref:#244191;--panel-ink:#F1F2EE;--panel-2:#B9BDC6;--panel-3:#8E949F;--ref-dk:#A9BCEF;
+--c-navy:#24305F;--c-blue:#5282BE;--c-sky:#97B5DC;--c-grey:#A6B1BE;
+--serif:"IBM Plex Serif",Georgia,"Times New Roman",serif;--sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:88px;
+--gut:20px;--maxw:1180px;--measure:68ch;--hair:1px;--edge:2px;--mn:232px;--gap:56px}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--paper)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 17px/28px var(--sans);font-variant-numeric:tabular-nums;overflow-wrap:break-word}
+h1,h2,h3,h4,p,ul,ol,dl,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--ref);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--ref);text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--ref);outline-offset:3px}
+i{font-style:italic}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums slashed-zero}
+.nw{white-space:nowrap}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+@media (max-width:420px){:root{--gut:16px}}
+.skip{position:absolute;left:-999px;top:0;background:var(--plate);padding:var(--s2) var(--s4)}
+.skip:focus{left:var(--gut);z-index:9}
+
+/* masthead */
+.hdr{border-bottom:var(--hair) solid var(--ink)}
+.hdr__in{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);min-height:72px;padding-top:var(--s3);padding-bottom:var(--s3)}
+.brand{display:flex;align-items:center;gap:var(--s3);text-decoration:none}
+.logoslot{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;background:var(--ref);color:#fff;font:600 15px/1 var(--mono);letter-spacing:.04em}
+.brand__t{font:500 17px/20px var(--sans);display:flex;flex-direction:column}
+.brand__s{font:400 15px/20px var(--mono);color:var(--ink-3);margin-top:2px;display:none}
+@media (min-width:600px){.brand__s{display:block}}
+@media (min-width:1000px){.brand__s{white-space:nowrap}}
+.nav{display:none;gap:var(--s4);font:500 15px/24px var(--sans);white-space:nowrap}
+.nav a{text-decoration:none;border-bottom:var(--hair) solid transparent}
+.nav a:hover{color:var(--ref);border-bottom-color:var(--ref)}
+.navm{position:relative}
+.navm summary{list-style:none;cursor:pointer;font:500 15px/24px var(--sans);padding:var(--s2) var(--s3);border:var(--hair) solid var(--ink)}
+.navm summary::-webkit-details-marker{display:none}
+.navm__list{position:absolute;right:0;top:calc(100% + var(--s2));background:var(--plate);border:var(--hair) solid var(--ink);min-width:240px;display:flex;flex-direction:column;z-index:5}
+.navm__list a{padding:var(--s3) var(--s4);text-decoration:none;border-bottom:var(--hair) solid var(--rule)}
+.navm__list a:last-child{border-bottom:0}
+@media (min-width:1000px){.nav{display:flex}.navm{display:none}}
+
+/* editorial grid: text column + margin column */
+.art{display:grid;grid-template-columns:minmax(0,1fr);row-gap:0}
+.art>*{grid-column:1;max-width:var(--measure)}
+.art>.full,.art>.ch,.art>.sub{max-width:none}
+.art>p,.art>ul,.art>ol,.art>dl{margin-bottom:var(--s4)}
+.mn{font:400 15px/24px var(--sans);color:var(--ink-2);border-top:var(--hair) solid var(--rule-2);padding:var(--s2) 0 0;margin:0 0 var(--s5);max-width:var(--measure);display:flex;flex-wrap:wrap;gap:var(--s1) var(--s4);align-items:baseline}
+.mn b{font:500 20px/28px var(--mono);color:var(--ink);font-variant-numeric:tabular-nums slashed-zero}
+.mn__n{font:600 12px/16px var(--mono);letter-spacing:.1em;color:var(--ref)}
+.mr{font:500 12px/1 var(--mono);color:var(--ref);vertical-align:super;margin-left:2px;text-decoration:none}
+@media (min-width:1000px){
+  .art{grid-template-columns:minmax(0,1fr) var(--mn);column-gap:var(--gap)}
+  .art>.full,.art>.ch{grid-column:1/-1}
+  .mn{grid-column:2;align-self:start;display:block;margin:0 0 var(--s4);padding-top:var(--s2)}
+  .mn b{display:block;font-size:26px;line-height:32px;margin-top:var(--s1)}
+  .mn .mn__n{display:block;margin-bottom:var(--s1)}
+}
+
+/* type roles */
+.eyebrow{font:400 15px/24px var(--mono);color:var(--ink-3);letter-spacing:.02em;margin-bottom:var(--s5)}
+h1{font:400 clamp(30px,5.4vw,66px)/1.04 var(--serif);overflow-wrap:normal;letter-spacing:-.02em;max-width:24ch;margin-bottom:var(--s6)}
+.lead{font:400 20px/32px var(--sans);color:var(--ink)}
+.art>.lead{margin-bottom:var(--s5)}
+.note{font:400 15px/24px var(--sans);color:var(--ink-2)}
+.ch{border-top:var(--edge) solid var(--ink);padding-top:var(--s3);margin:var(--s8) 0 var(--s5);display:flex;gap:var(--s4);align-items:baseline;flex-wrap:wrap}
+.ch__n{font:500 13px/16px var(--mono);letter-spacing:.12em;color:var(--ink-3)}
+.ch h2{font:400 clamp(28px,3.6vw,44px)/1.1 var(--serif);letter-spacing:-.015em}
+.sub{display:flex;gap:var(--s3);align-items:baseline;margin:var(--s6) 0 var(--s3);border-top:var(--hair) solid var(--rule-2);padding-top:var(--s3)}
+.sub__n{font:500 13px/16px var(--mono);letter-spacing:.1em;color:var(--ink-3)}
+.sub h3{font:400 24px/32px var(--serif);letter-spacing:-.01em}
+.sec{padding:var(--s4) 0 var(--s8)}
+.sec--tint{background:var(--band)}
+.sec--deep{background:var(--plate)}
+.hero{padding:var(--s8) 0 var(--s7)}
+.mt-2{margin-top:var(--s4)!important}.mt-3{margin-top:var(--s5)!important}.mt-4{margin-top:var(--s6)!important}
+
+/* lists */
+.spec li{padding:var(--s2) 0 var(--s2) var(--s5);border-bottom:var(--hair) solid var(--rule);position:relative;font-size:15px;line-height:24px}
+.spec li::before{content:"";position:absolute;left:0;top:17px;width:10px;height:7px;border-radius:50%;background:var(--ink)}
+.spec li:first-child{border-top:var(--hair) solid var(--rule)}
+.flist li{display:grid;grid-template-columns:118px 1fr;gap:var(--s3);padding:var(--s2) 0;border-bottom:var(--hair) solid var(--rule);font-size:15px;line-height:24px}
+.flist li:first-child{border-top:var(--hair) solid var(--rule)}
+.flist .mono{color:var(--ink-3)}
+@media (max-width:420px){.flist li{grid-template-columns:1fr}}
+
+/* chronicle: dates sit in the margin column */
+.tl{border-top:var(--edge) solid var(--ink)}
+.tl li{display:grid;grid-template-columns:1fr;gap:var(--s1) var(--gap);padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule)}
+.tl__d{font:500 15px/24px var(--mono);color:var(--ink-3)}
+.tl__t{font-size:17px;line-height:28px}
+.tl__t b{font-weight:600}
+@media (min-width:1000px){.tl li{grid-template-columns:var(--mn) minmax(0,1fr)}.tl__d{font-size:20px;line-height:28px;color:var(--ink)}}
+
+/* cards */
+.cards{display:grid;gap:var(--s5);grid-template-columns:1fr}
+@media (min-width:760px){.cards--2{grid-template-columns:1fr 1fr}}
+.card{background:var(--plate);border:var(--hair) solid var(--rule-2);padding:var(--s5);display:flex;flex-direction:column;gap:var(--s3)}
+.card__k{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.card h2,.card h3{font:400 26px/32px var(--serif);letter-spacing:-.01em}
+.card p{font-size:15px;line-height:24px;color:var(--ink-2)}
+.card p.card__more{margin-top:auto;color:var(--ink)}
+.card__done{border-top:var(--hair) solid var(--rule);padding-top:var(--s3)}
+.card__done b{display:block;font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ref);margin-bottom:var(--s1)}
+.card .plate{width:100%;height:auto;display:block;background:var(--plate)}
+.cap{font:400 15px/24px var(--mono);color:var(--ink-3)}
+
+/* hero figures in the margin */
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s4);border-top:var(--edge) solid var(--ink);padding-top:var(--s3)}
+.fig__v{font:500 clamp(28px,3.4vw,40px)/1.1 var(--mono);font-variant-numeric:tabular-nums slashed-zero}
+.fig__t{font:400 15px/24px var(--sans);color:var(--ink-2);margin-top:var(--s1)}
+@media (min-width:1000px){.figs{grid-template-columns:1fr;gap:var(--s5);grid-column:2;align-self:start}}
+@media (max-width:560px){.figs{grid-template-columns:1fr}}
+
+/* photo placeholders: gridded field, shot code, caption */
+.ph{position:relative;width:100%;max-width:100%;background-color:var(--plate);background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:16px 16px;border:var(--hair) solid var(--rule-2);min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--s4)}
+.ph--wide{aspect-ratio:16/9;min-height:0;max-height:440px}
+.ph--tall{aspect-ratio:4/5;max-width:420px;min-height:0}
+.ph__code{position:absolute;left:0;top:0;background:var(--ink);color:var(--panel-ink);font:600 13px/16px var(--mono);padding:var(--s1) var(--s2)}
+.ph__t{font:400 15px/24px var(--sans);color:var(--ink);background:var(--plate);box-shadow:0 0 0 4px var(--plate);display:inline;align-self:flex-start}
+.ph__n{font:400 15px/24px var(--mono);color:var(--ink-3);background:var(--plate);box-shadow:0 0 0 4px var(--plate);align-self:flex-start;margin-top:var(--s2)}
+.phrow{display:grid;gap:var(--s5);grid-template-columns:1fr;margin-top:var(--s5)}
+@media (min-width:760px){.phrow--2{grid-template-columns:1fr 1fr}}
+
+/* tables */
+.tbl{border-top:var(--edge) solid var(--ink)}
+.tbl__h{display:none;font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding:var(--s2) 0;border-bottom:var(--hair) solid var(--rule-2)}
+.tbl__r{display:grid;grid-template-columns:1fr;gap:var(--s1);padding:var(--s3) 0;border-bottom:var(--hair) solid var(--rule);font-size:15px;line-height:24px}
+.tbl__r>div::before{content:attr(data-l);display:block;font:600 12px/16px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.tbl__r .tbl__c1{font-size:17px;line-height:28px}
+.tbl__r .tbl__c2,.tbl__r .tbl__c3{color:var(--ink-2)}
+@media (min-width:760px){.tbl__h,.tbl__r{display:grid;grid-template-columns:1.3fr 1.2fr .9fr;gap:var(--s4)}.tbl__r>div::before{display:none}.tbl--kp .tbl__h,.tbl--kp .tbl__r{grid-template-columns:1fr 1.6fr .8fr}}
+.kp{font:500 23px/28px var(--mono);font-variant-numeric:tabular-nums slashed-zero;border-bottom:var(--edge) solid var(--ink);display:inline-block}
+.kp--txt{font-size:15px;line-height:24px;border-bottom:0;color:var(--ink-2)}
+.w5{vertical-align:middle;margin-right:var(--s2)}
+
+/* team */
+.ppl li{display:grid;grid-template-columns:1fr;gap:var(--s1) var(--gap);padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule)}
+.ppl li:first-child{border-top:var(--edge) solid var(--ink)}
+.ppl__n{font:400 20px/28px var(--serif)}
+.ppl__n span{display:block;font:400 15px/24px var(--sans);color:var(--ink-3)}
+.ppl__d{font-size:15px;line-height:24px;color:var(--ink-2)}
+@media (min-width:1000px){.ppl li{grid-template-columns:minmax(0,1fr) var(--mn)}.ppl__d{grid-column:2;padding-top:var(--s1)}}
+
+/* definition list */
+.cont{display:grid;gap:var(--s5);grid-template-columns:1fr}
+@media (min-width:760px){.cont{grid-template-columns:1fr 1fr}}
+.dl{display:grid;grid-template-columns:1fr;border-top:var(--edge) solid var(--ink)}
+.dl dt{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:var(--s3)}
+.dl dd{margin:0;padding:var(--s1) 0 var(--s3);border-bottom:var(--hair) solid var(--rule);font-size:17px;line-height:28px}
+
+/* steps */
+.steps{display:grid;gap:var(--s4);grid-template-columns:1fr}
+@media (min-width:760px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{border-top:var(--edge) solid var(--ink);padding-top:var(--s3)}
+.step__h{display:flex;gap:var(--s3);align-items:baseline;margin-bottom:var(--s2)}
+.step__n{font:500 20px/28px var(--mono)}
+.step__k{font:400 20px/28px var(--serif)}
+.step p{font-size:15px;line-height:24px;color:var(--ink-2)}
+
+/* form */
+.form{display:grid;gap:var(--s4);grid-template-columns:1fr;max-width:none}
+@media (min-width:760px){.form{grid-template-columns:1fr 1fr}.form__wide{grid-column:1/-1}}
+.form label{display:block;font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s1)}
+.form input,.form textarea{width:100%;font:400 17px/28px var(--sans);color:var(--ink);background:var(--plate);border:var(--hair) solid var(--rule-2);padding:var(--s2) var(--s3);border-radius:0}
+.form textarea{min-height:112px;resize:vertical}
+.btn{font:500 15px/24px var(--sans);color:var(--panel-ink);background:var(--ink);border:var(--hair) solid var(--ink);padding:var(--s3) var(--s5);cursor:pointer;border-radius:0}
+.btn:hover{background:var(--ref);border-color:var(--ref)}
+
+/* details rows (biobank) */
+.rows{border-top:var(--edge) solid var(--ink)}
+.rows details{border-bottom:var(--hair) solid var(--rule)}
+.rows summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr 24px;gap:var(--s3);align-items:center;padding:var(--s3) 0;font:400 20px/28px var(--serif)}
+.rows summary::-webkit-details-marker{display:none}
+.rows summary::after{content:"";width:10px;height:10px;border-right:var(--hair) solid var(--ink);border-bottom:var(--hair) solid var(--ink);transform:rotate(45deg);justify-self:center;margin-top:-4px;transition:transform .2s}
+.rows details[open] summary::after{transform:rotate(225deg);margin-top:4px}
+.rows .rows__b{padding:0 0 var(--s4)}
+.rows .rows__b p{font-size:15px;line-height:24px;color:var(--ink-2)}
+.rows .rows__b p+p{margin-top:var(--s2)}
+@media (prefers-reduced-motion:reduce){.rows summary::after{transition:none}}
+
+/* partners chooser */
+.who{display:flex;flex-wrap:wrap;gap:var(--s2);margin:0 0 var(--s5);border:0;padding:0;min-width:0}
+.who legend{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2);width:100%}
+.who label{font:500 15px/24px var(--sans);border:var(--hair) solid var(--ink);padding:var(--s2) var(--s4);cursor:pointer;background:var(--plate);display:inline-flex;gap:var(--s2);align-items:center}
+.who input{margin:0;accent-color:var(--ref)}
+.who label:has(input:checked){background:var(--ink);color:var(--panel-ink)}
+.who label:has(input:focus-visible){outline:2px solid var(--ref);outline-offset:3px}
+.who__all{margin-top:var(--s2)}
+html.js .offers[data-who="1"] .offer:not(.offer--1),html.js .offers[data-who="2"] .offer:not(.offer--2),html.js .offers[data-who="3"] .offer:not(.offer--3),html.js .offers[data-who="4"] .offer:not(.offer--4){display:none}
+html.js .offers[data-who] .cards--2{grid-template-columns:1fr}
+.lnk{font:500 15px/24px var(--sans);background:none;border:0;padding:0;color:var(--ink);text-decoration:underline;text-decoration-color:var(--ref);text-underline-offset:3px;cursor:pointer}
+.lnk:hover{color:var(--ref)}
+.who__all[hidden]{display:none}
+
+/* ---- rd: ККС-5 chapter ---- */
+.kks{position:relative}
+.plate{width:100%;height:auto;display:block}
+.platefig{background:var(--plate);border:var(--hair) solid var(--rule-2);padding:var(--s4) var(--s4) var(--s3);margin:var(--s5) 0 var(--s6)}
+.platefig figcaption{font:400 15px/24px var(--mono);color:var(--ink-3);margin-top:var(--s2);display:flex;justify-content:space-between;gap:var(--s3);flex-wrap:wrap}
+.platefig .ctrl{display:inline-flex;align-items:center;gap:var(--s2)}
+.platefig .ctrl::before{content:"";width:12px;height:8px;border-radius:50%;border:1.5px solid var(--c-navy);background:#fff}
+@keyframes well-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+html.js .plate--enter .pr{opacity:0}
+html.js .plate--enter.in .pr{animation:well-in .55s ease-out both;animation-delay:calc(var(--i) * .13s)}
+@media (prefers-reduced-motion:reduce){html.js .plate--enter .pr{opacity:1;animation:none!important}}
+.kks__lead{display:grid;gap:var(--s5);grid-template-columns:1fr}
+@media (min-width:1000px){.kks__lead{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+
+/* ELISA stepper */
+.elisa{background:var(--plate);border:var(--hair) solid var(--rule-2);padding:var(--s4);margin-top:var(--s3)}
+.elisa__svg{width:100%;height:auto;display:block}
+.elisa .st{transition:opacity .25s}
+@media (prefers-reduced-motion:reduce){.elisa .st{transition:none}}
+html.js .elisa[data-step] .st{opacity:.22}
+html.js .elisa[data-step] .st3{opacity:.5}
+html.js .elisa[data-step="1"] .st1,html.js .elisa[data-step="2"] .st2,html.js .elisa[data-step="2"] .st1,html.js .elisa[data-step="2"] .st3,html.js .elisa[data-step="3"] .st3,html.js .elisa[data-step="4"] .st4,html.js .elisa[data-step="4"] .st3,html.js .elisa[data-step="5"] .st5,html.js .elisa[data-step="5"] .st3,html.js .elisa[data-step="6"] .st6,html.js .elisa[data-step="6"] .st5{opacity:1}
+.elisa__ctl{display:none;gap:var(--s2);flex-wrap:wrap;margin:var(--s4) 0 var(--s3)}
+html.js .elisa__ctl{display:flex}
+.sbtn{font:500 15px/24px var(--sans);background:var(--plate);color:var(--ink);border:var(--hair) solid var(--ink);padding:var(--s2) var(--s3);cursor:pointer;border-radius:0;display:inline-flex;gap:var(--s2);align-items:baseline}
+.sbtn .n{font:500 15px/24px var(--mono);color:var(--ink-3)}
+.sbtn[aria-pressed="true"]{background:var(--ink);color:var(--panel-ink)}
+.sbtn[aria-pressed="true"] .n{color:var(--panel-2)}
+.sbtn:hover{border-color:var(--ref);color:var(--ref)}
+.sbtn[aria-pressed="true"]:hover{color:var(--panel-ink);background:var(--ref)}
+.esteps{counter-reset:s;border-top:var(--hair) solid var(--rule-2);margin-top:var(--s4)}
+.esteps li{display:grid;grid-template-columns:40px 1fr;gap:var(--s3);padding:var(--s3) 0;border-bottom:var(--hair) solid var(--rule);font-size:15px;line-height:24px}
+.esteps li::before{counter-increment:s;content:counter(s);font:500 20px/24px var(--mono);color:var(--ink-3)}
+.esteps b{font-weight:600;display:block;color:var(--ink)}
+.esteps li>span{color:var(--ink-2)}
+html.js .elisa[data-step] .esteps li{display:none}
+html.js .elisa[data-step="1"] .esteps li:nth-child(1),html.js .elisa[data-step="2"] .esteps li:nth-child(2),html.js .elisa[data-step="3"] .esteps li:nth-child(3),html.js .elisa[data-step="4"] .esteps li:nth-child(4),html.js .elisa[data-step="5"] .esteps li:nth-child(5),html.js .elisa[data-step="6"] .esteps li:nth-child(6){display:grid;border-top:0}
+html.js .elisa[data-step] .esteps li::before{font-size:26px;line-height:32px;color:var(--ink)}
+html.js .elisa[data-step] .esteps li>span{font-size:17px;line-height:28px}
+.elisa__nav{display:none;gap:var(--s3);margin-top:var(--s3)}
+html.js .elisa__nav{display:flex}
+.kks__stage{font:400 24px/32px var(--serif);border-left:var(--edge) solid var(--c-navy);padding-left:var(--s4)}
+
+/* ---- rd: vaccine route ---- */
+.route{background:var(--plate);border:var(--hair) solid var(--rule-2);padding:var(--s4);margin-top:var(--s3)}
+.route__svg{width:100%;height:auto;display:block}
+.route .lane,.route .rn{transition:opacity .25s}
+@media (prefers-reduced-motion:reduce){.route .lane,.route .rn{transition:none}}
+html.js .route[data-lane="lab"] .lane-bird,html.js .route[data-lane="lab"] .ln-bird,html.js .route[data-lane="bird"] .lane-lab,html.js .route[data-lane="bird"] .ln-lab{opacity:.22}
+.lanes{display:none;flex-wrap:wrap;gap:var(--s2);margin:var(--s4) 0 var(--s3);border:0;padding:0}
+html.js .lanes{display:flex}
+.lanes legend{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:var(--s2);width:100%}
+.lanes label{font:500 15px/24px var(--sans);border:var(--hair) solid var(--ink);padding:var(--s2) var(--s4);cursor:pointer;background:var(--plate);display:inline-flex;gap:var(--s2);align-items:center}
+.lanes input{margin:0;accent-color:var(--ref)}
+.lanes label:has(input:checked){background:var(--ink);color:var(--panel-ink)}
+.lanes label:has(input:focus-visible){outline:2px solid var(--ref);outline-offset:3px}
+.rsteps{display:grid;gap:var(--s4);grid-template-columns:1fr;margin-top:var(--s4)}
+@media (min-width:760px){.rsteps{grid-template-columns:repeat(4,1fr)}}
+.rstep{border-top:var(--edge) solid var(--ink);padding-top:var(--s3);transition:opacity .25s}
+@media (prefers-reduced-motion:reduce){.rstep{transition:none}}
+.rstep__w{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ref);margin-bottom:var(--s2)}
+.rstep__h{display:flex;gap:var(--s3);align-items:baseline;margin-bottom:var(--s2)}
+.rstep__n{font:500 20px/28px var(--mono)}
+.rstep__k{font:400 20px/28px var(--serif)}
+.rstep p{font-size:15px;line-height:24px;color:var(--ink-2)}
+html.js .route[data-lane="lab"] .rstep--bird,html.js .route[data-lane="bird"] .rstep--lab{opacity:.35}
+
+/* svg labels are hidden where the drawing is small */
+.route__svg--card text,.route__svg--card .rp{display:none}
+@media (max-width:759px){.elisa__svg text,.route__svg text{display:none}}
+
+/* footer */
+.ftr{background:var(--panel);color:var(--panel-2);padding:var(--s7) 0 var(--s6);margin-top:var(--s8)}
+.ftr__g{display:grid;gap:var(--s5);grid-template-columns:1fr}
+@media (min-width:760px){.ftr__g{grid-template-columns:2fr 1fr 1fr}}
+.ftr h4{font:600 12px/16px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--panel-3);margin-bottom:var(--s2)}
+.ftr p,.ftr li{font-size:15px;line-height:24px}
+.ftr a{color:var(--panel-ink);text-decoration-color:var(--ref-dk)}
+.ftr__note{margin-top:var(--s6);border-top:var(--hair) solid var(--panel-3);padding-top:var(--s4);color:var(--panel-2)}
+.ftr__btm{font:400 15px/24px var(--mono);color:var(--panel-3);margin-top:var(--s2)}
+
+@media print{.hdr,.navm,.nav,.ftr,.elisa__ctl,.elisa__nav,.lanes,.who,.form{display:none!important}body{background:#fff;font-size:11pt}.sec--tint,.sec--deep{background:#fff}.art{grid-template-columns:1fr}.mn{border-top:1px solid #999}html.js .elisa[data-step] .esteps li{display:grid}html.js .plate--enter .pr{opacity:1;animation:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#top">К содержанию</a>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html">
+      <span class="logoslot">БМК</span>
+      <span class="brand__t">БМК групп<span class="brand__s">исследования и разработки · ИНТЦ «Сириус»</span></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+        <a href="index.html#programs">Программы</a>
+        <a href="index.html#done">Что сделано</a>
+        <a href="index.html#lab">Лаборатория</a>
+        <a href="rd.html#kks">ККС-5</a>
+        <a href="rd.html#avian">Вакцины для птицы</a>
+        <a href="index.html#partners">Партнёрам</a>
+        <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <details class="navm">
+      <summary>Разделы</summary>
+      <div class="navm__list">
+        <a href="index.html#programs">Программы</a>
+        <a href="index.html#done">Что сделано</a>
+        <a href="index.html#lab">Лаборатория</a>
+        <a href="rd.html#kks">ККС-5</a>
+        <a href="rd.html#avian">Вакцины для птицы</a>
+        <a href="index.html#partners">Партнёрам</a>
+        <a href="index.html#contacts">Контакты</a>
+      </div>
+    </details>
+  </div>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="wrap art">
+      <p class="eyebrow full">ООО «БМК групп» · пгт Сириус · свидетельство <span class="nw">АА № 000093</span> от 05.04.2024</p>
+      <h1 class="full">Две программы НИОКР с государственным финансированием — и&nbsp;лаборатория, которая их выполняет</h1>
+      <p class="lead">Лаборатория группы компаний выполняет работы по протоколу заказчика: ИФА, ПЦР, культуры клеток и вирусологическое тестирование in vitro. Рядом — коллекции биоматериала, комплектация наборов для многоцентровых исследований и две программы с государственным финансированием.</p>
+      <div class="figs">
+        <div class="fig"><div class="fig__v">9</div><div class="fig__t">методик вирусологического тестирования in vitro</div></div>
+        <div class="fig"><div class="fig__v">155</div><div class="fig__t">наборов для трёх отделений реанимации укомплектованы и промаркированы</div></div>
+        <div class="fig"><div class="fig__v">357</div><div class="fig__t">криобоксов учтены в двух низкотемпературных морозильниках</div></div>
+      </div>
+      <div class="cards cards--2 full mt-4">
+        <article class="card">
+          <p class="card__k">Программа 1</p>
+          <svg class="plate" viewBox="0 40 560 290" role="img" aria-labelledby="pl-hero-t" focusable="false" xmlns="http://www.w3.org/2000/svg" data-grid="8x12" data-perspective="q=1/(1+1.8*r/7)">
+<title id="pl-hero-t">Планшет ИФА, 8 × 12 лунок, в перспективе</title>
+<line x1="0" y1="60" x2="560" y2="60" stroke="#97B5DC" stroke-width="1"/>
+<g class="pr" style="--i:7"><ellipse cx="49" cy="310" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><ellipse cx="91" cy="310" rx="11" ry="7" fill="#24305F"/><ellipse cx="133" cy="310" rx="11" ry="7" fill="#24305F"/><ellipse cx="175" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="217" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="259" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="301" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="343" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="385" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="427" cy="310" rx="11" ry="7" fill="#A6B1BE"/><ellipse cx="469" cy="310" rx="11" ry="7" fill="#A6B1BE"/><ellipse cx="511" cy="310" rx="11" ry="7" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:6"><ellipse cx="96.25" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="129.659" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="163.068" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="196.477" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="229.886" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="263.295" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="296.705" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="330.114" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="363.523" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="396.932" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/><ellipse cx="430.341" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/><ellipse cx="463.75" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:5"><ellipse cx="127.453" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="155.189" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="182.925" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="210.66" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="238.396" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="266.132" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="293.868" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="321.604" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="349.34" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="377.075" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/><ellipse cx="404.811" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/><ellipse cx="432.547" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:4"><ellipse cx="149.597" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="173.306" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="197.016" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="220.726" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="244.435" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="268.145" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="291.855" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="315.565" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="339.274" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="362.984" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/><ellipse cx="386.694" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/><ellipse cx="410.403" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:3"><ellipse cx="166.127" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="186.831" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="207.535" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="228.239" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="248.944" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="269.648" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="290.352" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="311.056" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="331.761" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="352.465" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/><ellipse cx="373.169" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/><ellipse cx="393.873" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:2"><ellipse cx="178.938" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="197.313" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="215.688" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="234.063" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="252.438" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="270.813" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="289.188" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="307.563" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="325.938" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="344.313" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/><ellipse cx="362.688" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/><ellipse cx="381.063" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:1"><ellipse cx="189.157" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="205.674" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="222.191" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="238.708" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="255.225" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="271.742" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="288.258" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="304.775" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="321.292" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="337.809" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/><ellipse cx="354.326" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/><ellipse cx="370.843" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/></g>
+<g class="pr" style="--i:0"><ellipse cx="197.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="212.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="227.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="242.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="257.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="272.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="287.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="302.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="317.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="332.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/><ellipse cx="347.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/><ellipse cx="362.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/></g>
+</svg>
+          <p class="cap">Планшет ИФА, 8 × 12 лунок</p>
+          <h2>ККС-5 для ИФА и ИХЛА</h2>
+          <p>Жидкая комбинированная контрольная сыворотка, пять маркеров в одном флаконе. ККС-5 проходит государственную регистрацию как медицинское изделие.</p>
+          <p class="card__more"><a href="rd.html#kks">Программа ККС-5</a></p>
+        </article>
+        <article class="card">
+          <p class="card__k">Программа 2</p>
+          <svg class="route__svg route__svg--card" viewBox="0 0 720 270" role="img" aria-labelledby="route-hero-t" aria-describedby="route-hero-d" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<title id="route-hero-t">Маршрут плана работ по вакцинам для кур: две лабораторные стадии и две стадии на птице</title>
+<desc id="route-hero-d">Планшет на лабораторном столе слева, линия поения и поголовье справа; четыре узла маршрута: конструкции, доставка, иммунный ответ, защита.</desc>
+<g class="lane lane-lab"><rect x="40" y="26" width="160" height="92" rx="4" fill="#FFFFFF" stroke="#14171C" stroke-width="1.5"/><circle cx="60" cy="40" r="3.6" fill="#5C636E"/><circle cx="72" cy="40" r="3.6" fill="#5C636E"/><circle cx="84" cy="40" r="3.6" fill="#5C636E"/><circle cx="96" cy="40" r="3.6" fill="#5C636E"/><circle cx="108" cy="40" r="3.6" fill="#5C636E"/><circle cx="120" cy="40" r="3.6" fill="#5C636E"/><circle cx="132" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="40" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="50" r="3.6" fill="#5C636E"/><circle cx="72" cy="50" r="3.6" fill="#5C636E"/><circle cx="84" cy="50" r="3.6" fill="#5C636E"/><circle cx="96" cy="50" r="3.6" fill="#5C636E"/><circle cx="108" cy="50" r="3.6" fill="#5C636E"/><circle cx="120" cy="50" r="3.6" fill="#5C636E"/><circle cx="132" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="50" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="60" r="3.6" fill="#5C636E"/><circle cx="72" cy="60" r="3.6" fill="#5C636E"/><circle cx="84" cy="60" r="3.6" fill="#5C636E"/><circle cx="96" cy="60" r="3.6" fill="#5C636E"/><circle cx="108" cy="60" r="3.6" fill="#5C636E"/><circle cx="120" cy="60" r="3.6" fill="#5C636E"/><circle cx="132" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="60" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="70" r="3.6" fill="#5C636E"/><circle cx="72" cy="70" r="3.6" fill="#5C636E"/><circle cx="84" cy="70" r="3.6" fill="#5C636E"/><circle cx="96" cy="70" r="3.6" fill="#5C636E"/><circle cx="108" cy="70" r="3.6" fill="#5C636E"/><circle cx="120" cy="70" r="3.6" fill="#5C636E"/><circle cx="132" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="70" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="80" r="3.6" fill="#5C636E"/><circle cx="72" cy="80" r="3.6" fill="#5C636E"/><circle cx="84" cy="80" r="3.6" fill="#5C636E"/><circle cx="96" cy="80" r="3.6" fill="#5C636E"/><circle cx="108" cy="80" r="3.6" fill="#5C636E"/><circle cx="120" cy="80" r="3.6" fill="#5C636E"/><circle cx="132" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="80" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="90" r="3.6" fill="#5C636E"/><circle cx="72" cy="90" r="3.6" fill="#5C636E"/><circle cx="84" cy="90" r="3.6" fill="#5C636E"/><circle cx="96" cy="90" r="3.6" fill="#5C636E"/><circle cx="108" cy="90" r="3.6" fill="#5C636E"/><circle cx="120" cy="90" r="3.6" fill="#5C636E"/><circle cx="132" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="90" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="100" r="3.6" fill="#5C636E"/><circle cx="72" cy="100" r="3.6" fill="#5C636E"/><circle cx="84" cy="100" r="3.6" fill="#5C636E"/><circle cx="96" cy="100" r="3.6" fill="#5C636E"/><circle cx="108" cy="100" r="3.6" fill="#5C636E"/><circle cx="120" cy="100" r="3.6" fill="#5C636E"/><circle cx="132" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="100" r="3.6" fill="#A6B1BE"/><circle cx="60" cy="110" r="3.6" fill="#5C636E"/><circle cx="72" cy="110" r="3.6" fill="#5C636E"/><circle cx="84" cy="110" r="3.6" fill="#5C636E"/><circle cx="96" cy="110" r="3.6" fill="#5C636E"/><circle cx="108" cy="110" r="3.6" fill="#5C636E"/><circle cx="120" cy="110" r="3.6" fill="#5C636E"/><circle cx="132" cy="110" r="3.6" fill="#A6B1BE"/><circle cx="144" cy="110" r="3.6" fill="#A6B1BE"/><circle cx="156" cy="110" r="3.6" fill="#A6B1BE"/><circle cx="168" cy="110" r="3.6" fill="#A6B1BE"/><circle cx="180" cy="110" r="3.6" fill="#A6B1BE"/><circle cx="192" cy="110" r="3.6" fill="#A6B1BE"/><line x1="24" y1="126" x2="330" y2="126" stroke="#14171C" stroke-width="3"/><text x="24" y="150" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">лаборатория</text></g>
+<g class="lane lane-bird"><line x1="400" y1="170" x2="700" y2="170" stroke="#14171C" stroke-width="3"/><line x1="400" y1="160" x2="400" y2="170" stroke="#14171C" stroke-width="3"/><line x1="700" y1="160" x2="700" y2="170" stroke="#14171C" stroke-width="3"/><line x1="418" y1="170" x2="418" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="418" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="448" y1="170" x2="448" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="448" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="478" y1="170" x2="478" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="478" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="508" y1="170" x2="508" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="508" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="538" y1="170" x2="538" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="538" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="568" y1="170" x2="568" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="568" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="598" y1="170" x2="598" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="598" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="628" y1="170" x2="628" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="628" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="658" y1="170" x2="658" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="658" cy="184" rx="2.6" ry="4" fill="#244191"/><line x1="688" y1="170" x2="688" y2="178" stroke="#14171C" stroke-width="2"/><ellipse cx="688" cy="184" rx="2.6" ry="4" fill="#244191"/><circle cx="418" cy="208" r="3.4" fill="#5C636E"/><circle cx="448" cy="208" r="3.4" fill="#5C636E"/><circle cx="478" cy="208" r="3.4" fill="#5C636E"/><circle cx="508" cy="208" r="3.4" fill="#5C636E"/><circle cx="538" cy="208" r="3.4" fill="#5C636E"/><circle cx="568" cy="208" r="3.4" fill="#5C636E"/><circle cx="598" cy="208" r="3.4" fill="#5C636E"/><circle cx="628" cy="208" r="3.4" fill="#5C636E"/><circle cx="658" cy="208" r="3.4" fill="#5C636E"/><circle cx="688" cy="208" r="3.4" fill="#5C636E"/><circle cx="433" cy="226" r="3.4" fill="#5C636E"/><circle cx="463" cy="226" r="3.4" fill="#5C636E"/><circle cx="493" cy="226" r="3.4" fill="#5C636E"/><circle cx="523" cy="226" r="3.4" fill="#5C636E"/><circle cx="553" cy="226" r="3.4" fill="#5C636E"/><circle cx="583" cy="226" r="3.4" fill="#5C636E"/><circle cx="613" cy="226" r="3.4" fill="#5C636E"/><circle cx="643" cy="226" r="3.4" fill="#5C636E"/><circle cx="673" cy="226" r="3.4" fill="#5C636E"/><circle cx="703" cy="226" r="3.4" fill="#5C636E"/><circle cx="418" cy="244" r="3.4" fill="#5C636E"/><circle cx="448" cy="244" r="3.4" fill="#5C636E"/><circle cx="478" cy="244" r="3.4" fill="#5C636E"/><circle cx="508" cy="244" r="3.4" fill="#5C636E"/><circle cx="538" cy="244" r="3.4" fill="#5C636E"/><circle cx="568" cy="244" r="3.4" fill="#5C636E"/><circle cx="598" cy="244" r="3.4" fill="#5C636E"/><circle cx="628" cy="244" r="3.4" fill="#5C636E"/><circle cx="658" cy="244" r="3.4" fill="#5C636E"/><circle cx="688" cy="244" r="3.4" fill="#5C636E"/><text x="400" y="150" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">птица</text></g>
+<path class="rp" d="M100 212 H 260 C 300 212, 300 60, 340 60 C 380 60, 380 60, 420 60 H 660" fill="none" stroke="#244191" stroke-width="2"/>
+<g class="rn rn1 ln-lab"><circle cx="100" cy="212" r="16" fill="#FFFFFF" stroke="#14171C" stroke-width="1.5"/><text x="100" y="217" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">1</text></g><g class="rn rn2 ln-lab"><circle cx="220" cy="212" r="16" fill="#FFFFFF" stroke="#14171C" stroke-width="1.5"/><text x="220" y="217" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">2</text></g><g class="rn rn3 ln-bird"><circle cx="480" cy="60" r="16" fill="#FFFFFF" stroke="#14171C" stroke-width="1.5"/><text x="480" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">3</text></g><g class="rn rn4 ln-bird"><circle cx="620" cy="60" r="16" fill="#FFFFFF" stroke="#14171C" stroke-width="1.5"/><text x="620" y="65" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="15" font-weight="600" fill="#14171C">4</text></g>
+</svg>
+          <p class="cap">Планшет лаборатории, линия поения и поголовье — маршрут плана по вакцинам для кур</p>
+          <h2>Пероральные ДНК-вакцины для кур</h2>
+          <p>Болезнь Ньюкасла, болезнь Гамборо, инфекционный бронхит кур. План работ — НИОКТР с <span class="nw">16.11.2026</span> по <span class="nw">31.12.2028</span>.</p>
+          <p class="card__more"><a href="rd.html#avian">Вакцины для кур</a></p>
+        </article>
+      </div>
+      <div class="full mt-4"><figure class="ph ph--wide"><span class="ph__code">A2</span><figcaption class="ph__t">Рабочий стол лаборатории в работе</figcaption><span class="ph__n">Кадр A2 · общий план</span></figure></div>
+    </div>
+  </section>
+
+  <section class="sec" id="programs">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">01</span><h2 class="sh__t">Две программы</h2></header>
+      <p class="lead">Контрольная сыворотка для ИФА и ИХЛА и пероральные ДНК-вакцины для кур. Обе программы ведёт лаборатория группы компаний.</p>
+      <div class="cards cards--2 full">
+        <article class="card">
+          <p class="card__k">ИФА и ИХЛА</p>
+          <h3>ККС-5 — пять маркеров в одном флаконе</h3>
+          <p>Серия ККС-5-П01 собрана 2–4 сентября 2026 года. Розлито 30 флаконов по 5 мл, объём серии <span class="nw">168,7 мл</span>. 3 сентября 2026 года по ИФА четыре маркера дали коэффициент позитивности не ниже договорного порога 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
+          <p>Грант Фонда содействия инновациям — 5&nbsp;000&nbsp;000&nbsp;₽. Договор <span class="mono">№ 2ГС1МедС26/106630</span> от 7 октября 2025 года, программа «Старт», конкурс «Старт-Медизделия-1». Получатель и исполнитель по договору — ООО «БМК групп».</p>
+          <p class="card__more"><a href="rd.html#kks">Измерения, схема применения и ход работ</a></p>
+        </article>
+        <article class="card">
+          <p class="card__k">Птица</p>
+          <h3>Пероральные ДНК-вакцины для кур</h3>
+          <p>Идея: вакцинировать птицу не инъекцией каждой особи, а с водой или кормом. Живой носитель доставляет ДНК-конструкцию в клетки кишечника. Первая очередь — болезнь Ньюкасла, болезнь Гамборо и инфекционный бронхит кур.</p>
+          <p>Субсидия ИНТЦ «Сириус» — 15&nbsp;000&nbsp;000&nbsp;₽ и 3&nbsp;000&nbsp;000&nbsp;₽ собственных средств на 2026–2028. График субсидии: 1&nbsp;млн&nbsp;₽, 7&nbsp;млн&nbsp;₽ и 7&nbsp;млн&nbsp;₽. Конкурс <span class="mono"><span class="nw">26-803-05360-1-0164</span></span>.</p>
+          <p class="card__more"><a href="rd.html#avian">План вакцин для кур</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="done">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">02</span><h2 class="sh__t">Что сделано в 2026 году</h2></header>
+      <ol class="tl full">
+        <li><span class="tl__d">27–31.08.2026</span><span class="tl__t"><b>Способ подготовки сырья для ККС-5.</b> Производственный режим избирательного подавления избыточного компонента гипериммунной сыворотки зафиксирован 27.08.2026 и подтверждён титрованием 31.08.2026: анти-HBcore сохраняется в титре не ниже <span class="nw">1:128</span>. Заявка на изобретение подана в Роспатент.</span></li>
+        <li><span class="tl__d">01.09.2026</span><span class="tl__t"><b>Первый этап гранта по ККС-5 закрыт.</b> Отчёт о НИР по <span class="nw">ГОСТ 7.32-2017</span>, <span class="nw">рег. № 1/26</span>, подписан.</span></li>
+        <li><span class="tl__d">2–4.09.2026</span><span class="tl__t"><b>Серия ККС-5-П01 собрана и разлита:</b> 30 флаконов × 5 мл, объём серии <span class="nw">168,7 мл</span>. 03.09.2026 измерены коэффициенты позитивности по пяти маркерам: по четырём — не ниже договорного порога 3, по анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</span></li>
+        <li><span class="tl__d">04.09.2026</span><span class="tl__t"><b>Старт исследования стабильности ККС-5:</b> ускоренное старение целыми флаконами 5 мл при +45 и +37&nbsp;°C и реальное время при <span class="nw">+2…+8&nbsp;°C</span>.</span></li>
+        <li><span class="tl__d">к 08.10.2026</span><span class="tl__t"><b>155 наборов для трёх отделений реанимации</b> международного многоцентрового исследования укомплектованы, промаркированы и готовы к отправке: 130 наборов для крови и 25 для плазмы, по 8 цветокодированных криобоксов на каждый центр, формы передачи по каждому центру.</span></li>
+        <li><span class="tl__d">16.10.2026</span><span class="tl__t"><b>План исследования для характеризации ККС-5 в ИХЛА</b> — редакция 3 от 16.10.2026: внешняя площадка, слепое исполнение, de novo.</span></li>
+        <li><span class="tl__d">28–30.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА</b> (28.10.2026); 30.10.2026 на ней за один день изохронно поставлены все точки исследования стабильности ККС-5.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="lab">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">03</span><h2 class="sh__t">Комплектация и прослеживаемость</h2></header>
+      <p class="lead">Для международного многоцентрового исследования собраны и промаркированы 155 наборов для трёх отделений реанимации: 130 наборов для крови и 25 для плазмы. По всем трём центрам наборы готовы к отправке.<sup class="mr">1</sup></p>
+      <aside class="mn"><span class="mn__n">1</span><b>155</b><span>наборов: 130 для крови и 25 для плазмы</span></aside>
+      <ul class="spec">
+        <li>8 цветокодированных криобоксов на каждый центр</li>
+        <li>27 этикеток на набор для крови и 52 на набор для плазмы</li>
+        <li>2&nbsp;400 этикеток криопробирок</li>
+        <li>Код криопробирки определяется номером набора</li>
+        <li>DataMatrix и линейный штрихкод; код криопробирки определяется номером набора</li>
+        <li>Формы передачи заполнены по каждому центру</li>
+        <li>Хранение <span class="nw">−70…−86&nbsp;°C</span></li>
+        <li>Аллокатор номеров сверяет реестры перед выдачей номера</li>
+      </ul>
+      <aside class="mn"><span class="mn__n">2</span><b>2 400</b><span>этикеток криопробирок; DataMatrix и линейный штрихкод</span></aside>
+      <div class="phrow phrow--2 full">
+        <figure class="ph ph--wide"><span class="ph__code">B1</span><figcaption class="ph__t">Криовиалы в штативе</figcaption><span class="ph__n">Кадр B1 · крупный план</span></figure>
+        <figure class="ph ph--wide"><span class="ph__code">B9</span><figcaption class="ph__t">Стойка хранения с мониторингом температуры</figcaption><span class="ph__n">Кадр B9 · система хранения</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="biobank">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">04</span><h2 class="sh__t">Коллекции биобанка</h2></header>
+      <p class="lead">357 криобоксов в двух низкотемпературных морозильниках учтены пофотографно и сверены со справочным списком.<sup class="mr">3</sup></p>
+      <aside class="mn"><span class="mn__n">3</span><b>357</b><span>криобоксов в двух низкотемпературных морозильниках</span></aside>
+      <div class="rows full">
+        <details open>
+          <summary>Состав коллекций</summary>
+          <div class="rows__b">
+            <ul class="spec">
+              <li>Плазма и моча при черепно-мозговой травме</li>
+              <li>Кровь условно здоровых доноров</li>
+              <li>Свежие биопсии кожи при миодистрофии Дюшенна</li>
+              <li>Ликвор здоровых доноров</li>
+              <li>Охарактеризованный опухолевый блок лёгкого, PD-L1-положительный</li>
+              <li>Панель сывороток с антителами к ВИЧ, ВГВ, ВГС и возбудителю сифилиса — поставлена по договору</li>
+            </ul>
+          </div>
+        </details>
+        <details>
+          <summary>Протоколы и передача материала</summary>
+          <div class="rows__b">
+            <p>Протоколы работы с ликвором, плазмой и сывороткой подготовлены. Материал коллекций для внешнего исследования передаём по соглашению — порядок в разделе «Партнёрам».</p>
+          </div>
+        </details>
+        <details>
+          <summary>Учёт хранения</summary>
+          <div class="rows__b">
+            <p>357 криобоксов в двух низкотемпературных морозильниках учтены пофотографно и сверены со справочным списком.</p>
+            <p>Хранение <span class="nw">−70…−86&nbsp;°C</span>. Аллокатор номеров сверяет реестры перед выдачей номера.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Биобанк клеточных культур</summary>
+          <div class="rows__b">
+            <p>Проект биобанка клеточных культур поддержан Агентством стратегических инициатив на форуме V «Сильные идеи для нового времени», номинация «Национальная предпринимательская инициатива».</p>
+          </div>
+        </details>
+      </div>
+      <div class="full mt-3"><figure class="ph ph--wide"><span class="ph__code">A1</span><figcaption class="ph__t">Криохранилище</figcaption><span class="ph__n">Кадр A1 · общий план</span></figure></div>
+    </div>
+  </section>
+
+  <section class="sec" id="quality">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">05</span><h2 class="sh__t">Система качества и методики</h2></header>
+      <p class="lead">Лаборатория работает по системе СОП группы компаний: 29 СОП второго уровня и 81 форма. У лабораторных СОП есть английская редакция.<sup class="mr">4</sup></p>
+      <aside class="mn"><span class="mn__n">4</span><b>29 + 81</b><span>СОП второго уровня и формы</span></aside>
+      <p class="note">СОПы покрывают цепь сохранности образца, валидацию методов, расследование результатов вне спецификации, LIMS, передачу данных спонсору, внутрилабораторный контроль, постановку ИФА, подготовку наборов и обращение с отходами класса Б. Несоответствия регистрируются и расследуются по СОП.</p>
+      <div class="sub full"><span class="sub__n">05.1</span><h3>Девять методик вирусологического тестирования in vitro</h3></div>
+      <div class="tbl full" role="table">
+        <div class="tbl__h" role="row"><span>Методика</span><span>Что определяет</span><span>Нормативная привязка</span></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Заражение индикаторных культур с учётом цитопатического действия</div><div class="tbl__c2" data-l="Что определяет" role="cell">посторонние вирусные агенты в клеточных культурах</div><div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; ЕЭК № 89</span></div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Гемадсорбция</div><div class="tbl__c2" data-l="Что определяет" role="cell">гемадсорбирующие вирусы на монослое</div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Гемагглютинация</div><div class="tbl__c2" data-l="Что определяет" role="cell">гемагглютинирующие вирусы в культуральной жидкости</div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Гистохимическое окрашивание монослоёв</div><div class="tbl__c2" data-l="Что определяет" role="cell">морфология и включения в клетках</div><div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">WOAH 1.1.9</span></div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">ИФА антигенов</div><div class="tbl__c2" data-l="Что определяет" role="cell">вирусные антигены</div><div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; МУК 4.2.2029-05</span></div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Реакция связывания комплемента (Cofal)</div><div class="tbl__c2" data-l="Что определяет" role="cell">группоспецифический антиген лейкозно-саркомного комплекса птиц</div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">ПЦР и ОТ-ПЦР</div><div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов</div><div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; ЕЭК № 89; WOAH 1.1.9</span></div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Активность обратной транскриптазы (PERT)</div><div class="tbl__c2" data-l="Что определяет" role="cell">ретровирусы, в том числе эндогенные, в банках клеток</div><div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ЕЭК № 89, гл. 2</span></div></div>
+        <div class="tbl__r" role="row"><div class="tbl__c1" data-l="Методика" role="cell">Изотермическая амплификация (LAMP)</div><div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов без термоциклера</div></div>
+      </div>
+      <p class="note mt-3">ИФА автоматизирована: станция введена 28 октября 2026 года.<sup class="mr">5</sup></p>
+      <aside class="mn"><span class="mn__n">5</span><b>28.10.2026</b><span>введена автоматическая станция ИФА</span></aside>
+      <div class="full mt-3"><figure class="ph ph--wide"><span class="ph__code">B2</span><figcaption class="ph__t">Клеточные культуры</figcaption><span class="ph__n">Кадр B2</span></figure></div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="park">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">06</span><h2 class="sh__t">Оборудование</h2></header>
+      <p class="lead">Парк лаборатории группы компаний.</p>
+      <ul class="spec">
+        <li><span class="mono">2</span> бокса биобезопасности II класса, БМБ-II «Ламинар-С»-1,5 NEOTERIC</li>
+        <li>ПЦР-бокс БАВ-ПЦР-«Ламинар-С»</li>
+        <li><span class="mono">2</span> паровых стерилизатора класса B, STE-23-D</li>
+        <li>Водоподготовка: Sartorius arium mini и Millipore Direct-Q 3</li>
+        <li>Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</li>
+        <li><span class="mono">4</span> низкотемпературных морозильника −86&nbsp;°C по <span class="nw">338&nbsp;л</span>, Haier DW-86L338<sup class="mr">6</sup></li>
+        <li><span class="mono">2</span> криохранилища Thermo CY50935-70 и <span class="mono">5</span> сосудов Дьюара</li>
+        <li>Промыватели планшетов ППА-01 ПРОПЛАН и Mindray MW-12A</li>
+        <li>Планшетный фотометр Thermo Multiskan FC</li>
+        <li>Автоматическая станция ИФА «Лазурит», введена 28.10.2026</li>
+        <li>Термошейкеры Biosan TS-100 и TS-100C</li>
+        <li><span class="mono">15</span> UV-рециркуляторов DEZAR-KRONT</li>
+      </ul>
+      <aside class="mn"><span class="mn__n">6</span><b>4 × 338 л</b><span>низкотемпературных морозильника −86 °C</span></aside>
+      <div class="phrow phrow--2 full">
+        <figure class="ph ph--wide"><span class="ph__code">C3</span><figcaption class="ph__t">Молекулярно-биологический стол</figcaption><span class="ph__n">Кадр C3</span></figure>
+        <figure class="ph ph--wide"><span class="ph__code">B8</span><figcaption class="ph__t">Лабораторный прибор</figcaption><span class="ph__n">Кадр B8</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="team">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">07</span><h2 class="sh__t">Команда</h2></header>
+      <p class="lead">Роли в программах и в лаборатории.</p>
+      <ul class="ppl full">
+        <li><div class="ppl__n">Руководитель программы ККС-5<span>кандидат биологических наук, СПбГУ</span></div><div class="ppl__d">Ведёт программу комбинированной контрольной сыворотки для ИФА и ИХЛА.</div></li>
+        <li><div class="ppl__n">Научный руководитель вакцин для птицы<span>кандидат биологических наук, микробиолог, СПбГУ</span></div><div class="ppl__d">Научное руководство программой пероральных ДНК-вакцин для кур.</div></li>
+        <li><div class="ppl__n">Руководитель этапа in vivo<span>доктор ветеринарных наук, профессор, академик РАН</span></div><div class="ppl__d">Оценка иммунного ответа и защитной эффективности на птице.</div></li>
+        <li><div class="ppl__n">Специалист по эффективности in vivo<span>кандидат ветеринарных наук</span></div><div class="ppl__d">Эффективность на птице в программе вакцин для кур.</div></li>
+        <li><div class="ppl__n">Организация доклинических исследований<span>специалист ICH GCP</span></div><div class="ppl__d">Организация исследований in vitro и in vivo.</div></li>
+        <li><div class="ppl__n">Инженер-исполнитель ККС-5<span>MSc, Wageningen University</span></div><div class="ppl__d">Допуск к работе с патогенными биологическими агентами III–IV групп. Четыре рецензируемые публикации 2022–2024. В лаборатории два сертификата ICH GCP E6(R3) от 18.06.2026.</div></li>
+        <li><div class="ppl__n">Менеджер по качеству<span>аудит клинических исследований и CSV</span></div><div class="ppl__d">Аудит исследований и валидация компьютеризированных систем.</div></li>
+        <li><div class="ppl__n">Менеджер биобанка</div><div class="ppl__d">Коллекции и учёт низкотемпературного хранения.</div></li>
+      </ul>
+      <div class="full mt-3"><figure class="ph ph--tall"><span class="ph__code">D1</span><figcaption class="ph__t">Сотрудник за лабораторной работой</figcaption><span class="ph__n">Кадр D1</span></figure></div>
+    </div>
+  </section>
+
+  <section class="sec sec--deep" id="partners">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">08</span><h2 class="sh__t">Партнёрам и фондам</h2></header>
+      <p class="lead">Четыре адресата, у каждого — форматы работы и то, что по ним уже сделано.</p>
+      <div class="offers full">
+        <fieldset class="who">
+          <legend>Выберите адресата</legend>
+          <label><input type="radio" name="who" value="1" aria-label="Производителю тест-систем">Производителю тест-систем</label>
+          <label><input type="radio" name="who" value="2" aria-label="Птицеводческой компании">Птицеводческой компании</label>
+          <label><input type="radio" name="who" value="3" aria-label="CRO и лаборатории">CRO и лаборатории</label>
+          <label><input type="radio" name="who" value="4" aria-label="Фонду и госпрограмме">Фонду и госпрограмме</label>
+          <p class="who__all" hidden><button class="lnk" type="button">Показать всех четырёх адресатов</button></p>
+        </fieldset>
+        <div class="cards cards--2">
+          <article class="card offer offer--1">
+            <p class="card__k">Производителям тест-систем и лабораториям</p>
+            <h3>ККС-5: знакомство с материалом и совместная характеризация</h3>
+            <p>Техническое знакомство с материалом. Совместная характеризация ККС-5 на наборах партнёра по согласованному плану. Требования к будущей поставке.</p>
+            <p class="card__done"><b>Сделано</b>Серия ККС-5-П01, 30 флаконов × 5 мл, измерена по ИФА 03.09.2026.</p>
+          </article>
+          <article class="card offer offer--2">
+            <p class="card__k">Птицеводческим компаниям и ветеринарным институтам</p>
+            <h3>Вакцины для кур: требования к продукту и целевой профиль</h3>
+            <p>Требования к продукту и схеме применения через систему поения. Участие в постановке целевого профиля. Условия будущих испытаний на птице — после лабораторной проверки доставки.</p>
+            <p class="card__done"><b>Сделано</b>Программа — победитель конкурса ИНТЦ «Сириус»; НИОКТР <span class="nw">16.11.2026</span> – <span class="nw">31.12.2028</span>.</p>
+          </article>
+          <article class="card offer offer--3">
+            <p class="card__k">CRO и научным лабораториям</p>
+            <h3>Работы по протоколу заказчика, хранение, наборы</h3>
+            <p>Девять методик вирусологического тестирования in vitro по протоколу заказчика. Хранение −86&nbsp;°C. Биоматериал коллекций по соглашению. Комплектация и маркировка наборов для многоцентровых исследований.</p>
+            <p class="card__done"><b>Сделано</b>155 наборов для трёх отделений реанимации укомплектованы и промаркированы.</p>
+          </article>
+          <article class="card offer offer--4">
+            <p class="card__k">Фондам и госпрограммам</p>
+            <h3>Соисполнение НИОКР и совместные заявки</h3>
+            <p>Соисполнение НИОКР по грантам и субсидиям: лабораторная часть, отчётность по этапам. Совместные заявки с фондом, госпрограммой или научным партнёром.</p>
+            <p class="card__done"><b>Сделано</b>Первый этап гранта закрыт отчётом о НИР 01.09.2026.</p>
+          </article>
+        </div>
+      </div>
+      <div class="sub full"><span class="sub__n">08.1</span><h3>Как начать</h3></div>
+      <div class="steps full">
+        <div class="step"><p class="step__h"><span class="step__n">1</span><span class="step__k">Письмо</span></p><p>Пришлите задачу, матрицу, объём и сроки на <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>.</p></div>
+        <div class="step"><p class="step__h"><span class="step__n">2</span><span class="step__k">NDA</span></p><p>Соглашение о конфиденциальности подписываем по запросу.</p></div>
+        <div class="step"><p class="step__h"><span class="step__n">3</span><span class="step__k">План</span></p><p>Согласуем объём работ и сроки под ваш протокол.</p></div>
+        <div class="step"><p class="step__h"><span class="step__n">4</span><span class="step__k">Договор</span></p><p>Фиксируем работу договором и приступаем.</p></div>
+      </div>
+      <p class="mt-4">Почта <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>, телефон <a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>.</p>
+      <form class="form full" action="mailto:ceo@bmc-gp.com" method="post" enctype="text/plain">
+        <div><label for="org">Организация</label><input id="org" name="Организация" aria-label="Организация" type="text" autocomplete="organization"></div>
+        <div><label for="who">Контакт</label><input id="who" name="Контакт" aria-label="Контакт" type="text" autocomplete="name"></div>
+        <div class="form__wide"><label for="task">Задача</label><textarea id="task" name="Задача" aria-label="Задача"></textarea></div>
+        <div><label for="matrix">Матрица</label><input id="matrix" name="Матрица" aria-label="Матрица" type="text"></div>
+        <div><label for="volume">Объём</label><input id="volume" name="Объём" aria-label="Объём" type="text"></div>
+        <div class="form__wide"><label for="when">Сроки</label><input id="when" name="Сроки" aria-label="Сроки" type="text"></div>
+        <div class="form__wide"><button class="btn" type="submit">Отправить запрос</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec" id="contacts">
+    <div class="wrap art">
+      <header class="ch"><span class="ch__n">09</span><h2 class="sh__t">Контакты и реквизиты</h2></header>
+      <div class="cont full">
+        <dl class="dl">
+          <dt>Полное наименование</dt><dd>Общество с ограниченной ответственностью «БМК групп»</dd>
+          <dt>Сокращённое наименование</dt><dd>ООО «БМК групп»</dd>
+          <dt>ОГРН</dt><dd class="mono">1242300007586</dd>
+          <dt>ИНН</dt><dd class="mono">2378000096</dd>
+          <dt>КПП</dt><dd class="mono">237801001</dd>
+          <dt>Адрес</dt><dd>354340, Краснодарский край, пгт Сириус, Триумфальный пр-д, д.&nbsp;1, помещ.&nbsp;№&nbsp;2-036, раб.&nbsp;место&nbsp;2-036/45</dd>
+        </dl>
+        <dl class="dl">
+          <dt>Почта</dt><dd><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></dd>
+          <dt>Телефон</dt><dd><a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a></dd>
+          <dt>ИНТЦ «Сириус»</dt><dd>Участник проекта. Свидетельство <span class="nw">АА №&nbsp;000093</span> от 05.04.2024</dd>
+          <dt>Персональные данные</dt><dd><a href="/privacy">Порядок обработки персональных данных</a></dd>
+        </dl>
+      </div>
+      <div class="full mt-4"><figure class="ph ph--wide"><span class="ph__code">E1</span><figcaption class="ph__t">Вход и вывеска площадки</figcaption><span class="ph__n">Кадр E1</span></figure></div>
+    </div>
+  </section>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__g">
+      <div>
+        <h4>ООО «БМК групп»</h4>
+        <p>Лаборатория группы компаний. Участник проекта ИНТЦ «Сириус».</p>
+        <p>ОГРН <span class="mono">1242300007586</span><br>ИНН <span class="mono">2378000096</span></p>
+      </div>
+      <div>
+        <h4>Страницы</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="rd.html#kks">ККС-5</a></li>
+          <li><a href="rd.html#avian">Вакцины для птицы</a></li>
+          <li><a href="index.html#partners">Партнёрам</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <ul>
+          <li><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
+          <li><a href="tel:+79086325048">+7 908 632-50-48</a></li>
+          <li><a href="/privacy">Персональные данные</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ftr__note">Подтверждающие документы предоставляются по запросу и на аудите.</p>
+    <p class="ftr__btm">ООО «БМК групп» · пгт Сириус · свидетельство <span class="nw">АА № 000093</span> от 05.04.2024</p>
+  </div>
+</footer>
+<script>
+(function(){
+  var d=document, h=d.documentElement; h.classList.add('js');
+  var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // one entrance: wells appear row by row from the horizon, once the plate is in view
+  var pl=d.querySelector('.plate--enter');
+  if(pl){ if(rm||!('IntersectionObserver' in window)){pl.classList.add('in');} else { var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){pl.classList.add('in');io.disconnect();}});},{threshold:.35}); io.observe(pl);} }
+  // ELISA stepper
+  var el=d.querySelector('.elisa');
+  if(el){
+    var btns=el.querySelectorAll('.sbtn'), prev=el.querySelector('[data-prev]'), next=el.querySelector('[data-next]'), live=el.querySelector('.esteps');
+    var cur=1, N=btns.length;
+    function go(n){ cur=((n-1+N)%N)+1; el.setAttribute('data-step',String(cur)); btns.forEach(function(b,i){b.setAttribute('aria-pressed', i+1===cur?'true':'false');}); }
+    btns.forEach(function(b,i){ b.addEventListener('click',function(){go(i+1);}); });
+    if(prev) prev.addEventListener('click',function(){go(cur-1);});
+    if(next) next.addEventListener('click',function(){go(cur+1);});
+    el.addEventListener('keydown',function(e){ if(e.target.closest('.elisa__ctl, .elisa__nav')){ if(e.key==='ArrowRight'){go(cur+1);e.preventDefault();} if(e.key==='ArrowLeft'){go(cur-1);e.preventDefault();} } });
+    if(live) live.setAttribute('aria-live','polite');
+    go(1);
+  }
+  // vaccine route: lane switch
+  var rt=d.querySelector('.route');
+  if(rt){ rt.querySelectorAll('.lanes input').forEach(function(r){ r.addEventListener('change',function(){ if(r.value==='all') rt.removeAttribute('data-lane'); else rt.setAttribute('data-lane',r.value); }); }); }
+  // partners chooser
+  var of=d.querySelector('.offers');
+  if(of){ var all=of.querySelector('.who__all'); var btn=of.querySelector('.who__all button');
+    of.querySelectorAll('.who input').forEach(function(r){ r.addEventListener('change',function(){ of.setAttribute('data-who',r.value); if(all) all.hidden=false; }); });
+    if(btn) btn.addEventListener('click',function(){ of.removeAttribute('data-who'); of.querySelectorAll('.who input').forEach(function(r){r.checked=false;}); if(all) all.hidden=true; });
+  }
+  // mobile menu closes after a choice
+  var nm=d.querySelector('.navm'); if(nm){ nm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nm.removeAttribute('open');});}); }
+})();
+</script>
+</body>
+</html>

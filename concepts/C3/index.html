@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Две программы НИОКР и лаборатория — ООО «БМК групп»</title>
+<meta name="description" content="ООО «БМК групп», участник проекта ИНТЦ «Сириус». Две программы НИОКР с государственным финансированием: ККС-5 для ИФА и ИХЛА, пероральные ДНК-вакцины для кур. Лаборатория группы компаний: ИФА, ПЦР, коллекции биоматериала, комплектация наборов.">
+<meta name="theme-color" content="#0F1630">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.className+=' js';</script>
+<style>
+/* ============================================================
+   ООО «БМК групп» — система «Тёмный планшет».
+   Один и тот же блок стилей на index.html и rd.html.
+   Из «Прибора» оставлено: IBM Plex Sans / Mono, шкала кеглей
+   12 / 13 / 15 / 17 / 20 / h2 / h1, ритм 8 px, радиус 0, табличные
+   цифры, номер раздела с плашкой и шкала с делениями, таблицы
+   только с горизонтальными линиями, разграфлённое поле кадра.
+   Изменено: фон — ночной navy, выведенный из гаммы № 3; роли текста
+   светлые; длинное чтение — на светлых плашках бумаги; синий
+   #244191 — ссылка на светлой плашке, #A9BCEF — на тёмном фоне.
+   Контрасты посчитаны в node (NOTES.md). Красного нет.
+   ============================================================ */
+:root{
+  --bg:#0F1630;        /* фон страницы: navy гаммы № 3, затемнённый */
+  --band:#16203F;      /* полоса раздела */
+  --surf:#1B2650;      /* тёмная карточка, поле формы */
+  --plate:#F3F3EF;     /* светлая плашка для чтения (бумага «Прибора») */
+  --plate-2:#E4E5DC;
+  --lt:#EEF1F7;        /* текст и заголовки на тёмном — 15,76:1 */
+  --lt-2:#C7CFDE;      /* абзацы — 11,38:1 */
+  --lt-3:#9CA8BF;      /* метки, метаданные — 7,44:1 */
+  --ref-lt:#A9BCEF;    /* ссылка на тёмном — осветлённый #244191, 9,45:1 */
+  --ref:#244191;       /* ссылка на светлой плашке — 8,43:1 */
+  --ink:#14171C;--ink-2:#454B55;--ink-3:#5C636E;
+  --rule:rgba(238,241,247,.16);--rule-2:rgba(238,241,247,.34);
+  --rule-p:#D3D4CE;--rule-p2:#B0B2AA;
+  --navy:#24305F;--blue:#5282BE;--sky:#97B5DC;--grey:#A6B1BE;
+  --sans:'IBM Plex Sans',-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Consolas,'Courier New',monospace;
+  --t-label:12px;--t-meta:13px;--t-note:15px;--t-body:17px;--t-lead:20px;--t-h3:20px;
+  --t-h2:clamp(26px,3.2vw,32px);--t-plate:clamp(23px,3.2vw,29px);--t-h1:clamp(31px,5.6vw,50px);
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;--s9:88px;
+  --gut:20px;--maxw:1160px;--measure:74ch;--hair:1px;--edge:2px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--bg)}
+[id]{scroll-margin-top:var(--s5)}
+body{margin:0;background:var(--bg);color:var(--lt);font-family:var(--sans);font-size:var(--t-body);line-height:28px;font-weight:400;font-variant-numeric:tabular-nums;overflow-x:hidden}
+p{margin:0 0 var(--s4)}
+p:last-child{margin-bottom:0}
+ul{margin:0 0 var(--s4);padding-left:20px}
+li{margin-bottom:var(--s2)}
+strong,b{font-weight:600}
+i,em{font-style:italic}
+h1,h2,h3,h4{margin:0;font-family:var(--sans);color:var(--lt)}
+:focus-visible{outline:var(--edge) solid var(--ref-lt);outline-offset:3px}
+.plate-l :focus-visible,.card--l :focus-visible{outline-color:var(--ref)}
+
+/* ---------- заголовки: три роли ---------- */
+.hero h1{font-size:var(--t-h1);font-weight:600;line-height:1.08;letter-spacing:-.025em;max-width:26ch;margin:0 0 var(--s5)}
+.hero h1::after{content:"";display:block;width:208px;height:8px;margin-top:var(--s4);
+  background:linear-gradient(to bottom,var(--lt) 0 2px,transparent 2px) left top/100% 100% no-repeat,
+  repeating-linear-gradient(to right,var(--lt) 0 1px,transparent 1px 8px) left top/100% 7px no-repeat}
+.sh__t{font-size:var(--t-h2);font-weight:600;line-height:1.14;letter-spacing:-.015em;flex:1 1 240px;min-width:0}
+.card h3,.sub h3,.hero__i h2,.dgm__h h4{font-size:var(--t-h3);font-weight:600;line-height:28px;letter-spacing:-.008em;margin:0 0 var(--s3)}
+
+/* ---------- ссылки: синий — только знак документа/перехода ---------- */
+a{color:var(--lt);text-decoration:none;border-bottom:1px solid var(--ref-lt);padding-bottom:1px}
+a:hover,a:focus-visible{color:var(--ref-lt);border-bottom-width:2px;padding-bottom:0}
+.plate-l a,.card--l a{color:var(--ink);border-bottom-color:var(--ref)}
+.plate-l a:hover,.card--l a:hover,.plate-l a:focus-visible,.card--l a:focus-visible{color:var(--ref)}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 var(--gut)}
+.mono{font-family:var(--mono);font-size:.94em;letter-spacing:-.01em;font-variant-numeric:tabular-nums slashed-zero;overflow-wrap:anywhere}
+.nw{white-space:nowrap}
+html:not(.js) .jsonly{display:none!important}
+
+/* ---------- шапка ---------- */
+.hdr{background:var(--bg);border-bottom:var(--edge) solid var(--lt)}
+.hdr__in{display:flex;align-items:center;gap:var(--s4);min-height:72px;flex-wrap:wrap;padding:var(--s3) var(--gut)}
+.brand{display:flex;align-items:center;gap:var(--s3);border:0;padding:0;flex:0 1 auto;min-width:0}
+.brand:hover,.brand:focus-visible{border:0;color:var(--lt);padding:0}
+.logoslot{width:76px;aspect-ratio:596/369;flex:0 0 auto;border:var(--hair) solid var(--rule-2);background-color:var(--band);
+  background-image:repeating-linear-gradient(to right,var(--rule) 0 1px,transparent 1px 12px),repeating-linear-gradient(to bottom,var(--rule) 0 1px,transparent 1px 12px);
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;letter-spacing:.1em;color:var(--lt-3);text-transform:uppercase}
+.brand__t{font-weight:600;font-size:var(--t-body);line-height:24px;color:var(--lt);letter-spacing:-.01em;min-width:0;overflow-wrap:anywhere}
+.brand__s{display:block;font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:400;color:var(--lt-3);letter-spacing:.02em}
+.nav{display:none;margin-left:auto;flex-wrap:wrap;gap:var(--s1) var(--s5);align-items:center}
+.nav a{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;color:var(--lt-2);border:0;padding:var(--s1) 0;white-space:nowrap}
+.nav a:hover,.nav a:focus-visible{color:var(--lt);box-shadow:inset 0 -1px 0 var(--lt)}
+.nav a.is-page{color:var(--lt);font-weight:600;box-shadow:inset 0 -2px 0 var(--lt)}
+.navm{margin-left:auto;flex:0 0 auto}
+.navm>summary{list-style:none;cursor:pointer;font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--lt);background:var(--band);border:var(--hair) solid var(--lt);padding:var(--s2) var(--s3)}
+.navm>summary::-webkit-details-marker{display:none}
+.navm[open]>summary{background:var(--lt);color:var(--bg)}
+.navm__list{width:100%;border-top:var(--hair) solid var(--rule);margin-top:var(--s3);display:flex;flex-direction:column}
+.navm__list a{font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--lt-2);border:0;padding:var(--s3) 0;border-bottom:var(--hair) solid var(--rule)}
+.navm__list a:hover{color:var(--lt)}
+.navm__list a:last-child{border-bottom:0}
+@media (min-width:1001px){.nav{display:flex}.navm{display:none}}
+
+/* ---------- раздел ---------- */
+.sec{padding:var(--s7) 0;border-bottom:var(--hair) solid var(--rule)}
+@media (min-width:700px){.sec{padding:var(--s8) 0}}
+@media (min-width:1000px){.sec{padding:var(--s9) 0}}
+.sec--tint{background:var(--band)}
+.sh{display:flex;gap:var(--s3) var(--s4);align-items:baseline;flex-wrap:wrap;margin:0 0 var(--s5);padding:0 0 var(--s3);border-bottom:var(--edge) solid var(--lt);
+  background-image:repeating-linear-gradient(to right,var(--lt-3) 0 1px,transparent 1px 8px);background-size:100% 6px;background-position:left bottom;background-repeat:no-repeat}
+.sh__n{font-family:var(--mono);font-size:var(--t-meta);line-height:16px;font-weight:600;letter-spacing:.06em;color:var(--bg);background:var(--lt);padding:var(--s1) var(--s2);flex:0 0 auto;align-self:center}
+.lead{font-size:var(--t-lead);line-height:32px;color:var(--lt-2);max-width:64ch}
+.note{font-size:var(--t-note);line-height:24px;color:var(--lt-2);max-width:var(--measure)}
+.sub{display:flex;gap:var(--s3);align-items:baseline;flex-wrap:wrap;margin:var(--s6) 0 var(--s4);padding-bottom:var(--s2);border-bottom:var(--hair) solid var(--rule-2)}
+.sub h3{flex:1 1 220px;min-width:0;margin:0}
+.sub__n{font-family:var(--mono);font-size:var(--t-meta);line-height:16px;font-weight:600;letter-spacing:.06em;color:var(--lt);border:var(--hair) solid var(--lt);padding:var(--s1) var(--s2);flex:0 0 auto}
+
+/* ---------- планшет: canvas поверх, SVG без JS ---------- */
+.plate{position:relative;min-width:0}
+.plate__svg{display:block;width:100%;height:auto}
+.plate__cv{display:none;width:100%;height:100%}
+html.js .plate__cv{display:block}
+html.js .plate__svg{display:none}
+.plate__cap{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;letter-spacing:.01em;color:var(--lt-3);margin:var(--s2) 0 0;font-variant-numeric:tabular-nums slashed-zero}
+
+/* ---------- герой ---------- */
+.hero{position:relative;padding:var(--s7) 0;border-bottom:var(--edge) solid var(--lt);overflow:hidden}
+@media (min-width:700px){.hero{padding:var(--s8) 0}}
+.hero__txt,.hero__row{position:relative;z-index:1}
+.eyebrow{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;letter-spacing:.02em;text-transform:uppercase;color:var(--lt-3);margin:0 0 var(--s5);overflow-wrap:anywhere;font-variant-numeric:tabular-nums slashed-zero}
+.hero__lead{font-size:var(--t-lead);line-height:32px;color:var(--lt-2);max-width:62ch}
+.hero__vis{position:relative;height:230px;margin:var(--s6) 0 0;overflow:hidden;border-top:var(--hair) solid var(--rule);border-bottom:var(--hair) solid var(--rule)}
+.hero__vis .plate__svg{position:absolute;left:50%;top:50%;width:min(560px,96%);transform:translate(-50%,-50%)}
+.hero__vis .plate__cv{position:absolute;inset:0}
+.hero__txt{max-width:100%}
+@media (min-width:900px){
+  .hero__vis{position:absolute;inset:0;height:auto;margin:0;z-index:0;pointer-events:none;border:0}
+  .hero__vis .plate__svg{left:auto;right:4%;width:38%;top:50%;transform:translateY(-50%)}
+  .hero__txt{max-width:56%}
+}
+.hero__two{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s6);border-top:var(--edge) solid var(--lt)}
+@media (min-width:820px){.hero__two{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s7)}}
+.hero__i{padding-top:var(--s4);border-top:var(--hair) solid var(--rule)}
+@media (min-width:820px){.hero__i{border-top:0}}
+.hero__i h2{margin:var(--s3) 0 var(--s2)}
+.hero__i p{font-size:var(--t-note);line-height:24px;color:var(--lt-2);margin:0}
+.card__k{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:500;letter-spacing:.01em;color:var(--lt-3);font-variant-numeric:tabular-nums slashed-zero}
+.hero__row{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s6);margin-top:var(--s6)}
+@media (min-width:900px){.hero__row{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--s7);align-items:start}}
+
+/* ---------- плашка с числом ---------- */
+.figs{border-top:var(--edge) solid var(--lt)}
+.fig{padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+.fig:last-child{border-bottom:0;padding-bottom:0}
+@media (min-width:700px){.fig{grid-template-columns:160px minmax(0,1fr);gap:var(--s2) var(--s5);align-items:baseline}}
+.fig__v{font-family:var(--mono);font-size:var(--t-plate);font-weight:500;color:var(--lt);line-height:1.1;letter-spacing:-.02em;font-variant-numeric:tabular-nums slashed-zero;width:max-content;max-width:100%;padding-bottom:var(--s2);border-bottom:var(--edge) solid var(--lt)}
+.fig__t{font-size:var(--t-note);line-height:24px;color:var(--lt)}
+
+/* ---------- кадр: разграфлённое поле ---------- */
+.ph{margin:0;position:relative;border:var(--hair) solid var(--rule-2);background-color:var(--band);
+  background-image:repeating-linear-gradient(to right,var(--rule) 0 1px,transparent 1px 16px),repeating-linear-gradient(to bottom,var(--rule) 0 1px,transparent 1px 16px);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:var(--s2);padding:var(--s4);min-height:160px}
+.ph--tall{aspect-ratio:3/4}
+.ph--wide{aspect-ratio:16/9}
+.ph--cap{max-width:420px}
+.ph__code{position:absolute;top:0;left:0;font-family:var(--mono);font-size:var(--t-meta);line-height:16px;font-weight:600;letter-spacing:.08em;background:var(--lt);color:var(--bg);padding:var(--s1) var(--s2)}
+.ph__t,.ph__n{background:var(--band);box-shadow:0 0 0 4px var(--band)}
+.ph__t{font-size:var(--t-note);line-height:24px;color:var(--lt);max-width:46ch}
+.ph__n{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;letter-spacing:.01em;color:var(--lt-3)}
+.sec--tint .ph,.sec--tint .ph__t,.sec--tint .ph__n{background-color:var(--bg)}
+.sec--tint .ph__t,.sec--tint .ph__n{box-shadow:0 0 0 4px var(--bg)}
+.phrow{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5)}
+@media (min-width:700px){.phrow--2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ---------- таблицы: только горизонтальные линии ---------- */
+table.tbl{width:100%;border-collapse:collapse;margin-top:var(--s5);border-top:var(--edge) solid var(--lt)}
+.tbl th{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3);text-align:left;padding:var(--s2) var(--s4) var(--s2) 0;border-bottom:var(--hair) solid var(--rule-2)}
+.tbl td{vertical-align:baseline;padding:var(--s4) var(--s4) var(--s4) 0;border-bottom:var(--hair) solid var(--rule);font-size:var(--t-note);line-height:24px;color:var(--lt)}
+.tbl td:last-child,.tbl th:last-child{padding-right:0}
+.tbl td.c2{font-family:var(--mono);color:var(--lt-2);overflow-wrap:anywhere;font-variant-numeric:tabular-nums slashed-zero}
+.tbl td.c3{font-family:var(--mono);font-size:var(--t-meta);color:var(--lt-2);letter-spacing:.02em}
+.tbl tr[hidden]{display:none}
+@media (max-width:859px){
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr,.tbl td{display:block}
+  .tbl td{border-bottom:0;padding:0 0 var(--s1)}
+  .tbl tr{padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule)}
+  .tbl td[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3);margin-bottom:var(--s1)}
+}
+
+/* ---------- перечни ---------- */
+.spec{margin:var(--s5) 0 0;padding:0;list-style:none;display:grid;grid-template-columns:minmax(0,1fr);border-top:var(--edge) solid var(--lt)}
+@media (min-width:760px){.spec{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:var(--s6)}}
+.spec>li{margin:0;padding:var(--s3) 0;border-bottom:var(--hair) solid var(--rule);font-size:var(--t-note);line-height:24px;color:var(--lt)}
+.spec .mono{color:var(--lt);font-weight:500}
+.flist{margin:var(--s5) 0 0;padding:0;list-style:none;border-top:var(--edge) solid var(--lt)}
+.flist>li{margin:0;padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s2);font-size:var(--t-note);line-height:24px;color:var(--lt)}
+.flist>li>.mono{color:var(--lt-2)}
+@media (min-width:860px){.flist>li{grid-template-columns:minmax(0,1fr) 320px;gap:var(--s2) var(--s6);align-items:baseline}}
+
+/* ---------- карточки ---------- */
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5)}
+@media (min-width:820px){.cards--2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card{background:var(--surf);border:var(--hair) solid var(--rule-2);border-top:var(--edge) solid var(--lt);padding:var(--s5);min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
+.card h3{margin:0}
+.card p{font-size:var(--t-note);line-height:24px;color:var(--lt-2);margin:0 0 var(--s3)}
+.card p:last-child{margin-bottom:0}
+.card__more{margin-top:auto;padding-top:var(--s2)}
+.card--l{background:var(--plate);border-color:var(--rule-p2);border-top-color:var(--ink);color:var(--ink)}
+.card--l h3{color:var(--ink)}
+.card--l p{color:var(--ink-2)}
+.card--l .card__k{color:var(--ink-3)}
+.card__done{font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink);border-left:var(--edge) solid var(--ink);padding-left:var(--s3);margin:0;overflow-wrap:anywhere;font-variant-numeric:tabular-nums slashed-zero}
+.card--l .card__done{color:var(--ink)}
+.card__done b{display:block;font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3);margin-bottom:var(--s1)}
+.card .plate{margin:var(--s2) 0 var(--s2);border-top:var(--hair) solid var(--rule);border-bottom:var(--hair) solid var(--rule)}
+.card .plate__cv{height:auto;aspect-ratio:560/340}
+
+/* ---------- светлая плашка для длинного чтения ---------- */
+.plate-l{background:var(--plate);color:var(--ink);border:var(--hair) solid var(--rule-p2);border-top:var(--edge) solid var(--ink);padding:var(--s5);margin-top:var(--s5)}
+.plate-l h3,.plate-l h4{color:var(--ink)}
+.plate-l p,.plate-l li{color:var(--ink-2)}
+.plate-l .lead{color:var(--ink-2)}
+@media (max-width:420px){.plate-l{padding:var(--s4)}}
+
+/* ---------- люди ---------- */
+.ppl{margin:var(--s5) 0 0;padding:0;list-style:none;border-top:var(--edge) solid var(--lt)}
+.ppl>li{padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+@media (min-width:900px){.ppl>li{grid-template-columns:240px minmax(0,1fr);gap:var(--s2) var(--s6);align-items:baseline}}
+.ppl__n{font-weight:600;font-size:var(--t-body);line-height:24px;min-width:0;color:var(--lt)}
+.ppl__n span{display:block;font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:400;color:var(--lt-3);letter-spacing:.01em;margin-top:var(--s1)}
+.ppl__d{font-size:var(--t-note);line-height:24px;color:var(--lt-2);min-width:0}
+
+/* ---------- контакты ---------- */
+.cont{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s6);margin-top:var(--s5)}
+@media (min-width:820px){.cont{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s7)}}
+.dl{margin:0;display:grid;grid-template-columns:minmax(0,1fr)}
+.dl dt{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3);margin-top:var(--s4)}
+.dl dt:first-child{margin-top:0}
+.dl dd{margin:var(--s1) 0 0;font-size:var(--t-body);line-height:24px;overflow-wrap:anywhere;color:var(--lt)}
+
+/* ---------- шаги ---------- */
+.steps{display:grid;grid-template-columns:minmax(0,1fr);margin-top:var(--s5);border-top:var(--edge) solid var(--lt)}
+@media (min-width:900px){.steps{grid-template-columns:repeat(4,minmax(0,1fr));column-gap:var(--s5)}}
+.step{padding:var(--s4) 0 var(--s5);border-bottom:var(--hair) solid var(--rule);display:flex;flex-direction:column;gap:var(--s3);min-width:0}
+@media (min-width:900px){.step{border-bottom:0;border-right:var(--hair) solid var(--rule);padding-right:var(--s5)}.step:last-child{border-right:0;padding-right:0}}
+.step__h{display:flex;gap:var(--s3);align-items:center;flex-wrap:wrap;margin:0}
+.step__n{font-family:var(--mono);font-size:var(--t-meta);line-height:16px;font-weight:600;letter-spacing:.06em;color:var(--bg);background:var(--lt);padding:var(--s1) var(--s2);flex:0 0 auto}
+.step__k{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3)}
+.step__w{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;letter-spacing:.01em;color:var(--lt-3);margin:0}
+.step p{font-size:var(--t-note);line-height:24px;margin:0;color:var(--lt-2)}
+
+/* ---------- кнопки, переключатели, форма ---------- */
+.btn{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--bg);background:var(--lt);border:0;padding:var(--s3) var(--s4);cursor:pointer}
+.btn:hover,.btn:focus-visible{outline:var(--edge) solid var(--lt);outline-offset:2px}
+.tog{display:flex;flex-wrap:wrap;gap:var(--s2);margin:var(--s4) 0 0;padding:0;list-style:none}
+.tog button{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;font-weight:500;letter-spacing:.01em;color:var(--lt-2);background:transparent;border:var(--hair) solid var(--rule-2);padding:var(--s2) var(--s3);cursor:pointer;text-align:left;max-width:100%}
+.tog button:hover{color:var(--lt);border-color:var(--lt)}
+.tog button[aria-pressed="true"]{color:var(--bg);background:var(--lt);border-color:var(--lt);font-weight:600}
+.tog__k{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3);margin:var(--s5) 0 0}
+.form{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s4);margin-top:var(--s5)}
+@media (min-width:700px){.form{grid-template-columns:repeat(2,minmax(0,1fr))}.form .form__wide{grid-column:1/-1}}
+.form label{display:block;font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--lt-3);margin-bottom:var(--s2)}
+.form input,.form textarea{width:100%;font-family:var(--sans);font-size:var(--t-body);line-height:28px;color:var(--lt);background:var(--surf);border:var(--hair) solid var(--rule-2);border-radius:0;padding:var(--s2) var(--s3)}
+.form textarea{min-height:120px;resize:vertical}
+.form input:focus,.form textarea:focus{outline:var(--edge) solid var(--ref-lt);outline-offset:1px}
+
+/* ---------- подвал ---------- */
+.ftr{background:var(--band);color:var(--lt-2);padding:var(--s7) 0;font-size:var(--t-note);line-height:24px;border-top:var(--edge) solid var(--lt)}
+.ftr__g{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);padding-bottom:var(--s5);border-bottom:var(--hair) solid var(--rule-2)}
+@media (min-width:820px){.ftr__g{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,1fr);gap:var(--s7)}}
+.ftr h4{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--lt-3);margin:0 0 var(--s3)}
+.ftr p{line-height:24px;margin:0 0 var(--s3)}
+.ftr ul{list-style:none;padding:0;margin:0}
+.ftr li{margin-bottom:var(--s2)}
+.ftr__note{margin:var(--s5) 0 0;font-size:var(--t-note);line-height:24px;color:var(--lt-2);max-width:var(--measure)}
+.ftr__btm{margin-top:var(--s5);padding-top:var(--s5);border-top:var(--hair) solid var(--rule-2);font-family:var(--mono);font-size:var(--t-meta);line-height:20px;letter-spacing:.01em;color:var(--lt-3);overflow-wrap:anywhere;font-variant-numeric:tabular-nums slashed-zero}
+
+/* ---------- хроника с осью ---------- */
+.tl{margin:var(--s5) 0 0;padding:0;list-style:none;border-top:var(--edge) solid var(--lt)}
+.tl>li{margin:0;padding:var(--s4) 0;border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s1)}
+.tl__d{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:600;color:var(--lt);font-variant-numeric:tabular-nums slashed-zero;white-space:nowrap}
+.tl__t{font-size:var(--t-note);line-height:24px;color:var(--lt-2);min-width:0}
+.tl__t b{color:var(--lt)}
+@media (min-width:760px){.tl>li{grid-template-columns:168px minmax(0,1fr);gap:var(--s2) var(--s5);align-items:baseline}}
+.tl>li.is-now{background:var(--bg);box-shadow:0 0 0 var(--s3) var(--bg)}
+.tl>li.is-now .tl__d{color:var(--sky)}
+.scrub{margin-top:var(--s5)}
+.scrub__row{display:flex;gap:var(--s4);align-items:center;flex-wrap:wrap}
+.scrub label{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;color:var(--lt-3);letter-spacing:.02em}
+.scrub input[type=range]{flex:1 1 220px;accent-color:var(--sky);min-width:0;height:28px}
+.scrub output{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:600;color:var(--lt);min-width:12ch}
+.axis{display:block;width:100%;height:auto;margin-top:var(--s3)}
+.axis__m{transition:transform .35s ease}
+.axis__t.is-on{fill:#97B5DC}
+.axis__lbl{display:flex;justify-content:space-between;font-family:var(--mono);font-size:var(--t-meta);line-height:20px;color:var(--lt-3);padding:0 2% 0 2%}
+
+/* ---------- кто вы: адресные карточки ---------- */
+.who[data-who] .card--l:not(.is-on){background:var(--plate-2);border-top-color:var(--rule-p2)}
+.who[data-who] .card--l:not(.is-on) h3,.who[data-who] .card--l:not(.is-on) p{color:var(--ink-3)}
+.who[data-who] .card--l:not(.is-on) .card__done{border-left-color:var(--rule-p2);color:var(--ink-3)}
+.who[data-who] .card--l.is-on{border-top-color:var(--ref);box-shadow:0 0 0 var(--edge) var(--ref)}
+.who[data-who] .card--l.is-on .card__done{border-left-color:var(--ref)}
+.who[data-who] .card--l.is-on .card__done b{color:var(--ref)}
+
+/* ---------- лунки таблицы КП ---------- */
+.wells{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s2);margin-top:var(--s5);padding:var(--s4) 0;border-top:var(--edge) solid var(--lt);border-bottom:var(--hair) solid var(--rule-2)}
+.wells button{background:transparent;border:0;padding:var(--s2) 0;cursor:pointer;color:var(--lt-2);font-family:var(--mono);font-size:var(--t-meta);line-height:20px;min-width:0;text-align:center}
+.wells svg{display:block;width:100%;max-width:120px;height:auto;margin:0 auto var(--s2)}
+.wells .w__halo{opacity:.18;transition:opacity .25s ease,transform .25s ease;transform-origin:center;transform-box:fill-box}
+.wells .w__lbl{display:block;overflow-wrap:anywhere}
+.wells[data-lit] button:not(.is-lit) .w__halo{opacity:0}
+.wells[data-lit] button:not(.is-lit){color:var(--lt-3)}
+.wells button.is-lit .w__halo{opacity:.55;transform:scale(1.15)}
+.wells button.is-lit{color:var(--lt)}
+.kp{font-family:var(--mono);font-weight:600;font-size:var(--t-body);line-height:1.15;color:var(--lt);font-variant-numeric:tabular-nums slashed-zero;border-bottom:var(--edge) solid var(--lt);display:inline-block;padding-bottom:2px}
+.tbl--kp tr{cursor:default}
+.tbl--kp tr.is-lit td{color:var(--lt);background:var(--band)}
+.tbl--kp tr.is-lit td:first-child{box-shadow:inset var(--edge) 0 0 var(--sky)}
+.tbl--kp tr:focus-visible{outline:var(--edge) solid var(--ref-lt);outline-offset:-2px}
+@media (max-width:420px){.wells{grid-template-columns:repeat(5,minmax(0,1fr));gap:2px}.wells button{font-size:var(--t-label);line-height:16px}}
+
+/* ---------- цикл ИФА: шаги и схема на светлой плашке ---------- */
+.cyc{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5)}
+@media (min-width:860px){.cyc{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s6);align-items:start}}
+.cyc__fig{margin:0}
+.cyc__fig svg{display:block;width:100%;height:auto;background:#FFFFFF;border:var(--hair) solid var(--rule-p2)}
+.cyc__steps{margin:0;padding:0;list-style:none;counter-reset:cyc;border-top:var(--edge) solid var(--ink)}
+.cyc__steps>li{margin:0;border-bottom:var(--hair) solid var(--rule-p)}
+.cyc__s{display:grid;grid-template-columns:36px minmax(0,1fr);gap:var(--s3);align-items:baseline;width:100%;padding:var(--s3) 0;background:transparent;border:0;text-align:left;font:inherit;color:var(--ink);cursor:default}
+html.js .cyc__s{cursor:pointer}
+.cyc__n{font-family:var(--mono);font-size:var(--t-meta);line-height:16px;font-weight:600;color:var(--plate);background:var(--ink);padding:var(--s1) 0;text-align:center}
+.cyc__t{font-weight:600;font-size:var(--t-note);line-height:24px;color:var(--ink)}
+.cyc__d{display:block;font-weight:400;font-size:var(--t-note);line-height:24px;color:var(--ink-2)}
+.cyc__s[aria-current="step"] .cyc__n{background:var(--ref)}
+.cyc__s[aria-current="step"] .cyc__t{color:var(--ref)}
+.cyc__nav{display:flex;gap:var(--s2);align-items:center;flex-wrap:wrap;margin-top:var(--s4)}
+.cyc__nav .btn{background:var(--ink);color:var(--plate)}
+.cyc__nav .btn:hover,.cyc__nav .btn:focus-visible{outline-color:var(--ink)}
+.cyc__nav output{font-family:var(--mono);font-size:var(--t-meta);line-height:20px;color:var(--ink-2);margin-left:auto}
+.cyc__fig .on{display:none}
+.cyc__fig:not([data-step]) .on-6,.cyc__fig[data-step="1"] .on-1,.cyc__fig[data-step="2"] .on-2,.cyc__fig[data-step="3"] .on-3,.cyc__fig[data-step="4"] .on-4,.cyc__fig[data-step="5"] .on-5,.cyc__fig[data-step="6"] .on-6{display:inline}
+.cyc__cap{font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink-3);margin-top:var(--s2)}
+
+/* ---------- горизонт и линия поения ---------- */
+.horizon{display:block;width:100%;height:auto;margin-top:var(--s6);border-top:var(--hair) solid var(--rule);border-bottom:var(--hair) solid var(--rule);padding:var(--s2) 0}
+.flock{display:block;width:100%;max-width:720px;height:auto;margin:var(--s5) auto 0}
+.flock__sweep{transform:translateX(calc(var(--p,.5) * 450px));transition:transform .2s linear}
+
+/* утилиты ритма — объявлены последними, чтобы побеждать margin:0 компонентов */
+.mt-2{margin-top:var(--s4)}.mt-3{margin-top:var(--s5)}.mt-4{margin-top:var(--s6)}
+
+/* ---------- печать: светлая бумага ---------- */
+@media print{
+  :root{--bg:#FFFFFF;--band:#F3F3EF;--surf:#FFFFFF;--lt:#14171C;--lt-2:#454B55;--lt-3:#5C636E;--ref-lt:#244191;--rule:#D3D4CE;--rule-2:#B0B2AA}
+  html.js .plate__cv{display:none}html.js .plate__svg{display:block}
+  .hero__vis{position:static;height:auto}.navm,.jsonly,.form{display:none}
+}
+@media (max-width:420px){:root{--gut:16px}.hero h1{letter-spacing:-.02em}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html">
+      <span class="logoslot">БМК</span>
+      <span class="brand__t">БМК групп<span class="brand__s">исследования и разработки · ИНТЦ «Сириус»</span></span>
+    </a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="index.html#programs" class="is-page">Программы</a>
+      <a href="index.html#done">Что сделано</a>
+      <a href="index.html#lab">Лаборатория</a>
+      <a href="rd.html#kks">ККС-5</a>
+      <a href="rd.html#avian">Вакцины для птицы</a>
+      <a href="index.html#partners">Партнёрам</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <details class="navm">
+      <summary>Разделы</summary>
+      <div class="navm__list">
+        <a href="index.html#programs">Программы</a>
+        <a href="index.html#done">Что сделано</a>
+        <a href="index.html#lab">Лаборатория</a>
+        <a href="rd.html#kks">ККС-5</a>
+        <a href="rd.html#avian">Вакцины для птицы</a>
+        <a href="index.html#partners">Партнёрам</a>
+        <a href="index.html#contacts">Контакты</a>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__in">
+      <div class="hero__txt">
+        <p class="eyebrow">ООО «БМК групп» · пгт Сириус · свидетельство <span class="nw">АА № 000093</span> от 05.04.2024</p>
+        <h1>Две программы НИОКР с государственным финансированием — и&nbsp;лаборатория, которая их выполняет</h1>
+        <p class="hero__lead">Лаборатория группы компаний выполняет работы по протоколу заказчика: ИФА, ПЦР, культуры клеток и вирусологическое тестирование in vitro. Рядом — коллекции биоматериала, комплектация наборов для многоцентровых исследований и две программы с государственным финансированием.</p>
+        <div class="hero__two">
+          <div class="hero__i">
+            <p class="card__k">Программа 1</p>
+            <h2>ККС-5 для ИФА и ИХЛА</h2>
+            <p>Жидкая комбинированная контрольная сыворотка, пять маркеров в одном флаконе. ККС-5 проходит государственную регистрацию как медицинское изделие.</p>
+            <p class="mt-2"><a href="rd.html#kks">Программа ККС-5</a></p>
+          </div>
+          <div class="hero__i">
+            <p class="card__k">Программа 2</p>
+            <h2>Пероральные ДНК-вакцины для кур</h2>
+            <p>Болезнь Ньюкасла, болезнь Гамборо, инфекционный бронхит кур. План работ — НИОКТР с <span class="nw">16.11.2026</span> по <span class="nw">31.12.2028</span>.</p>
+            <p class="mt-2"><a href="rd.html#avian">Вакцины для кур</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="hero__vis plate" data-plate="hero">
+        <svg class="plate__svg" viewBox="0 0 560 340" role="img" aria-labelledby="hero-plate-t" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<title id="hero-plate-t">Планшет ИФА, 8 × 12 лунок, в перспективе</title>
+<ellipse cx="96.25" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="96.25" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="129.659" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="129.659" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="163.068" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="163.068" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="196.477" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="196.477" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="229.886" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="229.886" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="263.295" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="263.295" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="296.705" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="296.705" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="330.114" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="330.114" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="363.523" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="363.523" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="396.932" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="396.932" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="430.341" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="430.341" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="463.75" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="463.75" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="127.453" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="127.453" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="155.189" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="155.189" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="182.925" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="182.925" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="210.66" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="210.66" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="238.396" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="238.396" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="266.132" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="266.132" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="293.868" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="293.868" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="321.604" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="321.604" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="349.34" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="349.34" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="377.075" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="377.075" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="404.811" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="404.811" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="432.547" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="432.547" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="149.597" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="149.597" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="173.306" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="173.306" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="197.016" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.016" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="220.726" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="220.726" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="244.435" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="244.435" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="268.145" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="268.145" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="291.855" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="291.855" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="315.565" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="315.565" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="339.274" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="339.274" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="362.984" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.984" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="386.694" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="386.694" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="410.403" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="410.403" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="166.127" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="166.127" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="186.831" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="186.831" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="207.535" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="207.535" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="228.239" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="228.239" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="248.944" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="248.944" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="269.648" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="269.648" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="290.352" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="290.352" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="311.056" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="311.056" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="331.761" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="331.761" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="352.465" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="352.465" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="373.169" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="373.169" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="393.873" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="393.873" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="178.938" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="178.938" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="197.313" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.313" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="215.688" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="215.688" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="234.063" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="234.063" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="252.438" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="252.438" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="270.813" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="270.813" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="289.188" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="289.188" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="307.563" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="307.563" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="325.938" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="325.938" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="344.313" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="344.313" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="362.688" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.688" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="381.063" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="381.063" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="189.157" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="189.157" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="205.674" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="205.674" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="222.191" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="222.191" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="238.708" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="238.708" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="255.225" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="255.225" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="271.742" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="271.742" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="288.258" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="288.258" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="304.775" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="304.775" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="321.292" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="321.292" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="337.809" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="337.809" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="354.326" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="354.326" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="370.843" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="370.843" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="197.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="212.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="212.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="227.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="227.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="242.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="242.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="257.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="257.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="272.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="272.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="287.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="287.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="302.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="302.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="317.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="317.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="332.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="332.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="347.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="347.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="362.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="49" cy="310" rx="10.25" ry="6.25" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<ellipse cx="91" cy="310" rx="19.8" ry="12.6" fill="#24305F" fill-opacity=".16"/><ellipse cx="91" cy="310" rx="11" ry="7" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="133" cy="310" rx="19.8" ry="12.6" fill="#24305F" fill-opacity=".16"/><ellipse cx="133" cy="310" rx="11" ry="7" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="175" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="175" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="217" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="217" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="259" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="259" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="301" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="301" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="343" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="343" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="385" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="385" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="427" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="427" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+<ellipse cx="469" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="469" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+<ellipse cx="511" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="511" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+</svg>
+        <canvas class="plate__cv" role="img" aria-label="Планшет ИФА, 8 × 12 лунок, в перспективе"></canvas>
+      </div>
+      <div class="hero__row">
+        <div class="figs">
+          <div class="fig">
+            <div class="fig__v">9</div>
+            <div class="fig__t">методик вирусологического тестирования in vitro</div>
+          </div>
+          <div class="fig">
+            <div class="fig__v">155</div>
+            <div class="fig__t">наборов для трёх отделений реанимации укомплектованы и промаркированы</div>
+          </div>
+          <div class="fig">
+            <div class="fig__v">357</div>
+            <div class="fig__t">криобоксов учтены в двух низкотемпературных морозильниках</div>
+          </div>
+        </div>
+        <figure class="ph ph--wide">
+          <span class="ph__code">A2</span>
+          <figcaption class="ph__t">Рабочий стол лаборатории в работе</figcaption>
+          <span class="ph__n">Кадр A2 · общий план</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="programs">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">01</span>
+        <h2 class="sh__t">Две программы</h2>
+      </header>
+      <p class="lead">Контрольная сыворотка для ИФА и ИХЛА и пероральные ДНК-вакцины для кур. Обе программы ведёт лаборатория группы компаний.</p>
+      <div class="cards cards--2">
+        <article class="card">
+          <p class="card__k">ИФА и ИХЛА</p>
+          <div class="plate" data-plate="card">
+            <svg class="plate__svg" viewBox="0 0 560 340" role="img" aria-labelledby="card-plate-t" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<title id="card-plate-t">Планшет ИФА, 8 × 12 лунок, в перспективе</title>
+<ellipse cx="96.25" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="96.25" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="129.659" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="129.659" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="163.068" cy="230.455" rx="15.75" ry="10.023" fill="#24305F" fill-opacity=".16"/><ellipse cx="163.068" cy="230.455" rx="8.75" ry="5.568" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="196.477" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="196.477" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="229.886" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="229.886" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="263.295" cy="230.455" rx="15.75" ry="10.023" fill="#5282BE" fill-opacity=".16"/><ellipse cx="263.295" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/>
+<ellipse cx="296.705" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="296.705" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="330.114" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="330.114" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="363.523" cy="230.455" rx="15.75" ry="10.023" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="363.523" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/>
+<ellipse cx="396.932" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="396.932" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="430.341" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="430.341" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="463.75" cy="230.455" rx="15.75" ry="10.023" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="463.75" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/>
+<ellipse cx="127.453" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="127.453" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="155.189" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="155.189" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="182.925" cy="177.925" rx="13.075" ry="8.321" fill="#24305F" fill-opacity=".16"/><ellipse cx="182.925" cy="177.925" rx="7.264" ry="4.623" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="210.66" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="210.66" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="238.396" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="238.396" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="266.132" cy="177.925" rx="13.075" ry="8.321" fill="#5282BE" fill-opacity=".16"/><ellipse cx="266.132" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/>
+<ellipse cx="293.868" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="293.868" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="321.604" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="321.604" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="349.34" cy="177.925" rx="13.075" ry="8.321" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="349.34" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/>
+<ellipse cx="377.075" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="377.075" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="404.811" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="404.811" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="432.547" cy="177.925" rx="13.075" ry="8.321" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="432.547" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/>
+<ellipse cx="149.597" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="149.597" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="173.306" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="173.306" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="197.016" cy="140.645" rx="11.177" ry="7.113" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.016" cy="140.645" rx="6.21" ry="3.952" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="220.726" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="220.726" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="244.435" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="244.435" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="268.145" cy="140.645" rx="11.177" ry="7.113" fill="#5282BE" fill-opacity=".16"/><ellipse cx="268.145" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/>
+<ellipse cx="291.855" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="291.855" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="315.565" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="315.565" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="339.274" cy="140.645" rx="11.177" ry="7.113" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="339.274" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/>
+<ellipse cx="362.984" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.984" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="386.694" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="386.694" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="410.403" cy="140.645" rx="11.177" ry="7.113" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="410.403" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/>
+<ellipse cx="166.127" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="166.127" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="186.831" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="186.831" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="207.535" cy="112.817" rx="9.761" ry="6.211" fill="#24305F" fill-opacity=".16"/><ellipse cx="207.535" cy="112.817" rx="5.423" ry="3.451" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="228.239" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="228.239" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="248.944" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="248.944" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="269.648" cy="112.817" rx="9.761" ry="6.211" fill="#5282BE" fill-opacity=".16"/><ellipse cx="269.648" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/>
+<ellipse cx="290.352" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="290.352" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="311.056" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="311.056" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="331.761" cy="112.817" rx="9.761" ry="6.211" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="331.761" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/>
+<ellipse cx="352.465" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="352.465" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="373.169" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="373.169" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="393.873" cy="112.817" rx="9.761" ry="6.211" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="393.873" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/>
+<ellipse cx="178.938" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="178.938" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="197.313" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.313" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="215.688" cy="91.25" rx="8.663" ry="5.513" fill="#24305F" fill-opacity=".16"/><ellipse cx="215.688" cy="91.25" rx="4.813" ry="3.063" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="234.063" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="234.063" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="252.438" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="252.438" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="270.813" cy="91.25" rx="8.663" ry="5.513" fill="#5282BE" fill-opacity=".16"/><ellipse cx="270.813" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/>
+<ellipse cx="289.188" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="289.188" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="307.563" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="307.563" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="325.938" cy="91.25" rx="8.663" ry="5.513" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="325.938" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/>
+<ellipse cx="344.313" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="344.313" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="362.688" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.688" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="381.063" cy="91.25" rx="8.663" ry="5.513" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="381.063" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/>
+<ellipse cx="189.157" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="189.157" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="205.674" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="205.674" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="222.191" cy="74.045" rx="7.787" ry="4.955" fill="#24305F" fill-opacity=".16"/><ellipse cx="222.191" cy="74.045" rx="4.326" ry="2.753" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="238.708" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="238.708" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="255.225" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="255.225" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="271.742" cy="74.045" rx="7.787" ry="4.955" fill="#5282BE" fill-opacity=".16"/><ellipse cx="271.742" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/>
+<ellipse cx="288.258" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="288.258" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="304.775" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="304.775" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="321.292" cy="74.045" rx="7.787" ry="4.955" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="321.292" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/>
+<ellipse cx="337.809" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="337.809" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="354.326" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="354.326" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="370.843" cy="74.045" rx="7.787" ry="4.955" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="370.843" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/>
+<ellipse cx="197.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="197.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="212.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="212.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="227.5" cy="60" rx="7.071" ry="4.5" fill="#24305F" fill-opacity=".16"/><ellipse cx="227.5" cy="60" rx="3.929" ry="2.5" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="242.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="242.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="257.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="257.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="272.5" cy="60" rx="7.071" ry="4.5" fill="#5282BE" fill-opacity=".16"/><ellipse cx="272.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/>
+<ellipse cx="287.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="287.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="302.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="302.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="317.5" cy="60" rx="7.071" ry="4.5" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="317.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/>
+<ellipse cx="332.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="332.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="347.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="347.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="362.5" cy="60" rx="7.071" ry="4.5" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="362.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/>
+<ellipse cx="49" cy="310" rx="10.25" ry="6.25" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+<ellipse cx="91" cy="310" rx="19.8" ry="12.6" fill="#24305F" fill-opacity=".16"/><ellipse cx="91" cy="310" rx="11" ry="7" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="133" cy="310" rx="19.8" ry="12.6" fill="#24305F" fill-opacity=".16"/><ellipse cx="133" cy="310" rx="11" ry="7" fill="#24305F" stroke="#5282BE" stroke-width="1"/>
+<ellipse cx="175" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="175" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="217" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="217" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="259" cy="310" rx="19.8" ry="12.6" fill="#5282BE" fill-opacity=".16"/><ellipse cx="259" cy="310" rx="11" ry="7" fill="#5282BE"/>
+<ellipse cx="301" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="301" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="343" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="343" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="385" cy="310" rx="19.8" ry="12.6" fill="#97B5DC" fill-opacity=".16"/><ellipse cx="385" cy="310" rx="11" ry="7" fill="#97B5DC"/>
+<ellipse cx="427" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="427" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+<ellipse cx="469" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="469" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+<ellipse cx="511" cy="310" rx="19.8" ry="12.6" fill="#A6B1BE" fill-opacity=".16"/><ellipse cx="511" cy="310" rx="11" ry="7" fill="#A6B1BE"/>
+</svg>
+            <canvas class="plate__cv" role="img" aria-label="Планшет ИФА, 8 × 12 лунок, в перспективе"></canvas>
+          </div>
+          <p class="plate__cap">Планшет ИФА, 8 × 12 лунок</p>
+          <h3>ККС-5 — пять маркеров в одном флаконе</h3>
+          <p>Серия ККС-5-П01 собрана 2–4 сентября 2026 года. Розлито 30 флаконов по 5 мл, объём серии <span class="nw">168,7 мл</span>. 3 сентября 2026 года по ИФА четыре маркера дали коэффициент позитивности не ниже договорного порога 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
+          <p>Грант Фонда содействия инновациям — 5&nbsp;000&nbsp;000&nbsp;₽. Договор <span class="mono">№ 2ГС1МедС26/106630</span> от 7 октября 2025 года, программа «Старт», конкурс «Старт-Медизделия-1». Получатель и исполнитель по договору — ООО «БМК групп».</p>
+          <p class="card__more"><a href="rd.html#kks">Измерения, схема применения и ход работ</a></p>
+        </article>
+        <article class="card">
+          <p class="card__k">Птица</p>
+          <h3>Пероральные ДНК-вакцины для кур</h3>
+          <p>Идея: вакцинировать птицу не инъекцией каждой особи, а с водой или кормом. Живой носитель доставляет ДНК-конструкцию в клетки кишечника. Первая очередь — болезнь Ньюкасла, болезнь Гамборо и инфекционный бронхит кур.</p>
+          <p>Субсидия ИНТЦ «Сириус» — 15&nbsp;000&nbsp;000&nbsp;₽ и 3&nbsp;000&nbsp;000&nbsp;₽ собственных средств на 2026–2028. График субсидии: 1&nbsp;млн&nbsp;₽, 7&nbsp;млн&nbsp;₽ и 7&nbsp;млн&nbsp;₽. Конкурс <span class="mono"><span class="nw">26-803-05360-1-0164</span></span>.</p>
+          <p class="card__more"><a href="rd.html#avian">План вакцин для кур</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="done">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">02</span>
+        <h2 class="sh__t">Что сделано в 2026 году</h2>
+      </header>
+      <div class="scrub jsonly">
+        <div class="scrub__row">
+          <label for="scrub">Хроника по датам</label>
+          <input id="scrub" type="range" min="0" max="6" value="6" step="1" aria-valuetext="28–30.10.2026">
+          <output id="scrub-out" for="scrub">28–30.10.2026</output>
+        </div>
+        <div id="axis"><svg class="axis" viewBox="0 0 560 28" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="20" x2="540" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="20" y1="12" x2="20" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="52.5" y1="16" x2="52.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="85" y1="16" x2="85" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="117.5" y1="16" x2="117.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="150" y1="12" x2="150" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="182.5" y1="16" x2="182.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="215" y1="16" x2="215" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="247.5" y1="16" x2="247.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="280" y1="12" x2="280" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="312.5" y1="16" x2="312.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="345" y1="16" x2="345" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="377.5" y1="16" x2="377.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="410" y1="12" x2="410" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="442.5" y1="16" x2="442.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="475" y1="16" x2="475" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="507.5" y1="16" x2="507.5" y2="20" stroke="#9CA8BF" stroke-width="1"/><line x1="540" y1="12" x2="540" y2="20" stroke="#9CA8BF" stroke-width="1"/><ellipse class="axis__t" data-i="0" cx="20" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="1" cx="60.625" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="2" cx="68.75" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="3" cx="85" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="4" cx="361.25" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="5" cx="426.25" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><ellipse class="axis__t" data-i="6" cx="523.75" cy="20" rx="5.5" ry="3.5" fill="#5282BE"/><g class="axis__m"><ellipse cx="20" cy="20" rx="13" ry="8" fill="#97B5DC" fill-opacity=".22"/><ellipse cx="20" cy="20" rx="7" ry="4.5" fill="#97B5DC"/></g></svg></div>
+        <div class="axis__lbl" aria-hidden="true"><span>27.08.2026</span><span>30.10.2026</span></div>
+      </div>
+      <ol class="tl" id="chron">
+        <li><span class="tl__d">27–31.08.2026</span><span class="tl__t"><b>Способ подготовки сырья для ККС-5.</b> Производственный режим избирательного подавления избыточного компонента гипериммунной сыворотки зафиксирован 27.08.2026 и подтверждён титрованием 31.08.2026: анти-HBcore сохраняется в титре не ниже <span class="nw">1:128</span>. Заявка на изобретение подана в Роспатент.</span></li>
+        <li><span class="tl__d">01.09.2026</span><span class="tl__t"><b>Первый этап гранта по ККС-5 закрыт.</b> Отчёт о НИР по <span class="nw">ГОСТ 7.32-2017</span>, <span class="nw">рег. № 1/26</span>, подписан.</span></li>
+        <li><span class="tl__d">2–4.09.2026</span><span class="tl__t"><b>Серия ККС-5-П01 собрана и разлита:</b> 30 флаконов × 5 мл, объём серии <span class="nw">168,7 мл</span>. 03.09.2026 измерены коэффициенты позитивности по пяти маркерам: по четырём — не ниже договорного порога 3, по анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</span></li>
+        <li><span class="tl__d">04.09.2026</span><span class="tl__t"><b>Старт исследования стабильности ККС-5:</b> ускоренное старение целыми флаконами 5 мл при +45 и +37&nbsp;°C и реальное время при <span class="nw">+2…+8&nbsp;°C</span>.</span></li>
+        <li><span class="tl__d">к 08.10.2026</span><span class="tl__t"><b>155 наборов для трёх отделений реанимации</b> международного многоцентрового исследования укомплектованы, промаркированы и готовы к отправке: 130 наборов для крови и 25 для плазмы, по 8 цветокодированных криобоксов на каждый центр, формы передачи по каждому центру.</span></li>
+        <li><span class="tl__d">16.10.2026</span><span class="tl__t"><b>План исследования для характеризации ККС-5 в ИХЛА</b> — редакция 3 от 16.10.2026: внешняя площадка, слепое исполнение, de novo.</span></li>
+        <li><span class="tl__d">28–30.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА</b> (28.10.2026); 30.10.2026 на ней за один день изохронно поставлены все точки исследования стабильности ККС-5.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="lab">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">03</span>
+        <h2 class="sh__t">Комплектация и прослеживаемость</h2>
+      </header>
+      <p class="lead">Для международного многоцентрового исследования собраны и промаркированы 155 наборов для трёх отделений реанимации: 130 наборов для крови и 25 для плазмы. По всем трём центрам наборы готовы к отправке.</p>
+      <ul class="spec">
+        <li>8 цветокодированных криобоксов на каждый центр</li>
+        <li>27 этикеток на набор для крови и 52 на набор для плазмы</li>
+        <li>2&nbsp;400 этикеток криопробирок</li>
+        <li>Код криопробирки определяется номером набора</li>
+        <li>DataMatrix и линейный штрихкод; код криопробирки определяется номером набора</li>
+        <li>Формы передачи заполнены по каждому центру</li>
+        <li>Хранение <span class="nw">−70…−86&nbsp;°C</span></li>
+        <li>Аллокатор номеров сверяет реестры перед выдачей номера</li>
+      </ul>
+      <div class="phrow phrow--2">
+        <figure class="ph ph--wide">
+          <span class="ph__code">B1</span>
+          <figcaption class="ph__t">Криовиалы в штативе</figcaption>
+          <span class="ph__n">Кадр B1 · крупный план</span>
+        </figure>
+        <figure class="ph ph--wide">
+          <span class="ph__code">B9</span>
+          <figcaption class="ph__t">Стойка хранения с мониторингом температуры</figcaption>
+          <span class="ph__n">Кадр B9 · система хранения</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="biobank">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">04</span>
+        <h2 class="sh__t">Коллекции биобанка</h2>
+      </header>
+      <p class="lead">357 криобоксов в двух низкотемпературных морозильниках учтены пофотографно и сверены со справочным списком.</p>
+      <div class="sub">
+        <span class="sub__n">04.1</span>
+        <h3>Состав коллекций</h3>
+      </div>
+      <ul class="spec">
+        <li>Плазма и моча при черепно-мозговой травме</li>
+        <li>Кровь условно здоровых доноров</li>
+        <li>Свежие биопсии кожи при миодистрофии Дюшенна</li>
+        <li>Ликвор здоровых доноров</li>
+        <li>Охарактеризованный опухолевый блок лёгкого, PD-L1-положительный</li>
+        <li>Панель сывороток с антителами к ВИЧ, ВГВ, ВГС и возбудителю сифилиса — поставлена по договору</li>
+      </ul>
+      <p class="note mt-3">Протоколы работы с ликвором, плазмой и сывороткой подготовлены. Материал коллекций для внешнего исследования передаём по соглашению — порядок в разделе «Партнёрам».</p>
+      <p class="note">Проект биобанка клеточных культур поддержан Агентством стратегических инициатив на форуме V «Сильные идеи для нового времени», номинация «Национальная предпринимательская инициатива».</p>
+      <figure class="ph ph--wide mt-3">
+        <span class="ph__code">A1</span>
+        <figcaption class="ph__t">Криохранилище</figcaption>
+        <span class="ph__n">Кадр A1 · общий план</span>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" id="quality">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">05</span>
+        <h2 class="sh__t">Система качества и методики</h2>
+      </header>
+      <p class="lead">Лаборатория работает по системе СОП группы компаний: 29 СОП второго уровня и 81 форма. У лабораторных СОП есть английская редакция.</p>
+      <p class="note">СОПы покрывают цепь сохранности образца, валидацию методов, расследование результатов вне спецификации, LIMS, передачу данных спонсору, внутрилабораторный контроль, постановку ИФА, подготовку наборов и обращение с отходами класса Б. Несоответствия регистрируются и расследуются по СОП.</p>
+      <div class="sub">
+        <span class="sub__n">05.1</span>
+        <h3>Девять методик вирусологического тестирования in vitro</h3>
+      </div>
+      <div class="jsonly">
+        <p class="tog__k" id="mfilter-k">Нормативная привязка</p>
+        <div class="tog" id="mfilter" role="group" aria-labelledby="mfilter-k">
+          <button type="button" data-doc="all" aria-pressed="true">Все методики</button>
+          <button type="button" data-doc="ofs" aria-pressed="false">ОФС.1.7.2.0006.15</button>
+          <button type="button" data-doc="eek" aria-pressed="false">ЕЭК № 89</button>
+          <button type="button" data-doc="woah" aria-pressed="false">WOAH 1.1.9</button>
+          <button type="button" data-doc="muk" aria-pressed="false">МУК 4.2.2029-05</button>
+        </div>
+        <p class="note mt-2" id="mcount" aria-live="polite">Показаны все девять методик</p>
+      </div>
+      <table class="tbl" id="methods">
+        <thead><tr><th scope="col">Методика</th><th scope="col">Что определяет</th><th scope="col">Нормативная привязка</th></tr></thead>
+        <tbody>
+          <tr data-doc="ofs eek"><td data-l="Методика">Заражение индикаторных культур с учётом цитопатического действия</td><td class="c2" data-l="Что определяет">посторонние вирусные агенты в клеточных культурах</td><td class="c3" data-l="Нормативная привязка">ОФС.1.7.2.0006.15; ЕЭК № 89</td></tr>
+          <tr data-doc=""><td data-l="Методика">Гемадсорбция</td><td class="c2" data-l="Что определяет">гемадсорбирующие вирусы на монослое</td><td class="c3"></td></tr>
+          <tr data-doc=""><td data-l="Методика">Гемагглютинация</td><td class="c2" data-l="Что определяет">гемагглютинирующие вирусы в культуральной жидкости</td><td class="c3"></td></tr>
+          <tr data-doc="woah"><td data-l="Методика">Гистохимическое окрашивание монослоёв</td><td class="c2" data-l="Что определяет">морфология и включения в клетках</td><td class="c3" data-l="Нормативная привязка">WOAH 1.1.9</td></tr>
+          <tr data-doc="ofs muk"><td data-l="Методика">ИФА антигенов</td><td class="c2" data-l="Что определяет">вирусные антигены</td><td class="c3" data-l="Нормативная привязка">ОФС.1.7.2.0006.15; МУК 4.2.2029-05</td></tr>
+          <tr data-doc=""><td data-l="Методика">Реакция связывания комплемента (Cofal)</td><td class="c2" data-l="Что определяет">группоспецифический антиген лейкозно-саркомного комплекса птиц</td><td class="c3"></td></tr>
+          <tr data-doc="ofs eek woah"><td data-l="Методика">ПЦР и ОТ-ПЦР</td><td class="c2" data-l="Что определяет">нуклеиновые кислоты вирусов</td><td class="c3" data-l="Нормативная привязка">ОФС.1.7.2.0006.15; ЕЭК № 89; WOAH 1.1.9</td></tr>
+          <tr data-doc="eek"><td data-l="Методика">Активность обратной транскриптазы (PERT)</td><td class="c2" data-l="Что определяет">ретровирусы, в том числе эндогенные, в банках клеток</td><td class="c3" data-l="Нормативная привязка">ЕЭК № 89, гл. 2</td></tr>
+          <tr data-doc=""><td data-l="Методика">Изотермическая амплификация (LAMP)</td><td class="c2" data-l="Что определяет">нуклеиновые кислоты вирусов без термоциклера</td><td class="c3"></td></tr>
+        </tbody>
+      </table>
+      <p class="note mt-3">ИФА автоматизирована: станция введена 28 октября 2026 года.</p>
+      <figure class="ph ph--wide mt-3">
+        <span class="ph__code">B2</span>
+        <figcaption class="ph__t">Клеточные культуры</figcaption>
+        <span class="ph__n">Кадр B2</span>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec sec--tint" id="park">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">06</span>
+        <h2 class="sh__t">Оборудование</h2>
+      </header>
+      <p class="lead">Парк лаборатории группы компаний.</p>
+      <ul class="spec">
+        <li><span class="mono">2</span> бокса биобезопасности II класса, БМБ-II «Ламинар-С»-1,5 NEOTERIC</li>
+        <li>ПЦР-бокс БАВ-ПЦР-«Ламинар-С»</li>
+        <li><span class="mono">2</span> паровых стерилизатора класса B, STE-23-D</li>
+        <li>Водоподготовка: Sartorius arium mini и Millipore Direct-Q 3</li>
+        <li>Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</li>
+        <li><span class="mono">4</span> низкотемпературных морозильника −86&nbsp;°C по <span class="nw">338&nbsp;л</span>, Haier DW-86L338</li>
+        <li><span class="mono">2</span> криохранилища Thermo CY50935-70 и <span class="mono">5</span> сосудов Дьюара</li>
+        <li>Промыватели планшетов ППА-01 ПРОПЛАН и Mindray MW-12A</li>
+        <li>Планшетный фотометр Thermo Multiskan FC</li>
+        <li>Автоматическая станция ИФА «Лазурит», введена 28.10.2026</li>
+        <li>Термошейкеры Biosan TS-100 и TS-100C</li>
+        <li><span class="mono">15</span> UV-рециркуляторов DEZAR-KRONT</li>
+      </ul>
+      <div class="phrow phrow--2">
+        <figure class="ph ph--wide">
+          <span class="ph__code">C3</span>
+          <figcaption class="ph__t">Молекулярно-биологический стол</figcaption>
+          <span class="ph__n">Кадр C3</span>
+        </figure>
+        <figure class="ph ph--wide">
+          <span class="ph__code">B8</span>
+          <figcaption class="ph__t">Лабораторный прибор</figcaption>
+          <span class="ph__n">Кадр B8</span>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="team">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">07</span>
+        <h2 class="sh__t">Команда</h2>
+      </header>
+      <p class="lead">Роли в программах и в лаборатории.</p>
+      <ul class="ppl">
+        <li>
+          <div class="ppl__n">Руководитель программы ККС-5<span>кандидат биологических наук, СПбГУ</span></div>
+          <div class="ppl__d">Ведёт программу комбинированной контрольной сыворотки для ИФА и ИХЛА.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Научный руководитель вакцин для птицы<span>кандидат биологических наук, микробиолог, СПбГУ</span></div>
+          <div class="ppl__d">Научное руководство программой пероральных ДНК-вакцин для кур.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Руководитель этапа in vivo<span>доктор ветеринарных наук, профессор, академик РАН</span></div>
+          <div class="ppl__d">Оценка иммунного ответа и защитной эффективности на птице.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Специалист по эффективности in vivo<span>кандидат ветеринарных наук</span></div>
+          <div class="ppl__d">Эффективность на птице в программе вакцин для кур.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Организация доклинических исследований<span>специалист ICH GCP</span></div>
+          <div class="ppl__d">Организация исследований in vitro и in vivo.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Инженер-исполнитель ККС-5<span>MSc, Wageningen University</span></div>
+          <div class="ppl__d">Допуск к работе с патогенными биологическими агентами III–IV групп. Четыре рецензируемые публикации 2022–2024. В лаборатории два сертификата ICH GCP E6(R3) от 18.06.2026.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Менеджер по качеству<span>аудит клинических исследований и CSV</span></div>
+          <div class="ppl__d">Аудит исследований и валидация компьютеризированных систем.</div>
+        </li>
+        <li>
+          <div class="ppl__n">Менеджер биобанка</div>
+          <div class="ppl__d">Коллекции и учёт низкотемпературного хранения.</div>
+        </li>
+      </ul>
+      <figure class="ph ph--tall ph--cap mt-3">
+        <span class="ph__code">D1</span>
+        <figcaption class="ph__t">Сотрудник за лабораторной работой</figcaption>
+        <span class="ph__n">Кадр D1</span>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec sec--tint who" id="partners">
+    <div class="wrap" id="who">
+      <header class="sh">
+        <span class="sh__n">08</span>
+        <h2 class="sh__t">Партнёрам и фондам</h2>
+      </header>
+      <p class="lead">Четыре адресата, у каждого — форматы работы и то, что по ним уже сделано.</p>
+      <div class="jsonly">
+        <p class="tog__k" id="who-k">Кто вы</p>
+        <div class="tog" role="group" aria-labelledby="who-k">
+          <button type="button" data-who="tests" aria-pressed="false">Производителям тест-систем и лабораториям</button>
+          <button type="button" data-who="poultry" aria-pressed="false">Птицеводческим компаниям и ветеринарным институтам</button>
+          <button type="button" data-who="cro" aria-pressed="false">CRO и научным лабораториям</button>
+          <button type="button" data-who="funds" aria-pressed="false">Фондам и госпрограммам</button>
+        </div>
+      </div>
+      <div class="cards cards--2">
+        <article class="card card--l" data-who="tests">
+          <p class="card__k">Производителям тест-систем и лабораториям</p>
+          <h3>ККС-5: знакомство с материалом и совместная характеризация</h3>
+          <p>Техническое знакомство с материалом. Совместная характеризация ККС-5 на наборах партнёра по согласованному плану. Требования к будущей поставке.</p>
+          <p class="card__done"><b>Сделано</b>Серия ККС-5-П01, 30 флаконов × 5 мл, измерена по ИФА 03.09.2026.</p>
+        </article>
+        <article class="card card--l" data-who="poultry">
+          <p class="card__k">Птицеводческим компаниям и ветеринарным институтам</p>
+          <h3>Вакцины для кур: требования к продукту и целевой профиль</h3>
+          <p>Требования к продукту и схеме применения через систему поения. Участие в постановке целевого профиля. Условия будущих испытаний на птице — после лабораторной проверки доставки.</p>
+          <p class="card__done"><b>Сделано</b>Программа — победитель конкурса ИНТЦ «Сириус»; НИОКТР <span class="nw">16.11.2026</span> – <span class="nw">31.12.2028</span>.</p>
+        </article>
+        <article class="card card--l" data-who="cro">
+          <p class="card__k">CRO и научным лабораториям</p>
+          <h3>Работы по протоколу заказчика, хранение, наборы</h3>
+          <p>Девять методик вирусологического тестирования in vitro по протоколу заказчика. Хранение −86&nbsp;°C. Биоматериал коллекций по соглашению. Комплектация и маркировка наборов для многоцентровых исследований.</p>
+          <p class="card__done"><b>Сделано</b>155 наборов для трёх отделений реанимации укомплектованы и промаркированы.</p>
+        </article>
+        <article class="card card--l" data-who="funds">
+          <p class="card__k">Фондам и госпрограммам</p>
+          <h3>Соисполнение НИОКР и совместные заявки</h3>
+          <p>Соисполнение НИОКР по грантам и субсидиям: лабораторная часть, отчётность по этапам. Совместные заявки с фондом, госпрограммой или научным партнёром.</p>
+          <p class="card__done"><b>Сделано</b>Первый этап гранта закрыт отчётом о НИР 01.09.2026.</p>
+        </article>
+      </div>
+      <div class="sub">
+        <span class="sub__n">08.1</span>
+        <h3>Как начать</h3>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <p class="step__h"><span class="step__n">1</span><span class="step__k">Письмо</span></p>
+          <p>Пришлите задачу, матрицу, объём и сроки на <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>.</p>
+        </div>
+        <div class="step">
+          <p class="step__h"><span class="step__n">2</span><span class="step__k">NDA</span></p>
+          <p>Соглашение о конфиденциальности подписываем по запросу.</p>
+        </div>
+        <div class="step">
+          <p class="step__h"><span class="step__n">3</span><span class="step__k">План</span></p>
+          <p>Согласуем объём работ и сроки под ваш протокол.</p>
+        </div>
+        <div class="step">
+          <p class="step__h"><span class="step__n">4</span><span class="step__k">Договор</span></p>
+          <p>Фиксируем работу договором и приступаем.</p>
+        </div>
+      </div>
+      <p class="mt-4">Почта <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>, телефон <a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>.</p>
+      <form class="form" action="mailto:ceo@bmc-gp.com" method="post" enctype="text/plain">
+        <div>
+          <label for="org">Организация</label>
+          <input id="org" name="Организация" type="text" autocomplete="organization">
+        </div>
+        <div>
+          <label for="who-f">Контакт</label>
+          <input id="who-f" name="Контакт" type="text" autocomplete="name">
+        </div>
+        <div class="form__wide">
+          <label for="task">Задача</label>
+          <textarea id="task" name="Задача"></textarea>
+        </div>
+        <div>
+          <label for="matrix">Матрица</label>
+          <input id="matrix" name="Матрица" type="text">
+        </div>
+        <div>
+          <label for="volume">Объём</label>
+          <input id="volume" name="Объём" type="text">
+        </div>
+        <div class="form__wide">
+          <label for="when">Сроки</label>
+          <input id="when" name="Сроки" type="text">
+        </div>
+        <div class="form__wide">
+          <button class="btn" type="submit">Отправить запрос</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec" id="contacts">
+    <div class="wrap">
+      <header class="sh">
+        <span class="sh__n">09</span>
+        <h2 class="sh__t">Контакты и реквизиты</h2>
+      </header>
+      <div class="cont">
+        <dl class="dl">
+          <dt>Полное наименование</dt>
+          <dd>Общество с ограниченной ответственностью «БМК групп»</dd>
+          <dt>Сокращённое наименование</dt>
+          <dd>ООО «БМК групп»</dd>
+          <dt>ОГРН</dt>
+          <dd class="mono">1242300007586</dd>
+          <dt>ИНН</dt>
+          <dd class="mono">2378000096</dd>
+          <dt>КПП</dt>
+          <dd class="mono">237801001</dd>
+          <dt>Адрес</dt>
+          <dd>354340, Краснодарский край, пгт Сириус, Триумфальный пр-д, д.&nbsp;1, помещ.&nbsp;№&nbsp;2-036, раб.&nbsp;место&nbsp;2-036/45</dd>
+        </dl>
+        <dl class="dl">
+          <dt>Почта</dt>
+          <dd><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></dd>
+          <dt>Телефон</dt>
+          <dd><a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a></dd>
+          <dt>ИНТЦ «Сириус»</dt>
+          <dd>Участник проекта. Свидетельство <span class="nw">АА №&nbsp;000093</span> от 05.04.2024</dd>
+          <dt>Персональные данные</dt>
+          <dd><a href="/privacy">Порядок обработки персональных данных</a></dd>
+        </dl>
+      </div>
+      <figure class="ph ph--wide mt-4">
+        <span class="ph__code">E1</span>
+        <figcaption class="ph__t">Вход и вывеска площадки</figcaption>
+        <span class="ph__n">Кадр E1</span>
+      </figure>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__g">
+      <div>
+        <h4>ООО «БМК групп»</h4>
+        <p>Лаборатория группы компаний. Участник проекта ИНТЦ «Сириус».</p>
+        <p>ОГРН <span class="mono">1242300007586</span><br>ИНН <span class="mono">2378000096</span></p>
+      </div>
+      <div>
+        <h4>Страницы</h4>
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="rd.html#kks">ККС-5</a></li>
+          <li><a href="rd.html#avian">Вакцины для птицы</a></li>
+          <li><a href="index.html#partners">Партнёрам</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Связь</h4>
+        <ul>
+          <li><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
+          <li><a href="tel:+79086325048">+7 908 632-50-48</a></li>
+          <li><a href="/privacy">Персональные данные</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="ftr__note">Подтверждающие документы предоставляются по запросу и на аудите.</p>
+    <p class="ftr__btm">ООО «БМК групп» · пгт Сириус · свидетельство <span class="nw">АА № 000093</span> от 05.04.2024</p>
+  </div>
+</footer>
+<script>
+/* Геометрия мотивов «Тёмный планшет». Один файл для сборки (статический SVG) и для страницы (canvas).
+   Планшет ИФА 8 × 12 в перспективе — принятая формула (NOTES_v2_kks5_motif.md), базовые единицы 560 × 340:
+     r = 0…7 (ближний → дальний), c = 0…11, t = r/7
+     q  = 1/(1 + 1,8·t),  q7 = 1/2,8
+     x  = 280 + (c − 5,5)·42·q + shift·(1 − q)/(1 − q7)        shift — сдвиг точки схода, ±18 ед. (≈ ±4°: atan(18/250))
+     y  = 310 − 250·(1 − q)/(1 − q7)·(1 + lift)                 lift — подъём горизонта, ±0,06 (±15 ед. на дальнем ряду)
+     rx = 11·q,  ry = 7·q
+   Цвет по колонкам: 0–2 navy, 3–5 blue, 6–8 sky, 9–11 grey (гамма № 3). Лунка r = 0, c = 0 — отрицательный контроль, белый контур. */
+var BMK_GEOM = (function () {
+  var COLS = ['#24305F', '#5282BE', '#97B5DC', '#A6B1BE'];
+  function plateWells(shift, lift) {
+    shift = shift || 0; lift = lift || 0;
+    var q7 = 1 / 2.8, out = [];
+    for (var r = 0; r < 8; r++) {
+      var t = r / 7, q = 1 / (1 + 1.8 * t), d = (1 - q) / (1 - q7);
+      for (var c = 0; c < 12; c++) {
+        out.push({ r: r, c: c, x: 280 + (c - 5.5) * 42 * q + shift * d, y: 310 - 250 * d * (1 + lift), rx: 11 * q, ry: 7 * q,
+          col: COLS[c < 3 ? 0 : c < 6 ? 1 : c < 9 ? 2 : 3], neg: r === 0 && c === 0 });
+      }
+    }
+    return out;
+  }
+  /* Мотив программы вакцин для кур: линия поения и стадо. Та же дисциплина, базовые единицы 560 × 300:
+       птицы — эллипсы, 6 рядов × 10 колонок, t = r/5, q = 1/(1 + 1,8·t), q5 = 1/2,8
+       x = 280 + (c − 4,5)·52·q + 0,22·52·q·sin(3,7·c + 1,3·r)      детерминированный «разброс стада»
+       y = 272 − 205·(1 − q)/(1 − q5) + 0,25·6,5·q·cos(2,1·c + 0,7·r)
+       rx = 10·q, ry = 6,5·q; цвет: grey, каждая третья птица (c + r) mod 3 = 0 — sky
+     линия поения на глубине r = 2,5 (q = 1/1,9): горизонтальная труба от c = −0,5 до c = 9,5,
+       ниппели в каждой колонке: штрих 9·q вниз и капля-эллипс rx 2,6·q, ry 3,6·q цвета sky. */
+  function flock() {
+    var q5 = 1 / 2.8, birds = [], rp = 2.5, qp = 1 / (1 + 1.8 * rp / 5), dp = (1 - qp) / (1 - q5);
+    for (var r = 0; r < 6; r++) {
+      var t = r / 5, q = 1 / (1 + 1.8 * t), d = (1 - q) / (1 - q5);
+      for (var c = 0; c < 10; c++) {
+        birds.push({ r: r, c: c, x: 280 + (c - 4.5) * 52 * q + 0.22 * 52 * q * Math.sin(3.7 * c + 1.3 * r),
+          y: 272 - 205 * d + 0.25 * 6.5 * q * Math.cos(2.1 * c + 0.7 * r), rx: 10 * q, ry: 6.5 * q,
+          col: (c + r) % 3 === 0 ? '#97B5DC' : '#A6B1BE', near: r < rp });
+      }
+    }
+    var pipe = { y: 272 - 205 * dp, x1: 280 + (-0.5 - 4.5) * 52 * qp, x2: 280 + (9.5 - 4.5) * 52 * qp, q: qp, nips: [] };
+    for (var k = 0; k < 10; k++) pipe.nips.push({ x: 280 + (k - 4.5) * 52 * qp, tick: 9 * qp, rx: 2.6 * qp, ry: 3.6 * qp });
+    return { birds: birds, pipe: pipe };
+  }
+  return { COLS: COLS, plateWells: plateWells, flock: flock };
+})();
+if (typeof module !== 'undefined') module.exports = BMK_GEOM;
+
+/* Интерактив «Тёмный планшет». Без JS страница полная (статический SVG, все строки видны);
+   при prefers-reduced-motion всё неподвижно: canvas рисуется один раз, слушатели не вешаются. */
+(function () {
+  'use strict';
+  var RM = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf = window.requestAnimationFrame || function (f) { return setTimeout(f, 16); };
+
+  /* ---------- 1. Планшет на canvas: формула BMK_GEOM, параллакс от указателя и прокрутки ---------- */
+  function Plate(host) {
+    var cv = host.querySelector('canvas'); if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), self = this;
+    var mode = host.getAttribute('data-plate'); /* hero — в правой части широкого экрана; card — по центру */
+    this.shift = 0; this.lift = 0; this.tShift = 0; this.tLift = 0; this.pending = false;
+    function size() {
+      var r = cv.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+      if (!r.width || !r.height) return false;
+      if (cv.width !== Math.round(r.width * dpr) || cv.height !== Math.round(r.height * dpr)) { cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); }
+      self.W = r.width; self.H = r.height; self.dpr = dpr; return true;
+    }
+    this.draw = function () {
+      self.pending = false; if (!size()) return;
+      var W = self.W, H = self.H, dpr = self.dpr;
+      var wide = mode === 'hero' && W >= 900;
+      var cx = wide ? W * 0.77 : W / 2;
+      var s = Math.min((wide ? W * 0.42 : W - 32) / 560, H / 340) * (mode === 'hero' ? 1 : 0.96);
+      var cy = H / 2;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+      ctx.translate(cx - 280 * s, cy - 170 * s); ctx.scale(s, s);
+      var wells = BMK_GEOM.plateWells(self.shift, self.lift);
+      for (var pass = 0; pass < 2; pass++) for (var i = 0; i < wells.length; i++) {
+        var w = wells[i]; if ((pass === 0) !== (w.r > 0)) continue;
+        if (w.neg) { ctx.beginPath(); ctx.ellipse(w.x, w.y, w.rx - .75, w.ry - .75, 0, 0, Math.PI * 2); ctx.strokeStyle = '#FFFFFF'; ctx.lineWidth = 1.5; ctx.stroke(); continue; }
+        ctx.beginPath(); ctx.ellipse(w.x, w.y, w.rx * 1.8, w.ry * 1.8, 0, 0, Math.PI * 2); ctx.globalAlpha = .16; ctx.fillStyle = w.col; ctx.fill(); ctx.globalAlpha = 1;
+        ctx.beginPath(); ctx.ellipse(w.x, w.y, w.rx, w.ry, 0, 0, Math.PI * 2); ctx.fillStyle = w.col; ctx.fill();
+        if (w.col === '#24305F') { ctx.strokeStyle = '#5282BE'; ctx.lineWidth = 1; ctx.stroke(); }
+      }
+    };
+    this.tick = function () {
+      var ds = self.tShift - self.shift, dl = self.tLift - self.lift;
+      self.shift += ds * .12; self.lift += dl * .12;
+      self.draw();
+      if (Math.abs(ds) > .05 || Math.abs(dl) > .0005) raf(self.tick); else self.pending = false;
+    };
+    this.ask = function () { if (!self.pending) { self.pending = true; raf(self.tick); } };
+    this.draw();
+    if (RM) return; /* неподвижно: один кадр, слушателей нет */
+    var onMove = function (e) { var px = (e.clientX / window.innerWidth - .5) * 2, py = (e.clientY / window.innerHeight - .5) * 2; self.tShift = Math.max(-1, Math.min(1, px)) * 18; self.tLift = self.baseLift + Math.max(-1, Math.min(1, py)) * .02; self.ask(); };
+    this.baseLift = 0;
+    var onScroll = function () { var r = host.getBoundingClientRect(); var p = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height))); self.baseLift = .06 * p; self.tLift = self.baseLift; self.ask(); };
+    window.addEventListener('pointermove', onMove, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { self.draw(); }, { passive: true });
+    onScroll();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.plate[data-plate]'), function (h) { new Plate(h); });
+
+  /* ---------- 2. Хроника: ползунок по датам, ось с делениями ---------- */
+  var scrub = document.getElementById('scrub');
+  if (scrub) {
+    var items = Array.prototype.slice.call(document.querySelectorAll('#chron > li'));
+    var out = document.getElementById('scrub-out'), axis = document.getElementById('axis');
+    var ticks = axis ? axis.querySelectorAll('.axis__t') : [], mark = axis ? axis.querySelector('.axis__m') : null;
+    var set = function (i) {
+      items.forEach(function (li, k) { li.classList.toggle('is-now', k === i); });
+      Array.prototype.forEach.call(ticks, function (t, k) { t.classList.toggle('is-on', k <= i); });
+      if (mark && ticks[i]) mark.style.transform = 'translateX(' + (ticks[i].getAttribute('cx') - 20) + 'px)';
+      if (out) out.value = items[i].querySelector('.tl__d').textContent;
+      scrub.setAttribute('aria-valuetext', items[i].querySelector('.tl__d').textContent);
+    };
+    scrub.max = items.length - 1; scrub.value = items.length - 1; set(items.length - 1);
+    scrub.addEventListener('input', function () { set(+scrub.value); });
+    items.forEach(function (li, k) { li.addEventListener('click', function () { scrub.value = k; set(k); }); });
+  }
+
+  /* ---------- 3. Матрица методик: фильтр по нормативному документу ---------- */
+  var mf = document.getElementById('mfilter');
+  if (mf) {
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#methods tbody tr')), cnt = document.getElementById('mcount');
+    var btns = Array.prototype.slice.call(mf.querySelectorAll('button'));
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var key = b.getAttribute('data-doc');
+        btns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        var n = 0;
+        rows.forEach(function (r) { var on = key === 'all' || (' ' + r.getAttribute('data-doc') + ' ').indexOf(' ' + key + ' ') >= 0; r.hidden = !on; if (on) n++; });
+        if (cnt) cnt.textContent = key === 'all' ? 'Показаны все девять методик' : 'Методик с этой привязкой: ' + n + ' из 9';
+      });
+    });
+  }
+
+  /* ---------- 4. Партнёрам: «кто вы» подсвечивает адресную карточку ---------- */
+  var who = document.getElementById('who');
+  if (who) {
+    var wb = Array.prototype.slice.call(who.querySelectorAll('.tog button')), cards = Array.prototype.slice.call(who.querySelectorAll('.card--l'));
+    wb.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var k = b.getAttribute('data-who'), on = b.getAttribute('aria-pressed') === 'true';
+        wb.forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        if (on) { who.removeAttribute('data-who'); cards.forEach(function (c) { c.classList.remove('is-on'); }); return; }
+        b.setAttribute('aria-pressed', 'true'); who.setAttribute('data-who', k);
+        cards.forEach(function (c) { c.classList.toggle('is-on', c.getAttribute('data-who') === k); });
+      });
+    });
+  }
+
+  /* ---------- 5. Таблица КП: строка ↔ лунка ---------- */
+  var wells = document.getElementById('wells'), kpt = document.getElementById('kptable');
+  if (wells && kpt) {
+    var wbtn = Array.prototype.slice.call(wells.querySelectorAll('button')), krows = Array.prototype.slice.call(kpt.querySelectorAll('tbody tr'));
+    var lit = function (k) {
+      if (k) wells.setAttribute('data-lit', k); else wells.removeAttribute('data-lit');
+      wbtn.forEach(function (b) { b.classList.toggle('is-lit', b.getAttribute('data-mk') === k); });
+      krows.forEach(function (r) { r.classList.toggle('is-lit', r.getAttribute('data-mk') === k); });
+    };
+    krows.forEach(function (r) {
+      r.setAttribute('tabindex', '0');
+      r.addEventListener('mouseenter', function () { lit(r.getAttribute('data-mk')); });
+      r.addEventListener('mouseleave', function () { lit(null); });
+      r.addEventListener('focus', function () { lit(r.getAttribute('data-mk')); });
+      r.addEventListener('blur', function () { lit(null); });
+    });
+    wbtn.forEach(function (b) {
+      var k = b.getAttribute('data-mk');
+      b.addEventListener('mouseenter', function () { lit(k); }); b.addEventListener('mouseleave', function () { lit(null); });
+      b.addEventListener('focus', function () { lit(k); }); b.addEventListener('blur', function () { lit(null); });
+      b.addEventListener('click', function () { var r = krows.filter(function (x) { return x.getAttribute('data-mk') === k; })[0]; if (r) r.focus(); });
+    });
+  }
+
+  /* ---------- 6. Цикл ИФА: шаги 1–6 ---------- */
+  var cyc = document.getElementById('cyc');
+  if (cyc) {
+    var fig = cyc.querySelector('.cyc__fig'), nav = cyc.querySelector('.cyc__nav'), cout = cyc.querySelector('.cyc__nav output');
+    /* без JS шаги — простой список; с JS каждый шаг становится кнопкой */
+    var sb = Array.prototype.slice.call(cyc.querySelectorAll('.cyc__s')).map(function (d) {
+      var b = document.createElement('button'); b.type = 'button'; b.className = d.className; b.innerHTML = d.innerHTML; d.parentNode.replaceChild(b, d); return b;
+    });
+    var cur = 1, N = sb.length;
+    var go = function (n) {
+      cur = Math.max(1, Math.min(N, n)); fig.setAttribute('data-step', String(cur));
+      sb.forEach(function (b, k) { if (k + 1 === cur) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
+      if (cout) cout.value = 'Шаг ' + cur + ' из ' + N;
+    };
+    sb.forEach(function (b, k) { b.addEventListener('click', function () { go(k + 1); }); });
+    if (nav) { nav.hidden = false; nav.querySelector('[data-go="prev"]').addEventListener('click', function () { go(cur - 1); }); nav.querySelector('[data-go="next"]').addEventListener('click', function () { go(cur + 1); }); }
+    go(1);
+  }
+
+  /* ---------- 7. Линия поения: подсветка идёт вдоль трубы по мере прокрутки ---------- */
+  var fl = document.getElementById('flock');
+  if (fl && !RM) {
+    var upd = function () { var r = fl.getBoundingClientRect(), vh = window.innerHeight || 1; var p = (vh - r.top) / (vh + r.height); p = Math.max(0, Math.min(1, p)); fl.style.setProperty('--p', p.toFixed(3)); };
+    window.addEventListener('scroll', function () { raf(upd); }, { passive: true }); window.addEventListener('resize', upd, { passive: true }); upd();
+  }
+})();
+
+</script>
+</body>
+</html>
