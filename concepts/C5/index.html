@@ -167,7 +167,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 
 /* ---------- карта: плитки того, что есть ---------- */
 .mapnav{margin-top:var(--s6)}
-.map{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:repeat(2,minmax(0,1fr))}
+.map{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:minmax(0,1fr)}
+@media (min-width:361px){.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:700px){.map{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:1000px){.map{grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s4)}}
 .map>li{margin:0;min-width:0;position:relative;container-type:inline-size}
@@ -183,14 +184,14 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   padding-bottom:var(--s2);border-bottom:var(--edge) solid var(--ink);width:max-content;max-width:100%;
 }
 .tile__v--s{font-size:var(--t-h3);line-height:24px}
-.tile__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2)}
+.tile__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2);overflow-wrap:anywhere;hyphens:auto}
 .tile__k{margin-top:auto;padding-top:var(--s2);font-family:var(--mono);font-size:var(--t-meta);line-height:16px;letter-spacing:.02em;color:var(--ink-3);font-variant-numeric:tabular-nums slashed-zero}
 .tile:hover .tile__k,.tile:focus-visible .tile__k{color:var(--ref)}
 /* в широкой плитке число и подпись встают в строку — решает ширина самой плитки */
-@container (min-width:290px){
+@container (min-width:280px){
   .tile{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:var(--s4);min-height:112px}
   .tile__v{flex:0 0 auto;min-width:104px}
-  .tile__t{flex:1 1 160px}
+  .tile__t{flex:1 1 130px}
   .tile__k{flex:1 1 100%;margin-top:auto}
 }
 .tile__x{
@@ -451,6 +452,12 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   .card,.tile,.ph,.dgm{break-inside:avoid}
   a{border-bottom:0}
 }
+/* ---------- узкие экраны: шкала хроники и шаги схемы ---------- */
+@media (max-width:699px){
+  .tlx__lab:first-child{display:none}
+  .stp{grid-template-columns:auto auto;justify-content:space-between}
+  .stp__o{grid-column:1/-1;order:-1;text-align:left}
+}
 
 </style>
 </head>
@@ -545,7 +552,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <h2 class="sh__t">Что сделано в 2026 году</h2>
       </header>
       <div class="tlx">
-        <svg class="tlx__svg" viewBox="0 0 600 72" role="img" aria-labelledby="tlx-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="tlx-t">Хроника 2026 года на шкале времени: с 27 августа по 30 октября</title><rect x="0" y="0" width="600" height="72" fill="#FFFFFF"/><line x1="24" y1="40" x2="576" y2="40" stroke="#14171C" stroke-width="2"/><line x1="87.086" y1="30" x2="87.086" y2="50" stroke="#14171C" stroke-width="1"/><line x1="323.657" y1="30" x2="323.657" y2="50" stroke="#14171C" stroke-width="1"/><line x1="568.114" y1="30" x2="568.114" y2="50" stroke="#14171C" stroke-width="1"/><line x1="24" y1="40" x2="24" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="79.2" y1="40" x2="79.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="134.4" y1="40" x2="134.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="189.6" y1="40" x2="189.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="244.8" y1="40" x2="244.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="300" y1="40" x2="300" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="355.2" y1="40" x2="355.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="410.4" y1="40" x2="410.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="465.6" y1="40" x2="465.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="520.8" y1="40" x2="520.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="576" y1="40" x2="576" y2="46" stroke="#B0B2AA" stroke-width="1"/><line class="tlx__cur" x1="24" y1="8" x2="24" y2="64" stroke="#5282BE" stroke-width="2"/><a href="#ev1" class="tlx__m" data-i="0" data-d="3"><title>Способ подготовки сырья для ККС-5</title><rect x="47.657" y="36" width="31.543" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="47.657" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev2" class="tlx__m" data-i="1" data-d="8"><title>Первый этап гранта по ККС-5 закрыт</title><circle cx="87.086" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev3" class="tlx__m" data-i="2" data-d="9"><title>Серия ККС-5-П01 собрана и разлита</title><rect x="94.971" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="94.971" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev4" class="tlx__m" data-i="3" data-d="11"><title>Старт исследования стабильности ККС-5</title><circle cx="110.743" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev5" class="tlx__m" data-i="4" data-d="45"><title>155 наборов для трёх отделений реанимации</title><circle cx="378.857" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev6" class="tlx__m" data-i="5" data-d="53"><title>План исследования для характеризации ККС-5 в ИХЛА</title><circle cx="441.943" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev7" class="tlx__m" data-i="6" data-d="65"><title>Введена автоматическая станция ИФА</title><rect x="536.571" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="536.571" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a></svg>
+        <svg class="tlx__svg" viewBox="0 0 600 72" role="img" aria-labelledby="tlx-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="tlx-t">Хроника 2026 года на шкале времени: с 27 августа по 30 октября</title><rect x="0" y="0" width="600" height="72" fill="#FFFFFF"/><line x1="24" y1="40" x2="576" y2="40" stroke="#14171C" stroke-width="2"/><line x1="87.086" y1="30" x2="87.086" y2="50" stroke="#14171C" stroke-width="1"/><line x1="323.657" y1="30" x2="323.657" y2="50" stroke="#14171C" stroke-width="1"/><line x1="568.114" y1="30" x2="568.114" y2="50" stroke="#14171C" stroke-width="1"/><line x1="24" y1="40" x2="24" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="79.2" y1="40" x2="79.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="134.4" y1="40" x2="134.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="189.6" y1="40" x2="189.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="244.8" y1="40" x2="244.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="300" y1="40" x2="300" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="355.2" y1="40" x2="355.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="410.4" y1="40" x2="410.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="465.6" y1="40" x2="465.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="520.8" y1="40" x2="520.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="576" y1="40" x2="576" y2="46" stroke="#B0B2AA" stroke-width="1"/><line class="tlx__cur" x1="24" y1="8" x2="24" y2="64" stroke="#5282BE" stroke-width="2"/><a href="#ev1" class="tlx__m" data-i="0" data-d="3" aria-label="Способ подготовки сырья для ККС-5"><title>Способ подготовки сырья для ККС-5</title><rect x="47.657" y="36" width="31.543" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="47.657" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev2" class="tlx__m" data-i="1" data-d="8" aria-label="Первый этап гранта по ККС-5 закрыт"><title>Первый этап гранта по ККС-5 закрыт</title><circle cx="87.086" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev3" class="tlx__m" data-i="2" data-d="9" aria-label="Серия ККС-5-П01 собрана и разлита"><title>Серия ККС-5-П01 собрана и разлита</title><rect x="94.971" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="94.971" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev4" class="tlx__m" data-i="3" data-d="11" aria-label="Старт исследования стабильности ККС-5"><title>Старт исследования стабильности ККС-5</title><circle cx="110.743" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev5" class="tlx__m" data-i="4" data-d="45" aria-label="155 наборов для трёх отделений реанимации"><title>155 наборов для трёх отделений реанимации</title><circle cx="378.857" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev6" class="tlx__m" data-i="5" data-d="53" aria-label="План исследования для характеризации ККС-5 в ИХЛА"><title>План исследования для характеризации ККС-5 в ИХЛА</title><circle cx="441.943" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev7" class="tlx__m" data-i="6" data-d="65" aria-label="Введена автоматическая станция ИФА"><title>Введена автоматическая станция ИФА</title><rect x="536.571" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="536.571" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a></svg>
         <div class="tlx__labs" aria-hidden="true">
           <span class="tlx__lab" style="left:4%">август</span>
           <span class="tlx__lab" style="left:14.514%">сентябрь</span>

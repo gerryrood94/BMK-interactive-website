@@ -167,7 +167,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 
 /* ---------- карта: плитки того, что есть ---------- */
 .mapnav{margin-top:var(--s6)}
-.map{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:repeat(2,minmax(0,1fr))}
+.map{list-style:none;margin:0;padding:0;display:grid;gap:var(--s3);grid-template-columns:minmax(0,1fr)}
+@media (min-width:361px){.map{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:700px){.map{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (min-width:1000px){.map{grid-template-columns:repeat(5,minmax(0,1fr));gap:var(--s4)}}
 .map>li{margin:0;min-width:0;position:relative;container-type:inline-size}
@@ -183,14 +184,14 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   padding-bottom:var(--s2);border-bottom:var(--edge) solid var(--ink);width:max-content;max-width:100%;
 }
 .tile__v--s{font-size:var(--t-h3);line-height:24px}
-.tile__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2)}
+.tile__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2);overflow-wrap:anywhere;hyphens:auto}
 .tile__k{margin-top:auto;padding-top:var(--s2);font-family:var(--mono);font-size:var(--t-meta);line-height:16px;letter-spacing:.02em;color:var(--ink-3);font-variant-numeric:tabular-nums slashed-zero}
 .tile:hover .tile__k,.tile:focus-visible .tile__k{color:var(--ref)}
 /* в широкой плитке число и подпись встают в строку — решает ширина самой плитки */
-@container (min-width:290px){
+@container (min-width:280px){
   .tile{flex-direction:row;flex-wrap:wrap;align-items:baseline;column-gap:var(--s4);min-height:112px}
   .tile__v{flex:0 0 auto;min-width:104px}
-  .tile__t{flex:1 1 160px}
+  .tile__t{flex:1 1 130px}
   .tile__k{flex:1 1 100%;margin-top:auto}
 }
 .tile__x{
@@ -451,6 +452,12 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   .card,.tile,.ph,.dgm{break-inside:avoid}
   a{border-bottom:0}
 }
+/* ---------- узкие экраны: шкала хроники и шаги схемы ---------- */
+@media (max-width:699px){
+  .tlx__lab:first-child{display:none}
+  .stp{grid-template-columns:auto auto;justify-content:space-between}
+  .stp__o{grid-column:1/-1;order:-1;text-align:left}
+}
 
 </style>
 </head>
@@ -606,7 +613,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       </ul>
 
       <figure class="kpfig mt-4">
-        <svg class="kprow" viewBox="0 0 560 200" role="img" aria-labelledby="kprow-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="kprow-t">Ближний ряд планшета: пять лунок — пять маркеров ККС-5 с коэффициентами позитивности 03.09.2026</title><ellipse cx="259" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="301" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="343" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="385" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="427" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="469" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="511" cy="170" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><a href="#kp1" class="kprow__a" data-kp="kp1"><title>HBsAg: КП 4,4</title><line x1="49" y1="34" x2="49" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="49" cy="170" rx="11" ry="7" fill="#24305F" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="57" y="28" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">HBsAg <tspan font-weight="600">4,4</tspan></text></a><a href="#kp2" class="kprow__a" data-kp="kp2"><title>анти-HBcore: КП 6,2</title><line x1="91" y1="64" x2="91" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="91" cy="170" rx="11" ry="7" fill="#5282BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="99" y="58" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-HBcore <tspan font-weight="600">6,2</tspan></text></a><a href="#kp3" class="kprow__a" data-kp="kp3"><title>анти-ВИЧ-1/2: КП выше предела фотометра</title><line x1="133" y1="94" x2="133" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="133" cy="170" rx="11" ry="7" fill="#749BCD" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="141" y="88" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВИЧ-1/2 <tspan font-weight="600">выше предела фотометра</tspan></text></a><a href="#kp4" class="kprow__a" data-kp="kp4"><title>анти-ВГС: КП ≈11</title><line x1="175" y1="124" x2="175" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="175" cy="170" rx="11" ry="7" fill="#97B5DC" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="183" y="118" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВГС <tspan font-weight="600">≈11</tspan></text></a><a href="#kp5" class="kprow__a" data-kp="kp5"><title>анти-T. pallidum: КП 3,8</title><line x1="217" y1="154" x2="217" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="217" cy="170" rx="11" ry="7" fill="#A6B1BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="225" y="148" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-<tspan font-style="italic">T. pallidum</tspan> <tspan font-weight="600">3,8</tspan></text></a></svg>
+        <svg class="kprow" viewBox="0 0 560 200" role="img" aria-labelledby="kprow-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="kprow-t">Ближний ряд планшета: пять лунок — пять маркеров ККС-5 с коэффициентами позитивности 03.09.2026</title><ellipse cx="259" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="301" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="343" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="385" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="427" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="469" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="511" cy="170" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><a href="#kp1" class="kprow__a" data-kp="kp1" aria-label="HBsAg: КП 4,4"><title>HBsAg: КП 4,4</title><line x1="49" y1="34" x2="49" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="49" cy="170" rx="11" ry="7" fill="#24305F" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="57" y="28" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">HBsAg <tspan font-weight="600">4,4</tspan></text></a><a href="#kp2" class="kprow__a" data-kp="kp2" aria-label="анти-HBcore: КП 6,2"><title>анти-HBcore: КП 6,2</title><line x1="91" y1="64" x2="91" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="91" cy="170" rx="11" ry="7" fill="#5282BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="99" y="58" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-HBcore <tspan font-weight="600">6,2</tspan></text></a><a href="#kp3" class="kprow__a" data-kp="kp3" aria-label="анти-ВИЧ-1/2: КП выше предела фотометра"><title>анти-ВИЧ-1/2: КП выше предела фотометра</title><line x1="133" y1="94" x2="133" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="133" cy="170" rx="11" ry="7" fill="#749BCD" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="141" y="88" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВИЧ-1/2 <tspan font-weight="600">выше предела фотометра</tspan></text></a><a href="#kp4" class="kprow__a" data-kp="kp4" aria-label="анти-ВГС: КП ≈11"><title>анти-ВГС: КП ≈11</title><line x1="175" y1="124" x2="175" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="175" cy="170" rx="11" ry="7" fill="#97B5DC" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="183" y="118" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВГС <tspan font-weight="600">≈11</tspan></text></a><a href="#kp5" class="kprow__a" data-kp="kp5" aria-label="анти-T. pallidum: КП 3,8"><title>анти-T. pallidum: КП 3,8</title><line x1="217" y1="154" x2="217" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="217" cy="170" rx="11" ry="7" fill="#A6B1BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="225" y="148" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-<tspan font-style="italic">T. pallidum</tspan> <tspan font-weight="600">3,8</tspan></text></a></svg>
         <figcaption class="motif__cap">Пять маркеров — пять лунок ближнего ряда; белая лунка — отрицательный контроль</figcaption>
       </figure>
       <div class="tbl tbl--kp" role="table" id="kptbl">

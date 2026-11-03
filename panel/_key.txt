@@ -1,0 +1,6 @@
+seed 20261103
+draft_1 = concepts/C4
+draft_2 = concepts/C5
+draft_3 = concepts/C2
+draft_4 = concepts/C3
+draft_5 = concepts/C1
