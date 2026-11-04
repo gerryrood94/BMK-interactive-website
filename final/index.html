@@ -200,6 +200,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   font-size:var(--t-note);line-height:24px;color:var(--ink-2);box-shadow:0 8px 16px rgba(20,23,28,.08);
 }
 .map>li.is-open .tile__x{display:block}
+.map>li.is-up .tile__x{top:auto;bottom:100%;margin:0 0 -1px;border-radius:var(--radius) var(--radius) 0 0;box-shadow:0 -8px 16px rgba(20,23,28,.08)}
 
 /* ---------- мотивы: планшет и птичник ---------- */
 .motif{display:block;width:100%;height:auto;margin:var(--s2) 0 var(--s4);background:#FFFFFF;border-top:var(--hair) solid var(--sky);border-bottom:var(--hair) solid var(--sky)}
@@ -294,7 +295,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .inv__l>li{margin:0;padding:var(--s2) 0;font-size:var(--t-note);line-height:24px;border-top:var(--hair) solid var(--rule)}
 
 /* ---------- карточка ---------- */
-.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:start}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:stretch}
 @media (min-width:820px){.cards--2{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .card{background:var(--plate);border:var(--hair) solid var(--rule-2);border-radius:var(--radius);border-top:var(--edge) solid var(--ink);padding:var(--s5);min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
 .card__k{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:500;letter-spacing:.01em;color:var(--ink-3);font-variant-numeric:tabular-nums slashed-zero}
@@ -467,7 +468,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   .ph,.ph--band,.ph--wide,.ph--tall{height:88px;max-height:88px;background-image:none}
   .motif,.kks5__plate{max-height:70mm}
   .map,.ftr,.ftr__g{break-inside:avoid}
-  .sh__n,.step__n,.cycle__n,.sec--deep .sh__n,.sec--deep .step__n,.kks5__hero .sh__n{background:none!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink)}
+  .ph__code,.sh__n,.step__n,.cycle__n,.sec--deep .sh__n,.sec--deep .step__n,.kks5__hero .sh__n{background:none!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink)}
   .map>li.is-open .tile__x{display:none}
 }
 /* ---------- узкие экраны: шкала хроники и шаги схемы ---------- */
@@ -776,7 +777,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         </div>
         <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Изотермическая амплификация (LAMP)</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов без термоциклера</div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов</div>
         </div>
       </div>
       <p class="note mt-3">ИФА автоматизирована: станция введена 28 октября 2026 года.</p>
@@ -934,7 +935,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
           <dt>КПП</dt>
           <dd class="mono">237801001</dd>
           <dt>Адрес</dt>
-          <dd>354340, Краснодарский край, пгт Сириус, Триумфальный пр-д, д.&nbsp;1, помещ.&nbsp;№&nbsp;2-036, раб.&nbsp;место&nbsp;2-036/45</dd>
+          <dd>354340, Краснодарский край, пгт Сириус, Триумфальный пр-д, д.&nbsp;1, помещ.&nbsp;№&nbsp;2-036, <span class="nw">раб.&nbsp;место&nbsp;2-036/45</span></dd>
         </dl>
         <dl class="dl">
           <dt>Почта</dt>
@@ -1028,6 +1029,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       var r = li.getBoundingClientRect(), bottom = 0;
       lis.forEach(function (o) { var b = o.getBoundingClientRect(); if (b.top > r.bottom - 1 && b.top < r.bottom + 40 && b.bottom > bottom) bottom = b.bottom; });
       x.style.minHeight = bottom ? Math.round(bottom - r.bottom) + 'px' : '';
+      li.classList.toggle('is-up', !bottom);
       li.classList.add('is-open');
     }
     function close() { li.classList.remove('is-open'); }

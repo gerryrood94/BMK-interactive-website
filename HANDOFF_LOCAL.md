@@ -79,20 +79,14 @@ keep raising them:
 
 ## 4. What is left
 
-1. **Polish left from round 3** (all WARN; none blocks; listed in full in `final/VERIFY_LOG.md`, last five sections).
-   They are cheap layout fixes; re-run the three checks afterwards:
-   - index: delete «без термоциклера» in the methods table (blacklist WARN);
-   - index: the second-row tile previews (04–06) open past the map; open them upward or clamp the height;
-   - index: partner cards in one row should be the same height (`align-items:stretch`);
-   - nowrap for «2-036/45» (index, 320 px) and the /rd jump links «03 · Как начать» (390/320 px);
-   - print: `.ph__code` badges get the same treatment as `.sh__n` / `.step__n` (no ink fill).
-   **Do not apply** the round-3 fact-check WARN that asks to restore «работоспособность подхода
-   подлежит экспериментальной проверке» on /rd: it is a hedge (BLACKLIST). The readers' WARNs asking for
-   names, registration number/date, patent number, kit names, exact КП for anti-HCV, measured CV and
-   stability КП are owner inputs, already in `final/OWNER_INPUTS.md`; the page stays silent until given.
+1. **Round-3 polish: done** (`final/NOTES.md` §11). The verification is complete; nothing from the
+   rounds is open except owner inputs. **Do not apply** the round-3 fact-check WARN that asks to restore
+   «работоспособность подхода подлежит экспериментальной проверке» on /rd: it is a hedge (BLACKLIST).
    To run another verify round locally, start Claude Code in the repo and run
    `tools/workflows/final.js` (args `repo`, `facts`, `scratch`, `base: "concepts/C5"`, `grafts`, `round0`);
    its Merge phase rebuilds `final/` from the base, so for a verify-only pass drop that phase.
+   `final/_build_apply.js` rebuilds `final/{index,rd}.html` from `concepts/C5` byte for byte; edit it,
+   not the HTML, so the build stays reproducible.
 2. **Owner inputs.** `final/OWNER_INPUTS.md` carries the 31 original items plus the new ones (49 in
    all). Every one of them is silent on the page until the owner supplies it.
 3. **Photos and logo.** Use shots A1, A2, B1, B2, B5, B8, B9, C3, D1, E1 (`PHOTO_SHOTLIST.md`) and

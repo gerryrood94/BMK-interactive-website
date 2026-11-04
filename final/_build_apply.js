@@ -839,8 +839,38 @@ function r2Rd(h) {
   return h;
 }
 
-const idx = r2Index(r1Index(buildIndex(fs.readFileSync(path.join(BASE, 'index.html'), 'utf8'))));
-const rd = r2Rd(r1Rd(buildRd(fs.readFileSync(path.join(BASE, 'rd.html'), 'utf8'))));
+// ------------------------------------------------------------------ раунд 3 слепой проверки: полировка (§10)
+function r3Common(h) {
+  // Печать: коды кадров — без заливки чернилами, как номера разделов и шагов
+  h = rep(h, `  .sh__n,.step__n,.cycle__n,.sec--deep .sh__n,`, `  .ph__code,.sh__n,.step__n,.cycle__n,.sec--deep .sh__n,`, 'r3 print ph__code');
+  return h;
+}
+function r3Index(h) {
+  h = r3Common(h);
+  // Чёрный список, раунд 3: формулировка через отсутствие удалена
+  h = rep(h, `>нуклеиновые кислоты вирусов без термоциклера</div>`, `>нуклеиновые кислоты вирусов</div>`, 'r3 thermocycler');
+  // Карточки одного ряда — одной высоты
+  h = rep(h, `.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:start}`,
+    `.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:stretch}`, 'r3 cards stretch');
+  // Подсказка плитки последнего ряда открывается вверх и не выходит за карту
+  h = rep(h, `.map>li.is-open .tile__x{display:block}\n`,
+    `.map>li.is-open .tile__x{display:block}\n.map>li.is-up .tile__x{top:auto;bottom:100%;margin:0 0 -1px;border-radius:var(--radius) var(--radius) 0 0;box-shadow:0 -8px 16px rgba(20,23,28,.08)}\n`, 'r3 tile up css');
+  h = rep(h, `      x.style.minHeight = bottom ? Math.round(bottom - r.bottom) + 'px' : '';\n      li.classList.add('is-open');`,
+    `      x.style.minHeight = bottom ? Math.round(bottom - r.bottom) + 'px' : '';\n      li.classList.toggle('is-up', !bottom);\n      li.classList.add('is-open');`, 'r3 tile up js');
+  // Номер рабочего места не переносится
+  h = rep(h, `раб.&nbsp;место&nbsp;2-036/45</dd>`, `<span class="nw">раб.&nbsp;место&nbsp;2-036/45</span></dd>`, 'r3 nw workplace');
+  return h;
+}
+function r3Rd(h) {
+  h = r3Common(h);
+  // Ссылки-переходы первого экрана не разрываются
+  h = rep(h, `.hero__jump{margin-top:var(--s5);font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink-3)}`,
+    `.hero__jump{margin-top:var(--s5);font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink-3)}\n.hero__jump a{white-space:nowrap}`, 'r3 jump nowrap');
+  return h;
+}
+
+const idx = r3Index(r2Index(r1Index(buildIndex(fs.readFileSync(path.join(BASE, 'index.html'), 'utf8')))));
+const rd = r3Rd(r2Rd(r1Rd(buildRd(fs.readFileSync(path.join(BASE, 'rd.html'), 'utf8')))));
 fs.writeFileSync(path.join(OUT, 'index.html'), idx);
 fs.writeFileSync(path.join(OUT, 'rd.html'), rd);
 console.log('written', idx.length, rd.length);
