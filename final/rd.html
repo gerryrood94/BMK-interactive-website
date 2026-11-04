@@ -222,6 +222,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .tl>li{margin:0;padding:var(--s4) var(--s3);border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s1);border-left:var(--edge) solid transparent;transition:background-color .15s}
 .tl>li[aria-current="true"]{background:var(--plate);border-left-color:var(--blue)}
 .tl>li:target{background:var(--plate);border-left-color:var(--navy)}
+.js .tl>li:target:not([aria-current="true"]){background:none;border-left-color:transparent}
 .tl__d{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums slashed-zero;white-space:nowrap}
 .tl__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2);min-width:0}
 .tl__t b{color:var(--ink)}
@@ -263,6 +264,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .well{display:inline-block;width:16px;height:11px;margin-right:var(--s2);vertical-align:0}
 .tbl--kp .tbl__r{padding-left:var(--s3);border-left:var(--edge) solid transparent;transition:background-color .15s}
 .tbl--kp .tbl__r.is-hi,.tbl--kp .tbl__r:target,.tbl--kp .tbl__r:hover{background:var(--band);border-left-color:var(--navy)}
+.js .tbl--kp .tbl__r:target:not(.is-hi):not(:hover){background:none;border-left-color:transparent}
 
 /* ---------- лунки ближнего ряда с КП ---------- */
 .kpfig{margin:0;display:none}
@@ -284,14 +286,14 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 
 /* ---------- инвентарь с метками единиц ---------- */
 .inv{display:grid;grid-template-columns:minmax(0,1fr);gap:0 var(--s6);margin-top:var(--s5);border-top:var(--edge) solid var(--ink)}
-@media (min-width:760px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:760px){.inv{display:block;columns:2;column-gap:var(--s6)}.inv__g{break-inside:avoid}}
 .inv__g{padding:var(--s4) 0 var(--s2);border-bottom:var(--hair) solid var(--rule-2);min-width:0}
 .inv__h{margin:0 0 var(--s2);font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3)}
 .inv__l{list-style:none;margin:0;padding:0}
 .inv__l>li{margin:0;padding:var(--s2) 0;font-size:var(--t-note);line-height:24px;border-top:var(--hair) solid var(--rule)}
 
 /* ---------- карточка ---------- */
-.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5)}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:start}
 @media (min-width:820px){.cards--2{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .card{background:var(--plate);border:var(--hair) solid var(--rule-2);border-radius:var(--radius);border-top:var(--edge) solid var(--ink);padding:var(--s5);min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
 .card__k{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:500;letter-spacing:.01em;color:var(--ink-3);font-variant-numeric:tabular-nums slashed-zero}
@@ -467,6 +469,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   .ph,.ph--band,.ph--wide,.ph--tall{height:88px;max-height:88px;background-image:none}
   .motif,.kks5__plate{max-height:70mm}
   .map,.ftr,.ftr__g{break-inside:avoid}
+  .sh__n,.step__n,.cycle__n,.sec--deep .sh__n,.sec--deep .step__n,.kks5__hero .sh__n{background:none!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink)}
   .map>li.is-open .tile__x{display:none}
 }
 /* ---------- узкие экраны: шкала хроники и шаги схемы ---------- */
@@ -484,6 +487,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .pidx{display:none}
 @media (min-width:1000px){
   [id]{scroll-margin-top:calc(40px + var(--s5))}
+  html{scroll-padding-top:calc(41px + var(--s2))}
   .hero__jump{display:none}
   .pidx{display:block;position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:var(--hair) solid var(--rule-2)}
   .pidx__in{position:relative;display:flex;align-items:center;min-height:40px}
@@ -596,9 +600,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       </div>
       <ul class="spec">
         <li>Договорной порог: коэффициент позитивности не ниже 3 по каждому маркеру</li>
-        <li>Договорное требование: разброс оптической плотности между флаконами — не больше 10&nbsp;% от среднего по серии</li>
         <li>Хранение <span class="nw">+2…+8&nbsp;°C</span></li>
-        <li>Форма выпуска: флакон 5&nbsp;мл</li>
+        <li>Целевая форма выпуска: флакон 5&nbsp;мл</li>
       </ul>
       <p class="note mt-3">Ориентир формы выпуска — импортный контроль Bio-Rad Virotrol.</p>
 
@@ -613,15 +616,15 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         </div>
         <div class="scheme">
           <ol class="cycle" aria-label="Цикл измерения ИФА, шесть шагов">
-            <li class="cycle--kks"><span class="cycle__n">1</span><p class="cycle__t">ККС-5</p><p class="cycle__s">5 мл, пять маркеров</p></li>
-            <li><span class="cycle__n">2</span><p class="cycle__t">Внесение</p><p class="cycle__s">вместе с образцами</p></li>
-            <li><span class="cycle__n">3</span><p class="cycle__t">Инкубация</p><p class="cycle__s">контроль на планшете</p></li>
-            <li><span class="cycle__n">4</span><p class="cycle__t">Промывка</p><p class="cycle__s">шаг постановки</p></li>
-            <li><span class="cycle__n">5</span><p class="cycle__t">Фотометр</p><p class="cycle__s">чтение ОП</p></li>
-            <li class="cycle--kks"><span class="cycle__n">6</span><p class="cycle__t">КП, порог ≥ 3</p><p class="cycle__s">порог договора ≥ 3</p></li>
+            <li class="cycle--kks"><span class="cycle__n">1</span><p class="cycle__t">ККС-5</p><p class="cycle__s">флакон 5&nbsp;мл, пять маркеров</p></li>
+            <li><span class="cycle__n">2</span><p class="cycle__t">Внесение</p><p class="cycle__s">в лунки вместе с образцами</p></li>
+            <li><span class="cycle__n">3</span><p class="cycle__t">Инкубация, промывка</p><p class="cycle__s">связывание в лунке</p></li>
+            <li><span class="cycle__n">4</span><p class="cycle__t">Конъюгат, промывка</p><p class="cycle__s">метка на связанном комплексе</p></li>
+            <li><span class="cycle__n">5</span><p class="cycle__t">Субстрат, стоп-реагент</p><p class="cycle__s">окраска в лунке</p></li>
+            <li class="cycle--kks"><span class="cycle__n">6</span><p class="cycle__t">Фотометр, КП</p><p class="cycle__s">ОП контроля, порог КП&nbsp;3</p></li>
           </ol>
           <figcaption class="dgm__out">
-            <p>Показан порядок цикла ИФА и место в нём ККС-5. Контроль вносят в ту же постановку, что и исследуемые образцы, а коэффициент позитивности считают по отношению оптической плотности контроля к критической (для конкурентного формата анти-HBcore — обратное отношение).</p>
+            <p>Контроль вносят в ту же постановку, что и исследуемые образцы, а коэффициент позитивности считают по отношению оптической плотности контроля к критической (для конкурентного формата анти-HBcore — обратное отношение).</p>
           </figcaption>
         </div>
       </figure>
@@ -645,7 +648,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 
       <div class="lr mt-4">
       <figure class="kpfig">
-        <svg class="kprow" viewBox="0 0 560 200" role="img" aria-labelledby="kprow-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="kprow-t">Ближний ряд планшета: пять лунок — пять маркеров ККС-5 с коэффициентами позитивности 03.09.2026</title><ellipse cx="259" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="301" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="343" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="385" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="427" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="469" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="511" cy="170" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><a href="#kp1" class="kprow__a" data-kp="kp1" aria-label="HBsAg: КП 4,4"><title>HBsAg: КП 4,4</title><line x1="49" y1="34" x2="49" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="49" cy="170" rx="11" ry="7" fill="#24305F" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="57" y="28" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">HBsAg <tspan font-weight="600">4,4</tspan></text></a><a href="#kp2" class="kprow__a" data-kp="kp2" aria-label="анти-HBcore: КП 6,2"><title>анти-HBcore: КП 6,2</title><line x1="91" y1="64" x2="91" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="91" cy="170" rx="11" ry="7" fill="#5282BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="99" y="58" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-HBcore <tspan font-weight="600">6,2</tspan></text></a><a href="#kp3" class="kprow__a" data-kp="kp3" aria-label="анти-ВИЧ-1/2: КП выше предела фотометра"><title>анти-ВИЧ-1/2: КП выше предела фотометра</title><line x1="133" y1="94" x2="133" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="133" cy="170" rx="11" ry="7" fill="#749BCD" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="141" y="88" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВИЧ-1/2 <tspan font-weight="600">выше предела фотометра</tspan></text></a><a href="#kp4" class="kprow__a" data-kp="kp4" aria-label="анти-ВГС: КП ≈11"><title>анти-ВГС: КП ≈11</title><line x1="175" y1="124" x2="175" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="175" cy="170" rx="11" ry="7" fill="#97B5DC" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="183" y="118" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВГС <tspan font-weight="600">≈11</tspan></text></a><a href="#kp5" class="kprow__a" data-kp="kp5" aria-label="анти-T. pallidum: КП 3,8"><title>анти-T. pallidum: КП 3,8</title><line x1="217" y1="154" x2="217" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="217" cy="170" rx="11" ry="7" fill="#A6B1BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="225" y="148" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-<tspan font-style="italic">T. pallidum</tspan> <tspan font-weight="600">3,8</tspan></text></a></svg>
+        <svg class="kprow" viewBox="0 0 560 200" role="group" aria-labelledby="kprow-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="kprow-t">Ближний ряд планшета: пять лунок — пять маркеров ККС-5 с коэффициентами позитивности 03.09.2026</title><ellipse cx="259" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="301" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="343" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="385" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="427" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="469" cy="170" rx="11" ry="7" fill="#A6B1BE" fill-opacity=".4"/><ellipse cx="511" cy="170" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><a href="#kp1" class="kprow__a" data-kp="kp1" aria-label="HBsAg: КП 4,4"><title>HBsAg: КП 4,4</title><line x1="49" y1="34" x2="49" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="49" cy="170" rx="11" ry="7" fill="#24305F" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="57" y="28" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">HBsAg <tspan font-weight="600">4,4</tspan></text></a><a href="#kp2" class="kprow__a" data-kp="kp2" aria-label="анти-HBcore: КП 6,2"><title>анти-HBcore: КП 6,2</title><line x1="91" y1="64" x2="91" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="91" cy="170" rx="11" ry="7" fill="#5282BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="99" y="58" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-HBcore <tspan font-weight="600">6,2</tspan></text></a><a href="#kp3" class="kprow__a" data-kp="kp3" aria-label="анти-ВИЧ-1/2: КП выше предела фотометра"><title>анти-ВИЧ-1/2: КП выше предела фотометра</title><line x1="133" y1="94" x2="133" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="133" cy="170" rx="11" ry="7" fill="#749BCD" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="141" y="88" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВИЧ-1/2 <tspan font-weight="600">выше предела фотометра</tspan></text></a><a href="#kp4" class="kprow__a" data-kp="kp4" aria-label="анти-ВГС: КП ≈11"><title>анти-ВГС: КП ≈11</title><line x1="175" y1="124" x2="175" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="175" cy="170" rx="11" ry="7" fill="#97B5DC" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="183" y="118" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-ВГС <tspan font-weight="600">≈11</tspan></text></a><a href="#kp5" class="kprow__a" data-kp="kp5" aria-label="анти-T. pallidum: КП 3,8"><title>анти-T. pallidum: КП 3,8</title><line x1="217" y1="154" x2="217" y2="162" stroke="#24305F" stroke-width="1" stroke-opacity=".5"/><ellipse class="kprow__w" cx="217" cy="170" rx="11" ry="7" fill="#A6B1BE" stroke="#24305F" stroke-opacity=".45" stroke-width="1"/><text x="225" y="148" font-family="IBM Plex Mono, monospace" font-size="15" fill="#14171C">анти-<tspan font-style="italic">T. pallidum</tspan> <tspan font-weight="600">3,8</tspan></text></a></svg>
         <figcaption class="motif__cap">Пять маркеров — пять лунок ближнего ряда; белая лунка — отрицательный контроль</figcaption>
       </figure>
       <aside class="mn"><b>30 × 5 мл</b>серия ККС-5-П01, объём серии <span class="nw">168,7 мл</span></aside>
@@ -689,7 +692,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
           <div data-l="Шкала КП, порог 3" role="cell"><div class="kpbar" role="img" aria-label="КП 3,8 на шкале с порогом 3"><span class="kpbar__f" style="--w:31.67%;--c:#A6B1BE"></span></div></div>
         </div>
       </div>
-      <p class="note mt-3">По HBsAg, анти-HBcore, анти-ВГС и анти-<i>T. pallidum</i> измеренный КП не ниже договорного порога 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
+      <p class="note mt-3">КП: HBsAg 4,4; анти-HBcore 6,2; анти-ВГС ≈11; анти-<i>T.&nbsp;pallidum</i> 3,8 при договорном пороге 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
       <p class="note">Измерение 03.09.2026 на коммерческих наборах ИФА; анти-HBcore — в конкурентном формате; контроли наборов в каждой постановке в норме.</p>
 
       <div class="sub">
@@ -799,7 +802,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <span class="sh__n">03</span>
         <h2 class="sh__t">Как начать</h2>
       </header>
-      <p class="lead">Пришлите задачу и сроки на <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a> или по телефону <a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>. NDA подписываем по запросу.</p>
+      <p class="lead">Пришлите задачу и сроки на <a class="nw" href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a> или по телефону <a class="nw" href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>. NDA подписываем по запросу.</p>
       <p class="mt-2"><a href="index.html#partners">Форматы сотрудничества</a> · <a href="index.html#contacts">Реквизиты</a></p>
     </div>
   </section>
@@ -825,8 +828,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       <div>
         <h3>Связь</h3>
         <ul>
-          <li><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
-          <li><a href="tel:+79086325048">+7 908 632-50-48</a></li>
+          <li><a class="nw" href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
+          <li><a class="nw" href="tel:+79086325048">+7 908 632-50-48</a></li>
           <li><a href="/privacy">Персональные данные</a></li>
         </ul>
       </div>

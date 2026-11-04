@@ -30,7 +30,7 @@ had them preinstalled). The tools take paths as arguments; the two workflow scri
 | Anonymised panel | done | `panel/draft_1…5`, key in `panel/_key.txt` |
 | Review: 5 readers + 15 audits → merge brief | done | `panel/MERGE_BRIEF.md` |
 | Merge of the winner + grafts | done | `final/` (built by `final/_build_apply.js` from `concepts/C5`) |
-| Context-blind verify → fix → re-verify | see `final/VERIFY_LOG.md` | `final/` |
+| Context-blind verify → fix → re-verify | **done: 3 rounds, round 3 = 0 BLOCK from all five verifiers**; gate 0, render 0, build audit 0 | `final/`, `final/VERIFY_LOG.md` |
 
 **Panel key** (never show reviewers): draft_1 = C4 «Издание», draft_2 = **C5 «Карта того, что есть»**,
 draft_3 = C2 «Прибор, под напряжением», draft_4 = C3 «Тёмный планшет», draft_5 = C1 «Горизонт».
@@ -79,12 +79,20 @@ keep raising them:
 
 ## 4. What is left
 
-1. **Verification.** Check `final/VERIFY_LOG.md`. If the last round lists open BLOCK or WARN items,
-   run one more fix → re-verify pass. To do that locally, start Claude Code in the repo and run
-   `tools/workflows/final.js` with
-   `args: {repo, facts, scratch, base: "concepts/C5", grafts: [...], round0: 2}`. Note that this
-   rebuilds `final/` from scratch in its Merge phase; for a fix-only pass, delete the Merge phase
-   or give the fix agent the findings directly.
+1. **Polish left from round 3** (all WARN; none blocks; listed in full in `final/VERIFY_LOG.md`, last five sections).
+   They are cheap layout fixes; re-run the three checks afterwards:
+   - index: delete «без термоциклера» in the methods table (blacklist WARN);
+   - index: the second-row tile previews (04–06) open past the map; open them upward or clamp the height;
+   - index: partner cards in one row should be the same height (`align-items:stretch`);
+   - nowrap for «2-036/45» (index, 320 px) and the /rd jump links «03 · Как начать» (390/320 px);
+   - print: `.ph__code` badges get the same treatment as `.sh__n` / `.step__n` (no ink fill).
+   **Do not apply** the round-3 fact-check WARN that asks to restore «работоспособность подхода
+   подлежит экспериментальной проверке» on /rd: it is a hedge (BLACKLIST). The readers' WARNs asking for
+   names, registration number/date, patent number, kit names, exact КП for anti-HCV, measured CV and
+   stability КП are owner inputs, already in `final/OWNER_INPUTS.md`; the page stays silent until given.
+   To run another verify round locally, start Claude Code in the repo and run
+   `tools/workflows/final.js` (args `repo`, `facts`, `scratch`, `base: "concepts/C5"`, `grafts`, `round0`);
+   its Merge phase rebuilds `final/` from the base, so for a verify-only pass drop that phase.
 2. **Owner inputs.** `final/OWNER_INPUTS.md` carries the 31 original items plus the new ones (49 in
    all). Every one of them is silent on the page until the owner supplies it.
 3. **Photos and logo.** Use shots A1, A2, B1, B2, B5, B8, B9, C3, D1, E1 (`PHOTO_SHOTLIST.md`) and

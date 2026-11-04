@@ -222,6 +222,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .tl>li{margin:0;padding:var(--s4) var(--s3);border-bottom:var(--hair) solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s1);border-left:var(--edge) solid transparent;transition:background-color .15s}
 .tl>li[aria-current="true"]{background:var(--plate);border-left-color:var(--blue)}
 .tl>li:target{background:var(--plate);border-left-color:var(--navy)}
+.js .tl>li:target:not([aria-current="true"]){background:none;border-left-color:transparent}
 .tl__d{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums slashed-zero;white-space:nowrap}
 .tl__t{font-size:var(--t-note);line-height:24px;color:var(--ink-2);min-width:0}
 .tl__t b{color:var(--ink)}
@@ -250,7 +251,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .tbl__r>div{min-width:0}
 .tbl__c1{font-size:var(--t-note);line-height:24px}
 .tbl__c2{font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink-2);overflow-wrap:anywhere;font-variant-numeric:tabular-nums slashed-zero}
-.tbl__c3 .mono{font-family:var(--mono);font-size:var(--t-note);letter-spacing:.02em}
+.tbl__ref{display:block;font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink);letter-spacing:.02em}
+@media (min-width:860px){#mtbl .tbl__h,#mtbl .tbl__r{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}}
 .tbl__r>div[data-l]::before{content:attr(data-l);display:block;font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3);margin-bottom:var(--s1)}
 .tbl__h{padding:var(--s2) 0;border-bottom:var(--hair) solid var(--rule-2)}
 .tbl__h span{font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3)}
@@ -263,6 +265,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .well{display:inline-block;width:16px;height:11px;margin-right:var(--s2);vertical-align:0}
 .tbl--kp .tbl__r{padding-left:var(--s3);border-left:var(--edge) solid transparent;transition:background-color .15s}
 .tbl--kp .tbl__r.is-hi,.tbl--kp .tbl__r:target,.tbl--kp .tbl__r:hover{background:var(--band);border-left-color:var(--navy)}
+.js .tbl--kp .tbl__r:target:not(.is-hi):not(:hover){background:none;border-left-color:transparent}
 
 /* ---------- лунки ближнего ряда с КП ---------- */
 .kpfig{margin:0;display:none}
@@ -284,14 +287,14 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 
 /* ---------- инвентарь с метками единиц ---------- */
 .inv{display:grid;grid-template-columns:minmax(0,1fr);gap:0 var(--s6);margin-top:var(--s5);border-top:var(--edge) solid var(--ink)}
-@media (min-width:760px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:760px){.inv{display:block;columns:2;column-gap:var(--s6)}.inv__g{break-inside:avoid}}
 .inv__g{padding:var(--s4) 0 var(--s2);border-bottom:var(--hair) solid var(--rule-2);min-width:0}
 .inv__h{margin:0 0 var(--s2);font-family:var(--mono);font-size:var(--t-label);line-height:16px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--ink-3)}
 .inv__l{list-style:none;margin:0;padding:0}
 .inv__l>li{margin:0;padding:var(--s2) 0;font-size:var(--t-note);line-height:24px;border-top:var(--hair) solid var(--rule)}
 
 /* ---------- карточка ---------- */
-.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5)}
+.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:start}
 @media (min-width:820px){.cards--2{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .card{background:var(--plate);border:var(--hair) solid var(--rule-2);border-radius:var(--radius);border-top:var(--edge) solid var(--ink);padding:var(--s5);min-width:0;display:flex;flex-direction:column;gap:var(--s3)}
 .card__k{font-family:var(--mono);font-size:var(--t-note);line-height:24px;font-weight:500;letter-spacing:.01em;color:var(--ink-3);font-variant-numeric:tabular-nums slashed-zero}
@@ -436,7 +439,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 }
 /* ---------- печать ---------- */
 @media print{
-  .navm,.nav,.pidx,.filt,.who,#mcount,.tile__x,.form,.hero__jump{display:none!important}
+  .navm,.nav,.pidx,.filt,.who,.tile__x,.form,.hero__jump{display:none!important}
   body{background:#FFFFFF;color:var(--ink)}
   .sec--tint,.sec--deep,.ftr{background:#FFFFFF;color:var(--ink);border-bottom-color:var(--rule)}
   .sec--deep .sh{border-bottom-color:var(--ink);background-image:repeating-linear-gradient(to right,var(--rule-2) 0 1px,transparent 1px 8px)}
@@ -464,6 +467,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
   .ph,.ph--band,.ph--wide,.ph--tall{height:88px;max-height:88px;background-image:none}
   .motif,.kks5__plate{max-height:70mm}
   .map,.ftr,.ftr__g{break-inside:avoid}
+  .sh__n,.step__n,.cycle__n,.sec--deep .sh__n,.sec--deep .step__n,.kks5__hero .sh__n{background:none!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink)}
   .map>li.is-open .tile__x{display:none}
 }
 /* ---------- узкие экраны: шкала хроники и шаги схемы ---------- */
@@ -481,6 +485,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
 .pidx{display:none}
 @media (min-width:1000px){
   [id]{scroll-margin-top:calc(40px + var(--s5))}
+  html{scroll-padding-top:calc(41px + var(--s2))}
   .hero__jump{display:none}
   .pidx{display:block;position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:var(--hair) solid var(--rule-2)}
   .pidx__in{position:relative;display:flex;align-items:center;min-height:40px}
@@ -581,14 +586,14 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       <nav class="mapnav" aria-label="Карта разделов">
         <ul class="map">
           <li><a class="tile" href="#programs"><span class="tile__v">2</span><span class="tile__t">программы НИОКР с государственным финансированием</span><span class="tile__k">01 · Программы</span></a></li>
-          <li><a class="tile" href="rd.html#kks"><span class="tile__v">ККС-5</span><span class="tile__t">проходит государственную регистрацию как медицинское изделие</span><span class="tile__k">ККС-5 · стадия</span></a></li>
+          <li><a class="tile" href="rd.html#kks"><span class="tile__v">ККС-5</span><span class="tile__t">контрольная сыворотка для ИФА и ИХЛА — проходит государственную регистрацию как медицинское изделие</span><span class="tile__k">ККС-5 · стадия</span></a></li>
           <li><a class="tile" href="rd.html#avian"><span class="tile__v tile__v--s">16.11.2026 – 31.12.2028</span><span class="tile__t">НИОКТР: пероральные ДНК-вакцины для кур</span><span class="tile__k">Вакцины для кур · план</span></a></li>
           <li><a class="tile" href="#methods" data-src="#methods h3"><span class="tile__v">9</span><span class="tile__t">методик вирусологического тестирования in vitro</span><span class="tile__k">05.1 · Методики</span></a></li>
           <li><a class="tile" href="#lab"><span class="tile__v">155</span><span class="tile__t">наборов для трёх отделений реанимации укомплектованы и промаркированы</span><span class="tile__k">03 · Комплектация</span></a></li>
           <li><a class="tile" href="#biobank"><span class="tile__v">357</span><span class="tile__t">криобоксов учтены в двух низкотемпературных морозильниках</span><span class="tile__k">04 · Биобанк</span></a></li>
           <li><a class="tile" href="#quality"><span class="tile__v">29 СОП</span><span class="tile__t">второго уровня и 81 форма в системе качества; у лабораторных СОП есть английская редакция</span><span class="tile__k">05 · Качество</span></a></li>
           <li><a class="tile" href="#park"><span class="tile__v">−86 °C</span><span class="tile__t">4 низкотемпературных морозильника по 338 л</span><span class="tile__k">06 · Оборудование</span></a></li>
-          <li><a class="tile" href="#team"><span class="tile__v tile__v--s">Команда</span><span class="tile__t">роли в программах и в лаборатории: роль, степень, институт</span><span class="tile__k">07 · Команда</span></a></li>
+          <li><a class="tile" href="#team"><span class="tile__v tile__v--s">Команда</span><span class="tile__t">роли в программах и в лаборатории</span><span class="tile__k">07 · Команда</span></a></li>
           <li><a class="tile" href="#partners"><span class="tile__v tile__v--s">Партнёрам</span><span class="tile__t">форматы работы, что сделано и как начать</span><span class="tile__k">08 · Партнёрам</span></a></li>
         </ul>
       </nav>
@@ -608,7 +613,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
           <svg class="motif" viewBox="0 0 560 340" role="img" aria-labelledby="kks5-motif-1-t" focusable="false" xmlns="http://www.w3.org/2000/svg" data-grid="8x12" data-k="1.8"><title id="kks5-motif-1-t">Планшет ИФА, 8 × 12 лунок, в перспективе</title><ellipse cx="49" cy="310" rx="10.25" ry="6.25" fill="#FFFFFF" stroke="#24305F" stroke-width="1.5"/><ellipse cx="91" cy="310" rx="11" ry="7" fill="#24305F"/><ellipse cx="133" cy="310" rx="11" ry="7" fill="#24305F"/><ellipse cx="175" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="217" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="259" cy="310" rx="11" ry="7" fill="#5282BE"/><ellipse cx="301" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="343" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="385" cy="310" rx="11" ry="7" fill="#97B5DC"/><ellipse cx="427" cy="310" rx="11" ry="7" fill="#A6B1BE"/><ellipse cx="469" cy="310" rx="11" ry="7" fill="#A6B1BE"/><ellipse cx="511" cy="310" rx="11" ry="7" fill="#A6B1BE"/><ellipse cx="96.25" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="129.659" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="163.068" cy="230.455" rx="8.75" ry="5.568" fill="#24305F"/><ellipse cx="196.477" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="229.886" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="263.295" cy="230.455" rx="8.75" ry="5.568" fill="#5282BE"/><ellipse cx="296.705" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="330.114" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="363.523" cy="230.455" rx="8.75" ry="5.568" fill="#97B5DC"/><ellipse cx="396.932" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/><ellipse cx="430.341" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/><ellipse cx="463.75" cy="230.455" rx="8.75" ry="5.568" fill="#A6B1BE"/><ellipse cx="127.453" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="155.189" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="182.925" cy="177.925" rx="7.264" ry="4.623" fill="#24305F"/><ellipse cx="210.66" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="238.396" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="266.132" cy="177.925" rx="7.264" ry="4.623" fill="#5282BE"/><ellipse cx="293.868" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="321.604" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="349.34" cy="177.925" rx="7.264" ry="4.623" fill="#97B5DC"/><ellipse cx="377.075" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/><ellipse cx="404.811" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/><ellipse cx="432.547" cy="177.925" rx="7.264" ry="4.623" fill="#A6B1BE"/><ellipse cx="149.597" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="173.306" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="197.016" cy="140.645" rx="6.21" ry="3.952" fill="#24305F"/><ellipse cx="220.726" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="244.435" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="268.145" cy="140.645" rx="6.21" ry="3.952" fill="#5282BE"/><ellipse cx="291.855" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="315.565" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="339.274" cy="140.645" rx="6.21" ry="3.952" fill="#97B5DC"/><ellipse cx="362.984" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/><ellipse cx="386.694" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/><ellipse cx="410.403" cy="140.645" rx="6.21" ry="3.952" fill="#A6B1BE"/><ellipse cx="166.127" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="186.831" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="207.535" cy="112.817" rx="5.423" ry="3.451" fill="#24305F"/><ellipse cx="228.239" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="248.944" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="269.648" cy="112.817" rx="5.423" ry="3.451" fill="#5282BE"/><ellipse cx="290.352" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="311.056" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="331.761" cy="112.817" rx="5.423" ry="3.451" fill="#97B5DC"/><ellipse cx="352.465" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/><ellipse cx="373.169" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/><ellipse cx="393.873" cy="112.817" rx="5.423" ry="3.451" fill="#A6B1BE"/><ellipse cx="178.938" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="197.313" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="215.688" cy="91.25" rx="4.813" ry="3.063" fill="#24305F"/><ellipse cx="234.063" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="252.438" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="270.813" cy="91.25" rx="4.813" ry="3.063" fill="#5282BE"/><ellipse cx="289.188" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="307.563" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="325.938" cy="91.25" rx="4.813" ry="3.063" fill="#97B5DC"/><ellipse cx="344.313" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/><ellipse cx="362.688" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/><ellipse cx="381.063" cy="91.25" rx="4.813" ry="3.063" fill="#A6B1BE"/><ellipse cx="189.157" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="205.674" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="222.191" cy="74.045" rx="4.326" ry="2.753" fill="#24305F"/><ellipse cx="238.708" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="255.225" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="271.742" cy="74.045" rx="4.326" ry="2.753" fill="#5282BE"/><ellipse cx="288.258" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="304.775" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="321.292" cy="74.045" rx="4.326" ry="2.753" fill="#97B5DC"/><ellipse cx="337.809" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/><ellipse cx="354.326" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/><ellipse cx="370.843" cy="74.045" rx="4.326" ry="2.753" fill="#A6B1BE"/><ellipse cx="197.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="212.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="227.5" cy="60" rx="3.929" ry="2.5" fill="#24305F"/><ellipse cx="242.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="257.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="272.5" cy="60" rx="3.929" ry="2.5" fill="#5282BE"/><ellipse cx="287.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="302.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="317.5" cy="60" rx="3.929" ry="2.5" fill="#97B5DC"/><ellipse cx="332.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/><ellipse cx="347.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/><ellipse cx="362.5" cy="60" rx="3.929" ry="2.5" fill="#A6B1BE"/></svg>
           <p class="motif__cap">Планшет ИФА, 8 × 12 лунок</p>
           <h3>ККС-5 — пять маркеров в одном флаконе</h3>
-          <p>Серия ККС-5-П01 собрана 2–4 сентября 2026 года. Розлито 30 флаконов по 5 мл, объём серии <span class="nw">168,7 мл</span>. 3 сентября 2026 года по ИФА четыре маркера дали коэффициент позитивности не ниже договорного порога 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
+          <p>Серия ККС-5-П01 собрана 2–4 сентября 2026 года. Розлито 30 флаконов по 5 мл, объём серии <span class="nw">168,7 мл</span>. 3 сентября 2026 года измерены коэффициенты позитивности по ИФА: HBsAg 4,4; анти-HBcore 6,2; анти-ВГС ≈11; анти-<i>T.&nbsp;pallidum</i> 3,8 при договорном пороге 3. По анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</p>
           <p>Грант Фонда содействия инновациям — 5&nbsp;000&nbsp;000&nbsp;₽. Договор <span class="mono">№ 2ГС1МедС26/106630</span> от 7 октября 2025 года, программа «Старт», конкурс «Старт-Медизделия-1». Получатель и исполнитель по договору — ООО «БМК групп».</p>
           <p class="card__more"><a href="rd.html#kks">Измерения, схема применения и ход работ</a></p>
         </article>
@@ -632,7 +637,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <h2 class="sh__t">Что сделано в 2026 году</h2>
       </header>
       <div class="tlx">
-        <svg class="tlx__svg" viewBox="0 0 600 72" role="img" aria-labelledby="tlx-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="tlx-t">Хроника 2026 года на шкале времени: с 27 августа по 30 октября</title><rect x="0" y="0" width="600" height="72" fill="#FFFFFF"/><line x1="24" y1="40" x2="576" y2="40" stroke="#14171C" stroke-width="2"/><line x1="87.086" y1="30" x2="87.086" y2="50" stroke="#14171C" stroke-width="1"/><line x1="323.657" y1="30" x2="323.657" y2="50" stroke="#14171C" stroke-width="1"/><line x1="568.114" y1="30" x2="568.114" y2="50" stroke="#14171C" stroke-width="1"/><line x1="24" y1="40" x2="24" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="79.2" y1="40" x2="79.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="134.4" y1="40" x2="134.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="189.6" y1="40" x2="189.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="244.8" y1="40" x2="244.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="300" y1="40" x2="300" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="355.2" y1="40" x2="355.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="410.4" y1="40" x2="410.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="465.6" y1="40" x2="465.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="520.8" y1="40" x2="520.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="576" y1="40" x2="576" y2="46" stroke="#B0B2AA" stroke-width="1"/><a href="#ev1" class="tlx__m" data-i="0" data-d="3" aria-label="Способ подготовки сырья для ККС-5"><title>Способ подготовки сырья для ККС-5</title><rect x="47.657" y="36" width="31.543" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="47.657" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev2" class="tlx__m" data-i="1" data-d="8" aria-label="Первый этап гранта по ККС-5 закрыт"><title>Первый этап гранта по ККС-5 закрыт</title><line x1="87.086" y1="22" x2="87.086" y2="36" stroke="#24305F" stroke-width="1"/><circle cx="87.086" cy="16" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev3" class="tlx__m" data-i="2" data-d="9" aria-label="Серия ККС-5-П01 собрана и разлита"><title>Серия ККС-5-П01 собрана и разлита</title><rect x="94.971" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="94.971" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev4" class="tlx__m" data-i="3" data-d="11" aria-label="Старт исследования стабильности ККС-5"><title>Старт исследования стабильности ККС-5</title><line x1="110.743" y1="22" x2="110.743" y2="36" stroke="#24305F" stroke-width="1"/><circle cx="110.743" cy="16" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev5" class="tlx__m" data-i="4" data-d="45" aria-label="155 наборов для трёх отделений реанимации"><title>155 наборов для трёх отделений реанимации</title><circle cx="378.857" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev6" class="tlx__m" data-i="5" data-d="53" aria-label="План исследования для характеризации ККС-5 в ИХЛА"><title>План исследования для характеризации ККС-5 в ИХЛА</title><circle cx="441.943" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev7" class="tlx__m" data-i="6" data-d="65" aria-label="Введена автоматическая станция ИФА"><title>Введена автоматическая станция ИФА</title><rect x="536.571" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="536.571" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a></svg>
+        <svg class="tlx__svg" viewBox="0 0 600 72" role="group" aria-labelledby="tlx-t" focusable="false" xmlns="http://www.w3.org/2000/svg"><title id="tlx-t">Хроника 2026 года на шкале времени: с 27 августа по 28 октября</title><rect x="0" y="0" width="600" height="72" fill="#FFFFFF"/><line x1="24" y1="40" x2="576" y2="40" stroke="#14171C" stroke-width="2"/><line x1="87.086" y1="30" x2="87.086" y2="50" stroke="#14171C" stroke-width="1"/><line x1="323.657" y1="30" x2="323.657" y2="50" stroke="#14171C" stroke-width="1"/><line x1="568.114" y1="30" x2="568.114" y2="50" stroke="#14171C" stroke-width="1"/><line x1="24" y1="40" x2="24" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="79.2" y1="40" x2="79.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="134.4" y1="40" x2="134.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="189.6" y1="40" x2="189.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="244.8" y1="40" x2="244.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="300" y1="40" x2="300" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="355.2" y1="40" x2="355.2" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="410.4" y1="40" x2="410.4" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="465.6" y1="40" x2="465.6" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="520.8" y1="40" x2="520.8" y2="46" stroke="#B0B2AA" stroke-width="1"/><line x1="576" y1="40" x2="576" y2="46" stroke="#B0B2AA" stroke-width="1"/><a href="#ev1" class="tlx__m" data-i="0" data-d="3" aria-label="Способ подготовки сырья для ККС-5"><title>Способ подготовки сырья для ККС-5</title><rect x="47.657" y="36" width="31.543" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="47.657" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev2" class="tlx__m" data-i="1" data-d="8" aria-label="Первый этап гранта по ККС-5 закрыт"><title>Первый этап гранта по ККС-5 закрыт</title><line x1="87.086" y1="22" x2="87.086" y2="36" stroke="#24305F" stroke-width="1"/><circle cx="87.086" cy="16" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev3" class="tlx__m" data-i="2" data-d="9" aria-label="Серия ККС-5-П01 собрана и разлита"><title>Серия ККС-5-П01 собрана и разлита</title><rect x="94.971" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/><circle cx="94.971" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev4" class="tlx__m" data-i="3" data-d="11" aria-label="Старт исследования стабильности ККС-5"><title>Старт исследования стабильности ККС-5</title><line x1="110.743" y1="22" x2="110.743" y2="36" stroke="#24305F" stroke-width="1"/><circle cx="110.743" cy="16" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev5" class="tlx__m" data-i="4" data-d="45" aria-label="155 наборов для трёх отделений реанимации"><title>155 наборов для трёх отделений реанимации</title><circle cx="378.857" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev6" class="tlx__m" data-i="5" data-d="53" aria-label="План исследования для характеризации ККС-5 в ИХЛА"><title>План исследования для характеризации ККС-5 в ИХЛА</title><circle cx="441.943" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a><a href="#ev7" class="tlx__m" data-i="6" data-d="65" aria-label="Введена автоматическая станция ИФА"><title>Введена автоматическая станция ИФА</title><circle cx="536.571" cy="40" r="6" fill="#24305F" stroke="#FFFFFF" stroke-width="1.5"/></a></svg>
         <div class="tlx__labs" aria-hidden="true">
           <span class="tlx__lab" style="left:4%">август</span>
           <span class="tlx__lab" style="left:14.514%">сентябрь</span>
@@ -643,11 +648,11 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       <ol class="tl" id="tl">
         <li id="ev1"><span class="tl__d">27–31.08.2026</span><span class="tl__t"><b>Способ подготовки сырья для ККС-5.</b> Производственный режим избирательного подавления избыточного компонента гипериммунной сыворотки зафиксирован 27.08.2026 и подтверждён титрованием 31.08.2026: анти-HBcore сохраняется в титре не ниже <span class="nw">1:128</span>. Заявка на изобретение подана в Роспатент.</span></li>
         <li id="ev2"><span class="tl__d">01.09.2026</span><span class="tl__t"><b>Первый этап гранта по ККС-5 закрыт.</b> Отчёт о НИР по <span class="nw">ГОСТ 7.32-2017</span>, <span class="nw">рег. № 1/26</span>, подписан.</span></li>
-        <li id="ev3"><span class="tl__d">2–4.09.2026</span><span class="tl__t"><b>Серия ККС-5-П01 собрана и разлита:</b> 30 флаконов × 5 мл, объём серии <span class="nw">168,7 мл</span>. 03.09.2026 измерены коэффициенты позитивности по пяти маркерам: по четырём — не ниже договорного порога 3, по анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</span></li>
+        <li id="ev3"><span class="tl__d">2–4.09.2026</span><span class="tl__t"><b>Серия ККС-5-П01 собрана и разлита:</b> 30 флаконов × 5 мл, объём серии <span class="nw">168,7 мл</span>. 03.09.2026 измерены коэффициенты позитивности по пяти маркерам: HBsAg 4,4; анти-HBcore 6,2; анти-ВГС ≈11; анти-<i>T.&nbsp;pallidum</i> 3,8 при договорном пороге 3; по анти-ВИЧ-1/2 сигнал выше верхнего предела измерения фотометра.</span></li>
         <li id="ev4"><span class="tl__d">04.09.2026</span><span class="tl__t"><b>Старт исследования стабильности ККС-5:</b> ускоренное старение целыми флаконами 5 мл при +45 и +37&nbsp;°C и реальное время при <span class="nw">+2…+8&nbsp;°C</span>.</span></li>
         <li id="ev5"><span class="tl__d">к 08.10.2026</span><span class="tl__t"><b>155 наборов для трёх отделений реанимации</b> международного многоцентрового исследования укомплектованы, промаркированы и готовы к отправке: 130 наборов для крови и 25 для плазмы, по 8 цветокодированных криобоксов на каждый центр, формы передачи по каждому центру.</span></li>
         <li id="ev6"><span class="tl__d">16.10.2026</span><span class="tl__t"><b>План исследования для характеризации ККС-5 в ИХЛА</b> — редакция 3 от 16.10.2026: внешняя площадка, слепое исполнение, de novo.</span></li>
-        <li id="ev7"><span class="tl__d">28–30.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА</b> (28.10.2026); 30.10.2026 на ней за один день изохронно поставлены все точки исследования стабильности ККС-5.</span></li>
+        <li id="ev7"><span class="tl__d">28.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА «Лазурит».</b></span></li>
       </ol>
     </div>
   </section>
@@ -732,59 +737,44 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <span class="sub__n">05.1</span>
         <h3>Девять методик вирусологического тестирования in vitro</h3>
       </div>
-      <div class="filt" id="mfilt" hidden role="group" aria-label="Показать методики по нормативному документу">
-        <span class="filt__k">Документ</span>
-        <button type="button" class="filt__b" data-doc="all" aria-pressed="true">Все девять</button>
-        <button type="button" class="filt__b" data-doc="ofs" aria-pressed="false">ОФС.1.7.2.0006.15</button>
-        <button type="button" class="filt__b" data-doc="eek" aria-pressed="false">ЕЭК № 89</button>
-        <button type="button" class="filt__b" data-doc="woah" aria-pressed="false">WOAH 1.1.9</button>
-        <button type="button" class="filt__b" data-doc="muk" aria-pressed="false">МУК 4.2.2029-05</button>
-      </div>
-      <p class="note mt-2" id="mcount" aria-live="polite" hidden>Показаны все девять методик</p>
       <div class="tbl" role="table" id="mtbl">
         <div class="tbl__h" role="row">
           <span>Методика</span>
           <span>Что определяет</span>
-          <span>Нормативная привязка</span>
         </div>
-        <div class="tbl__r" role="row" data-doc="ofs eek">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Заражение индикаторных культур с учётом цитопатического действия</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">посторонние вирусные агенты в клеточных культурах</div>
-          <div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; ЕЭК № 89</span></div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">посторонние вирусные агенты в клеточных культурах<span class="tbl__ref">по ОФС.1.7.2.0006.15; ЕЭК&nbsp;№&nbsp;89</span></div>
         </div>
-        <div class="tbl__r" role="row" data-doc="">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Гемадсорбция</div>
           <div class="tbl__c2" data-l="Что определяет" role="cell">гемадсорбирующие вирусы на монослое</div>
         </div>
-        <div class="tbl__r" role="row" data-doc="">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Гемагглютинация</div>
           <div class="tbl__c2" data-l="Что определяет" role="cell">гемагглютинирующие вирусы в культуральной жидкости</div>
         </div>
-        <div class="tbl__r" role="row" data-doc="woah">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Гистохимическое окрашивание монослоёв</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">морфология и включения в клетках</div>
-          <div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">WOAH 1.1.9</span></div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">морфология и включения в клетках<span class="tbl__ref">по WOAH&nbsp;1.1.9</span></div>
         </div>
-        <div class="tbl__r" role="row" data-doc="ofs muk">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">ИФА антигенов</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">вирусные антигены</div>
-          <div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; МУК 4.2.2029-05</span></div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">вирусные антигены<span class="tbl__ref">по ОФС.1.7.2.0006.15; МУК&nbsp;4.2.2029-05</span></div>
         </div>
-        <div class="tbl__r" role="row" data-doc="">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Реакция связывания комплемента (Cofal)</div>
           <div class="tbl__c2" data-l="Что определяет" role="cell">группоспецифический антиген лейкозно-саркомного комплекса птиц</div>
         </div>
-        <div class="tbl__r" role="row" data-doc="ofs eek woah">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">ПЦР и ОТ-ПЦР</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов</div>
-          <div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ОФС.1.7.2.0006.15; ЕЭК № 89; WOAH 1.1.9</span></div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов<span class="tbl__ref">по ОФС.1.7.2.0006.15; ЕЭК&nbsp;№&nbsp;89; WOAH&nbsp;1.1.9</span></div>
         </div>
-        <div class="tbl__r" role="row" data-doc="eek">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Активность обратной транскриптазы (PERT)</div>
-          <div class="tbl__c2" data-l="Что определяет" role="cell">ретровирусы, в том числе эндогенные, в банках клеток</div>
-          <div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">ЕЭК № 89, гл. 2</span></div>
+          <div class="tbl__c2" data-l="Что определяет" role="cell">ретровирусы, в том числе эндогенные, в банках клеток<span class="tbl__ref">по ЕЭК&nbsp;№&nbsp;89,&nbsp;гл.&nbsp;2</span></div>
         </div>
-        <div class="tbl__r" role="row" data-doc="">
+        <div class="tbl__r" role="row">
           <div class="tbl__c1" data-l="Методика" role="cell">Изотермическая амплификация (LAMP)</div>
           <div class="tbl__c2" data-l="Что определяет" role="cell">нуклеиновые кислоты вирусов без термоциклера</div>
         </div>
@@ -804,12 +794,12 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <span class="sh__n">06</span>
         <h2 class="sh__t">Оборудование</h2>
       </header>
-      <p class="lead">Парк лаборатории группы компаний.</p>
+      <p class="lead">Парк используется ООО «БМК групп» на правах аренды.</p>
       <div class="inv">
         <section class="inv__g"><h3 class="inv__h">Боксы</h3><ul class="inv__l"><li><span class="inv__t"><span class="mono">2</span> бокса биобезопасности II класса, БМБ-II «Ламинар-С»-1,5 NEOTERIC</span></li><li><span class="inv__t">ПЦР-бокс БАВ-ПЦР-«Ламинар-С»</span></li></ul></section>
         <section class="inv__g"><h3 class="inv__h">Стерилизация и вода</h3><ul class="inv__l"><li><span class="inv__t"><span class="mono">2</span> паровых стерилизатора класса B, STE-23-D</span></li><li><span class="inv__t">Водоподготовка: Sartorius arium mini и Millipore Direct-Q 3</span></li></ul></section>
-        <section class="inv__g"><h3 class="inv__h">Центрифуги</h3><ul class="inv__l"><li><span class="inv__t">Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</span></li></ul></section>
         <section class="inv__g"><h3 class="inv__h">Холод</h3><ul class="inv__l"><li><span class="inv__t"><span class="mono">4</span> низкотемпературных морозильника −86&nbsp;°C по <span class="nw">338&nbsp;л</span>, Haier DW-86L338</span></li><li><span class="inv__t"><span class="mono">2</span> криохранилища Thermo CY50935-70</span></li><li><span class="inv__t"><span class="mono">5</span> сосудов Дьюара</span></li></ul></section>
+        <section class="inv__g"><h3 class="inv__h">Центрифуги</h3><ul class="inv__l"><li><span class="inv__t">Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</span></li></ul></section>
         <section class="inv__g"><h3 class="inv__h">ИФА</h3><ul class="inv__l"><li><span class="inv__t">Промыватели планшетов ППА-01 ПРОПЛАН и Mindray MW-12A</span></li><li><span class="inv__t">Планшетный фотометр Thermo Multiskan FC</span></li><li><span class="inv__t">Автоматическая станция ИФА «Лазурит», введена 28.10.2026</span></li></ul></section>
         <section class="inv__g"><h3 class="inv__h">Термошейкеры</h3><ul class="inv__l"><li><span class="inv__t">Термошейкеры Biosan TS-100 и TS-100C</span></li></ul></section>
         <section class="inv__g"><h3 class="inv__h">Обеззараживание воздуха</h3><ul class="inv__l"><li><span class="inv__t"><span class="mono">15</span> UV-рециркуляторов DEZAR-KRONT</span></li></ul></section>
@@ -835,7 +825,6 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <span class="sh__n">07</span>
         <h2 class="sh__t">Команда</h2>
       </header>
-      <p class="lead">Роли в программах и в лаборатории.</p>
       <div class="filt" id="filt" hidden>
         <span class="filt__k">Показать</span>
         <button type="button" class="filt__b" data-f="all" aria-pressed="true">Все роли</button>
@@ -878,6 +867,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         <article class="card" id="p1">
           <p class="card__k">Производителям тест-систем и лабораториям</p>
           <h3>ККС-5: совместная характеризация на наборах партнёра</h3>
+          <p>Постановка серии ККС-5-П01 на наборах ИФА и ИХЛА партнёра по согласованному плану. Партнёр получает результат по каждому маркеру на своих наборах — в формате <a href="rd.html#kptbl">таблицы постановки 03.09.2026</a>.</p>
           <p class="card__done"><b>Сделано</b>Серия ККС-5-П01, 30 флаконов × 5 мл, измерена по ИФА 03.09.2026.</p>
         </article>
         <article class="card" id="p2">
@@ -906,7 +896,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       <div class="steps">
         <div class="step">
           <p class="step__h"><span class="step__n">1</span><span class="step__k">Письмо</span></p>
-          <p>Пришлите задачу и сроки на <a href="mailto:ceo@bmc-gp.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0">ceo@bmc-gp.com</a>; для лабораторных работ — также матрицу и объём.</p>
+          <p>Пришлите задачу и сроки на <a class="nw" href="mailto:ceo@bmc-gp.com?subject=%D0%97%D0%B0%D0%BF%D1%80%D0%BE%D1%81%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0">ceo@bmc-gp.com</a>; для лабораторных работ — также матрицу и объём.</p>
         </div>
         <div class="step">
           <p class="step__h"><span class="step__n">2</span><span class="step__k">NDA</span></p>
@@ -921,7 +911,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
           <p>Фиксируем работу договором и приступаем.</p>
         </div>
       </div>
-      <p class="mt-4">Почта <a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>, телефон <a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>.</p>
+      <p class="mt-4">Почта <a class="nw" href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a>, телефон <a class="nw" href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a>.</p>
     </div>
   </section>
 
@@ -948,9 +938,9 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         </dl>
         <dl class="dl">
           <dt>Почта</dt>
-          <dd><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></dd>
+          <dd><a class="nw" href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></dd>
           <dt>Телефон</dt>
-          <dd><a href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a></dd>
+          <dd><a class="nw" href="tel:+79086325048">+7&nbsp;908&nbsp;632-50-48</a></dd>
           <dt>ИНТЦ «Сириус»</dt>
           <dd>Участник проекта. Свидетельство <span class="nw">АА №&nbsp;000093</span> от 05.04.2024</dd>
           <dt>Персональные данные</dt>
@@ -986,8 +976,8 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
       <div>
         <h3>Связь</h3>
         <ul>
-          <li><a href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
-          <li><a href="tel:+79086325048">+7 908 632-50-48</a></li>
+          <li><a class="nw" href="mailto:ceo@bmc-gp.com">ceo@bmc-gp.com</a></li>
+          <li><a class="nw" href="tel:+79086325048">+7 908 632-50-48</a></li>
           <li><a href="/privacy">Персональные данные</a></li>
         </ul>
       </div>
@@ -1057,7 +1047,7 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
     }
     marks.forEach(function (m, j) {
       m.addEventListener('mouseenter', function () { show(j); });
-      m.addEventListener('focus', function () { show(j); });
+      m.addEventListener('focus', function () { show(j); var s = m.ownerSVGElement, pi = $('.pidx'), lim = pi && pi.offsetHeight ? pi.getBoundingClientRect().bottom + 8 : 0; window.setTimeout(function () { var r = s && s.getBoundingClientRect(); if (r && (r.top < lim || r.bottom > window.innerHeight)) s.scrollIntoView({ block: 'center' }); }, 60); });
       m.addEventListener('mouseleave', function () { show(-1); });
       m.addEventListener('blur', function () { show(-1); });
     });
@@ -1077,22 +1067,6 @@ a:hover,a:focus-visible{color:var(--ref);border-bottom-width:2px;padding-bottom:
         var f = b.getAttribute('data-f');
         $$('.filt__b', filt).forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
         roles.forEach(function (li) { li.hidden = f !== 'all' && (' ' + li.getAttribute('data-p') + ' ').indexOf(' ' + f + ' ') < 0; });
-      });
-    });
-  }
-
-  /* 4. Методики: фильтр по нормативному документу и счётчик. Без JS — все девять строк, кнопок нет. */
-  var mf = $('#mfilt'), mc = $('#mcount');
-  if (mf) {
-    mf.hidden = false;
-    if (mc) mc.hidden = false;
-    var mrows = $$('#mtbl .tbl__r');
-    $$('.filt__b', mf).forEach(function (b) {
-      b.addEventListener('click', function () {
-        var k = b.getAttribute('data-doc'), n = 0;
-        $$('.filt__b', mf).forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
-        mrows.forEach(function (r) { var on = k === 'all' || (' ' + (r.getAttribute('data-doc') || '') + ' ').indexOf(' ' + k + ' ') >= 0; r.hidden = !on; if (on) n++; });
-        if (mc) mc.textContent = k === 'all' ? 'Показаны все девять методик' : 'Методик с этой привязкой: ' + n + ' из 9';
       });
     });
   }

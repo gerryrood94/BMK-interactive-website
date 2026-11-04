@@ -748,8 +748,99 @@ function r1Rd(h) {
   return h;
 }
 
-const idx = r1Index(buildIndex(fs.readFileSync(path.join(BASE, 'index.html'), 'utf8')));
-const rd = r1Rd(buildRd(fs.readFileSync(path.join(BASE, 'rd.html'), 'utf8')));
+
+// ------------------------------------------------------------------ Раунд 2 слепой проверки (03.11.2026)
+function r2Common(h) {
+  // Липкое оглавление не накрывает ссылку в фокусе (Shift+Tab вверх)
+  h = rep(h, `  [id]{scroll-margin-top:calc(40px + var(--s5))}\n`, `  [id]{scroll-margin-top:calc(40px + var(--s5))}\n  html{scroll-padding-top:calc(41px + var(--s2))}\n`, 'r2 scroll-padding');
+  // Печать: номера разделов, шагов и схемы — чернила по белому, с рамкой (фон не печатается по умолчанию)
+  h = rep(h, `  .map,.ftr,.ftr__g{break-inside:avoid}\n`, `  .map,.ftr,.ftr__g{break-inside:avoid}\n  .sh__n,.step__n,.cycle__n,.sec--deep .sh__n,.sec--deep .step__n,.kks5__hero .sh__n{background:none!important;color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink)}\n`, 'r2 print badges');
+  // Карточки — по высоте своего текста
+  h = rep(h, `.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5)}`, `.cards{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s5);margin-top:var(--s5);align-items:start}`, 'r2 cards start');
+  // Оборудование: группы в две колонки потоком, без пустот под короткими группами
+  h = rep(h, `@media (min-width:760px){.inv{grid-template-columns:repeat(2,minmax(0,1fr))}}`, `@media (min-width:760px){.inv{display:block;columns:2;column-gap:var(--s6)}.inv__g{break-inside:avoid}}`, 'r2 inv columns');
+  // :target после перехода с JS не держит вторую подсветку
+  h = rep(h, `.tbl--kp .tbl__r.is-hi,.tbl--kp .tbl__r:target,.tbl--kp .tbl__r:hover{background:var(--band);border-left-color:var(--navy)}`,
+    `.tbl--kp .tbl__r.is-hi,.tbl--kp .tbl__r:target,.tbl--kp .tbl__r:hover{background:var(--band);border-left-color:var(--navy)}\n.js .tbl--kp .tbl__r:target:not(.is-hi):not(:hover){background:none;border-left-color:transparent}`, 'r2 kp target');
+  h = rep(h, `.tl>li:target{background:var(--plate);border-left-color:var(--navy)}`,
+    `.tl>li:target{background:var(--plate);border-left-color:var(--navy)}\n.js .tl>li:target:not([aria-current="true"]){background:none;border-left-color:transparent}`, 'r2 tl target');
+  // Телефон и почта не рвутся
+  h = repAll(h, /<a href="tel:\+79086325048">/g, `<a class="nw" href="tel:+79086325048">`, 'r2 tel nw');
+  h = repAll(h, /<a href="mailto:ceo@bmc-gp\.com/g, `<a class="nw" href="mailto:ceo@bmc-gp.com`, 'r2 mail nw');
+  return h;
+}
+
+const KP_LIST = `HBsAg 4,4; анти-HBcore 6,2; анти-ВГС ≈11; анти-<i>T.&nbsp;pallidum</i> 3,8 при договорном пороге 3`;
+
+function r2Index(h) {
+  h = r2Common(h);
+  // Первый экран: плитка ККС-5 говорит, что это; фраза стадии — та же, одна
+  h = rep(h, `<span class="tile__t">проходит государственную регистрацию как медицинское изделие</span>`,
+    `<span class="tile__t">контрольная сыворотка для ИФА и ИХЛА — проходит государственную регистрацию как медицинское изделие</span>`, 'r2 tile kks');
+  h = rep(h, `роли в программах и в лаборатории: роль, степень, институт`, `роли в программах и в лаборатории`, 'r2 tile team');
+  // КП цифрами вместо «не ниже порога»
+  h = rep(h, `3 сентября 2026 года по ИФА четыре маркера дали коэффициент позитивности не ниже договорного порога 3.`,
+    `3 сентября 2026 года измерены коэффициенты позитивности по ИФА: ${KP_LIST}.`, 'r2 card kp');
+  h = rep(h, `измерены коэффициенты позитивности по пяти маркерам: по четырём — не ниже договорного порога 3, по анти-ВИЧ-1/2`,
+    `измерены коэффициенты позитивности по пяти маркерам: ${KP_LIST}; по анти-ВИЧ-1/2`, 'r2 ev3 kp');
+  // Хроника: фраза о постановке 30.10.2026 без результата удалена; событие — 28.10.2026
+  h = rep(h, `<li id="ev7"><span class="tl__d">28–30.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА</b> (28.10.2026); 30.10.2026 на ней за один день изохронно поставлены все точки исследования стабильности ККС-5.</span></li>`,
+    `<li id="ev7"><span class="tl__d">28.10.2026</span><span class="tl__t"><b>Введена автоматическая станция ИФА «Лазурит».</b></span></li>`, 'r2 ev7');
+  h = rep(h, `<rect x="536.571" y="36" width="15.772" height="8" fill="#24305F" fill-opacity=".35"/>`, ``, 'r2 ev7 interval');
+  h = rep(h, `с 27 августа по 30 октября</title>`, `с 27 августа по 28 октября</title>`, 'r2 tlx title');
+  // SVG со ссылками внутри — group, не img
+  h = rep(h, `<svg class="tlx__svg" viewBox="0 0 600 72" role="img" aria-labelledby="tlx-t"`, `<svg class="tlx__svg" viewBox="0 0 600 72" role="group" aria-labelledby="tlx-t"`, 'r2 tlx role');
+  // Лиды 06 и 07: пустой лид заменён фактом (SUBSTANCE §6.5), лид команды удалён
+  h = rep(h, `<p class="lead">Парк лаборатории группы компаний.</p>`, `<p class="lead">Парк используется ООО «БМК групп» на правах аренды.</p>`, 'r2 equip lead');
+  h = rep(h, `      <p class="lead">Роли в программах и в лаборатории.</p>\n`, ``, 'r2 team lead');
+  // Методики: без третьей колонки и без фильтра по документу; привязка — строкой под «Что определяет» у пяти строк
+  h = repAll(h, /\n      <div class="filt" id="mfilt"[\s\S]*?<\/div>\n      <p class="note mt-2" id="mcount"[^\n]*<\/p>/, ``, 'r2 mfilt');
+  h = rep(h, `          <span>Что определяет</span>\n          <span>Нормативная привязка</span>\n`, `          <span>Что определяет</span>\n`, 'r2 mtbl head');
+  h = repAll(h, /(<div class="tbl__c2" data-l="Что определяет" role="cell">)([^<]*)<\/div>\n\s*<div class="tbl__c3" data-l="Нормативная привязка" role="cell"><span class="mono">([^<]*)<\/span><\/div>/g,
+    (m, a, b, c) => `${a}${b}<span class="tbl__ref">по ${c.split('; ').map(t => t.replace(/ (?=[№\d])|(?<=№) /g, '&nbsp;').replace(/^(\S+) /, '$1&nbsp;')).join('; ')}</span></div>`, 'r2 mtbl ref', 5);
+  h = repAll(h, /<div class="tbl__r" role="row" data-doc="[^"]*">/g, `<div class="tbl__r" role="row">`, 'r2 data-doc', 9);
+  h = rep(h, `.tbl__c3 .mono{font-family:var(--mono);font-size:var(--t-note);letter-spacing:.02em}`,
+    `.tbl__ref{display:block;font-family:var(--mono);font-size:var(--t-note);line-height:24px;color:var(--ink);letter-spacing:.02em}\n@media (min-width:860px){#mtbl .tbl__h,#mtbl .tbl__r{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}}`, 'r2 tbl__ref css');
+  h = repAll(h, /\n  \/\* 4\. Методики: фильтр[\s\S]*?\n  \}\n(?=\n  \/\* 5\.)/, ``, 'r2 mfilt js');
+  h = rep(h, `.navm,.nav,.pidx,.filt,.who,#mcount,.tile__x`, `.navm,.nav,.pidx,.filt,.who,.tile__x`, 'r2 print mcount');
+  // Оборудование: «Центрифуги» после «Холода» — колонки по высоте равны
+  h = rep(h, `        <section class="inv__g"><h3 class="inv__h">Центрифуги</h3><ul class="inv__l"><li><span class="inv__t">Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</span></li></ul></section>\n`, ``, 'r2 inv cf out');
+  h = rep(h, `        <section class="inv__g"><h3 class="inv__h">ИФА</h3>`, `        <section class="inv__g"><h3 class="inv__h">Центрифуги</h3><ul class="inv__l"><li><span class="inv__t">Центрифуги с охлаждением: Eppendorf 5424R и Eppendorf 5804R</span></li></ul></section>\n        <section class="inv__g"><h3 class="inv__h">ИФА</h3>`, 'r2 inv cf in');
+  // Хроника: фокус на метке внутри SVG — ось целиком в окне, ниже липкого оглавления (Chromium не прокручивает к ссылке SVG сам)
+  h = rep(h, `      m.addEventListener('focus', function () { show(j); });`,
+    `      m.addEventListener('focus', function () { show(j); var s = m.ownerSVGElement, pi = $('.pidx'), lim = pi && pi.offsetHeight ? pi.getBoundingClientRect().bottom + 8 : 0; window.setTimeout(function () { var r = s && s.getBoundingClientRect(); if (r && (r.top < lim || r.bottom > window.innerHeight)) s.scrollIntoView({ block: 'center' }); }, 60); });`, 'r2 tlx focus scroll');
+  // Карточка производителя: что предлагается
+  h = rep(h, `          <h3>ККС-5: совместная характеризация на наборах партнёра</h3>\n`,
+    `          <h3>ККС-5: совместная характеризация на наборах партнёра</h3>\n          <p>Постановка серии ККС-5-П01 на наборах ИФА и ИХЛА партнёра по согласованному плану. Партнёр получает результат по каждому маркеру на своих наборах — в формате <a href="rd.html#kptbl">таблицы постановки 03.09.2026</a>.</p>\n`, 'r2 p1 offer');
+  return h;
+}
+
+function r2Rd(h) {
+  h = r2Common(h);
+  // Строка требования без измеренного результата удалена; форма выпуска — целевая (SUBSTANCE §3.1.12)
+  h = rep(h, `        <li>Договорное требование: разброс оптической плотности между флаконами — не больше 10&nbsp;% от среднего по серии</li>\n`, ``, 'r2 10pct');
+  h = rep(h, `<li>Форма выпуска: флакон 5&nbsp;мл</li>`, `<li>Целевая форма выпуска: флакон 5&nbsp;мл</li>`, 'r2 target form');
+  // Схема: полный цикл постановки ИФА, без повтора порога
+  h = rep(h, `            <li><span class="cycle__n">3</span><p class="cycle__t">Инкубация</p><p class="cycle__s">контроль на планшете</p></li>
+            <li><span class="cycle__n">4</span><p class="cycle__t">Промывка</p><p class="cycle__s">шаг постановки</p></li>
+            <li><span class="cycle__n">5</span><p class="cycle__t">Фотометр</p><p class="cycle__s">чтение ОП</p></li>
+            <li class="cycle--kks"><span class="cycle__n">6</span><p class="cycle__t">КП, порог ≥ 3</p><p class="cycle__s">порог договора ≥ 3</p></li>`,
+    `            <li><span class="cycle__n">3</span><p class="cycle__t">Инкубация, промывка</p><p class="cycle__s">связывание в лунке</p></li>
+            <li><span class="cycle__n">4</span><p class="cycle__t">Конъюгат, промывка</p><p class="cycle__s">метка на связанном комплексе</p></li>
+            <li><span class="cycle__n">5</span><p class="cycle__t">Субстрат, стоп-реагент</p><p class="cycle__s">окраска в лунке</p></li>
+            <li class="cycle--kks"><span class="cycle__n">6</span><p class="cycle__t">Фотометр, КП</p><p class="cycle__s">ОП контроля, порог КП&nbsp;3</p></li>`, 'r2 cycle');
+  h = rep(h, `<p class="cycle__s">5 мл, пять маркеров</p>`, `<p class="cycle__s">флакон 5&nbsp;мл, пять маркеров</p>`, 'r2 cycle 1');
+  h = rep(h, `<p class="cycle__s">вместе с образцами</p>`, `<p class="cycle__s">в лунки вместе с образцами</p>`, 'r2 cycle 2');
+  h = rep(h, `<p>Показан порядок цикла ИФА и место в нём ККС-5. Контроль вносят`, `<p>Контроль вносят`, 'r2 cycle caption');
+  // КП цифрами
+  h = rep(h, `<p class="note mt-3">По HBsAg, анти-HBcore, анти-ВГС и анти-<i>T. pallidum</i> измеренный КП не ниже договорного порога 3.`,
+    `<p class="note mt-3">КП: ${KP_LIST}.`, 'r2 rd kp note');
+  h = rep(h, `<svg class="kprow" viewBox="0 0 560 200" role="img" aria-labelledby="kprow-t"`, `<svg class="kprow" viewBox="0 0 560 200" role="group" aria-labelledby="kprow-t"`, 'r2 kprow role');
+  return h;
+}
+
+const idx = r2Index(r1Index(buildIndex(fs.readFileSync(path.join(BASE, 'index.html'), 'utf8'))));
+const rd = r2Rd(r1Rd(buildRd(fs.readFileSync(path.join(BASE, 'rd.html'), 'utf8'))));
 fs.writeFileSync(path.join(OUT, 'index.html'), idx);
 fs.writeFileSync(path.join(OUT, 'rd.html'), rd);
 console.log('written', idx.length, rd.length);
